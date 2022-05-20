@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Loader from '../Loader/Loader';
 
-const Example = () => {
+const ExampleLoader = () => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(()=>{
@@ -16,4 +16,4 @@ const Example = () => {
     )
 }
 
-export default Example;
+export default ExampleLoader;

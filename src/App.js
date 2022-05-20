@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.css';
-import Example from "./components/example/example.jsx";
-
+import ExampleLoader from './components/Examples/ExampleLoader';
 
 function App() {
   return (
-    <Example/>
+    <ExampleLoader/>
   );
 }
 
