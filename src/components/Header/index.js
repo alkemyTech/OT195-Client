@@ -1,50 +1,61 @@
 import React from "react";
-import Logo from "./Logo";
-import Nav from "./Nav";
+import NavBrand from "./NavBrand";
+import NavMenu from "./NavMenu";
 import useFetch from "../../hooks/useFetch";
+import { Navbar, Container } from "react-bootstrap";
+
+import "./Header.css";
 
 const Header = () => {
-  const endpoint = "http://localhost:3001/users";
-  const { data, loading } = useFetch(endpoint);
+  // Endpoint link
+  const endpoint = "localhost";
 
-  // const data = {
-  //   image: "",
-  //   name: "",
-  //   menu: {
-  //     items: [
-  //       {
-  //         text: "Inicio",
-  //         route: "/",
-  //       },
-  //       {
-  //         text: "Nosotros",
-  //         route: "/",
-  //       },
-  //       {
-  //         text: "Novedades",
-  //         route: "/",
-  //       },
-  //       {
-  //         text: "Testimonios",
-  //         route: "/",
-  //       },
-  //       {
-  //         text: "Contacto",
-  //         route: "/",
-  //       },
-  //       {
-  //         text: "Distribuye",
-  //         route: "/",
-  //       },
-  //     ],
-  //   },
-  // };
+  // Fetching header data
+  // const { data, loading } = useFetch(endpoint);
+
+  // Placeholder
+  const data = {
+    image: "",
+    name: "",
+    menu: {
+      items: [
+        {
+          text: "Inicio",
+          route: "/home",
+        },
+        {
+          text: "Nosotros",
+          route: "/",
+        },
+        {
+          text: "Novedades",
+          route: "/",
+        },
+        {
+          text: "Testimonios",
+          route: "/",
+        },
+        {
+          text: "Contacto",
+          route: "/",
+        },
+        {
+          text: "Contribuye",
+          route: "/",
+        },
+      ],
+    },
+  };
 
   return (
-    <header>
-      <Logo logo={data.image} name={data.name}></Logo>
-      <Nav menu={data.menu}></Nav>
-    </header>
+    <Container fluid className="navbar-container d-flex flex-column">
+      <Navbar className="my-auto">
+        <Container fluid>
+          <NavBrand logo={data.image} name={data.name}></NavBrand>
+          <NavMenu menu={data.menu}></NavMenu>
+        </Container>
+      </Navbar>
+    </Container>
   );
 };
 
