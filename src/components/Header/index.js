@@ -8,7 +8,7 @@ import "./Header.css";
 
 const Header = () => {
   // Endpoint link
-  const endpoint = "localhost";
+  //const endpoint = "localhost";
 
   // Fetching header data
   // const { data, loading } = useFetch(endpoint);
@@ -17,7 +17,7 @@ const Header = () => {
   const data = {
     image: "",
     name: "",
-    menu: {
+    nav: {
       items: [
         {
           text: "Inicio",
@@ -44,6 +44,16 @@ const Header = () => {
           route: "/contribute",
         },
       ],
+      buttons: [
+        {
+          text: "Log In",
+          route: "/login",
+        },
+        {
+          text: "Registrate",
+          route: "/signup",
+        },
+      ],
     },
   };
 
@@ -52,7 +62,7 @@ const Header = () => {
       <Navbar className="my-auto">
         <Container fluid>
           <NavBrand logo={data.image} name={data.name}></NavBrand>
-          <NavMenu menu={data.menu}></NavMenu>
+          <NavMenu menu={data.nav}></NavMenu>
         </Container>
       </Navbar>
     </Container>
