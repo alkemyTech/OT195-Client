@@ -1,57 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import ExampleLoader from "./components/Examples/ExampleLoader";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <>
+      <ExampleLoader />
+      <Routes>
+        <Route index element={<h1>Home</h1>} />
+        <Route path="home" element={<h1>Home</h1>} />
+        <Route path="staff" element={<h1>Staff</h1>} />
+        <Route path="news" element={<h1>News</h1>} />
+        <Route path="testimonials" element={<h1>Testimonials</h1>} />
+        <Route path="contribute" element={<h1>Contribute</h1>} />
+        <Route path="login" element={<h1>Login</h1>} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+      </Routes>
+    </>
   );
 }
 
