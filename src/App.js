@@ -2,10 +2,14 @@ import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import ExampleLoader from "./components/Examples/ExampleLoader";
+import Header from "./components/Header/";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <>
+      <Header></Header>
       <ExampleLoader />
       <Routes>
         <Route index element={<h1>Home</h1>} />

@@ -25,23 +25,23 @@ const Header = () => {
         },
         {
           text: "Nosotros",
-          route: "/",
+          route: "/staff",
         },
         {
           text: "Novedades",
-          route: "/",
+          route: "/news",
         },
         {
           text: "Testimonios",
-          route: "/",
+          route: "/testimonials",
         },
         {
           text: "Contacto",
-          route: "/",
+          route: "/contact",
         },
         {
           text: "Contribuye",
-          route: "/",
+          route: "/contribute",
         },
       ],
     },

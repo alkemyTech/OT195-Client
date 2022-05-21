@@ -1,15 +1,19 @@
 import React from "react";
 
 import { Nav } from "react-bootstrap";
+import { NavLink } from "react-router-dom";
 
-const NavLink = (props) => {
+const NavItem = (props) => {
   const { navItem } = props;
   const { text, route } = navItem;
+
   return (
     <Nav.Item className="navbar-items">
-      <Nav.Link href={route}>{text}</Nav.Link>
+      <Nav.Link as={NavLink} to={route}>
+        {text}
+      </Nav.Link>
     </Nav.Item>
   );
 };
 
-export default NavLink;
+export default NavItem;
