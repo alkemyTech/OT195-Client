@@ -17,4 +17,6 @@ code {
 :root{
   --primary-font: 'Poppins', sans-serif; 
   --text-1: #000; 
+  --primary-color: #FF0000;
+  --background-color: #FFF;
 }

@@ -47,10 +47,12 @@ const Header = () => {
       buttons: [
         {
           text: "Log In",
+          style: "secondary",
           route: "/login",
         },
         {
           text: "Registrate",
+          style: "primary",
           route: "/signup",
         },
       ],
