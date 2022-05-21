@@ -3,7 +3,7 @@ import React from "react";
 import NavLink from "./NavLink";
 
 import { Nav, Navbar } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import NavButton from "../Button";
 
 const NavMenu = (props) => {
@@ -12,7 +12,13 @@ const NavMenu = (props) => {
   // Use the 'useLocation' hook from react router to get the exact location
   const location = useLocation();
 
-  //TODO: Handle click on buttons
+  // Use the 'useNavigate' hook from react router to create custom methods for the buttons
+  const navigate = useNavigate();
+
+  // Custom method for the buttons
+  const buttonHandleClick = (route) => {
+    return navigate(route);
+  };
 
   return (
     // Placeholder just the string "/home" for now
@@ -28,6 +34,7 @@ const NavMenu = (props) => {
               <NavButton
                 text={item.text}
                 style={item.style}
+                callbackClick={() => buttonHandleClick(item.route)}
                 key={index}
               ></NavButton>
             ))
