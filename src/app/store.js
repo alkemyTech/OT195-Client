@@ -1,8 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import asyncMiddleware from "../middlewares/asyncMiddleware";
+import reducers from "../features/reducers";
 
-export default configureStore({
-  reducer: {
-    counter: counterReducer,
-  },
+export const store = configureStore({
+  reducer: reducers,
+  middleware: [asyncMiddleware],
+  devTools: true,
 });
