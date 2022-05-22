@@ -1,5 +1,9 @@
-import { makeAsyncTypes } from "../../utils/actionsCreator";
+import { makeAsyncTypes, makeAsyncMac } from "../../utils/actionsCreator";
 import { createReducer } from "@reduxjs/toolkit";
+
+export const loginUserTypes = makeAsyncTypes("user");
+export const [setLoginPending, setLoginFulfilled, setLoginRejected] =
+  makeAsyncMac(loginUserTypes.map((e) => e.type));
 
 const loginInitialState = {
   entity: {
@@ -9,11 +13,12 @@ const loginInitialState = {
     image: "",
     roleId: "",
   },
+  loading: "idle",
 };
 
-export const [pending, fulfilled, rejected] = makeAsyncTypes("login");
-
 export const loginReducer = createReducer(loginInitialState, (builder) => {
+  const [pending, fulfilled, rejected] = loginUserTypes;
+
   builder
     .addCase(pending, (state) => {
       state.loading = "loading";
