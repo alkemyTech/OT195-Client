@@ -8,7 +8,7 @@ import ExampleLoader from './components/Examples/ExampleLoader';
 function App() {
   return (
     <>
-    <ExampleLoader/>
+    {/* <ExampleLoader/> */}
     <Routes>
       <Route path='/register' element= {<Register/>} />
     </Routes>

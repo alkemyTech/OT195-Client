@@ -1,11 +1,18 @@
 import React from "react";
 import { Formik } from "formik";
+import Nav from "./Nav";
+
+import foto from "../register/imagen/Foto3.jpg"
+// import logo from "../register/imagen/LOGO.png"
 import style from "../register/css/Register.module.css"
 
 
 export default function Register(){
     return(
-        <div>
+        <div  >
+            <Nav/>
+            {/* <img src={logo} alt="logo" width="100px" className={style.logo} /> */}
+            <img className={style.imagen} src={foto}  alt="imagen.." /> 
             <h1 className={style.welcome} >Bienvenido</h1>
             <h1 className={style.create} >Crea tu usuario!</h1>
             <Formik
@@ -34,8 +41,9 @@ export default function Register(){
                             />
                         </div>
                         <div>
-                            <label htmlFor="lastName">Apellido </label>
-                            <input 
+                            <label htmlFor="lastName" className={style.lastName} >Apellido </label>
+                            <input
+                              className={style.inputLastName} 
                               type="text"
                               id="lastName"
                               name="lastName"
@@ -46,8 +54,9 @@ export default function Register(){
                             />
                         </div>
                         <div>
-                            <label htmlFor="email">Email </label>
+                            <label htmlFor="email" className={style.email} >Email </label>
                             <input 
+                              className={style.inputEmail}
                               type="email"
                               id="email"
                               name="email"
@@ -57,8 +66,9 @@ export default function Register(){
                              />
                         </div>
                         <div>
-                            <label htmlFor="password">Contraseña </label>
+                            <label htmlFor="password" className={style.password} >Contraseña </label>
                             <input
+                              className={style.inputPassword}
                               type="password"
                               id="password"
                               name="password"
@@ -67,7 +77,7 @@ export default function Register(){
                               placeholder="Contraseña"
                             />
                         </div>
-                        <button type="submit">Crear usuario</button>
+                        <button type="submit" className={style.buttonCreate} >Crear usuario</button>
                     </form>
                 ) }
             </Formik>
