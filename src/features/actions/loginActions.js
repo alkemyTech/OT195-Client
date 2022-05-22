@@ -13,6 +13,11 @@ const loginInitialState = {
     image: "",
     roleId: "",
   },
+
+  error: {
+    msg: "",
+    code: "",
+  },
   loading: "idle",
 };
 
@@ -21,11 +26,26 @@ export const loginReducer = createReducer(loginInitialState, (builder) => {
 
   builder
     .addCase(pending, (state) => {
-      state.loading = "loading";
+      return {
+        ...loginInitialState,
+        loading: "pending",
+      };
     })
     .addCase(fulfilled, (state, action) => {
-      state.entity = action.payload;
-      state.loading = "succeded";
+      // Storage token key on local storage
+      window.localStorage.setItem(
+        "token",
+        JSON.stringify(action.payload.token)
+      );
+
+      // Update state
+      return {
+        ...state,
+        entity: {
+          ...state.entity,
+        },
+        loading: "succeded",
+      };
     })
     .addCase(rejected, (state, action) => {
       state.error = action.error;
