@@ -1,12 +1,15 @@
 import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+import { AlertProvider } from "./contexts/alertContext";
 import ExampleLoader from "./components/Examples/ExampleLoader";
+import ExampleAlerts from "./components/Examples/ExampleAlerts";
 
 function App() {
   return (
-    <>
+    <AlertProvider>
       <ExampleLoader />
+      <ExampleAlerts />
       <Routes>
         <Route index element={<h1>Home</h1>} />
         <Route path="home" element={<h1>Home</h1>} />
@@ -17,7 +20,7 @@ function App() {
         <Route path="login" element={<h1>Login</h1>} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
-    </>
+    </AlertProvider>
   );
 }
 
