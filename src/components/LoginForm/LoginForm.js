@@ -126,16 +126,16 @@ const LoginForm = () => {
             onSubmit={(values, { resetForm }) => {
               dispatch(loginDispatch(values, resetForm));
             }}
-            // validationSchema={Yup.object({
-            //   email: Yup.string()
-            //     .required(
-            //       "Por favor, complete su dirección de correo electrónico"
-            //     )
-            //     .email("Ingrese un email válido."),
-            //   password: Yup.string()
-            //     .required("La contraseña es obligatoria")
-            //     .min(6, "La contraseña debe tener al menos 6 caracteres"),
-            // })}
+            validationSchema={Yup.object({
+              email: Yup.string()
+                .required(
+                  "Por favor, complete su dirección de correo electrónico"
+                )
+                .email("Ingrese un email válido."),
+              password: Yup.string()
+                .required("La contraseña es obligatoria")
+                .min(6, "La contraseña debe tener al menos 6 caracteres"),
+            })}
           >
             <Form className="form_login">
               <TextField
