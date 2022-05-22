@@ -1,17 +1,20 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import { AlertProvider } from "./contexts/alertContext";
+import { Routes, Route, Navigate } from "react-router-dom";
 import ExampleLoader from "./components/Examples/ExampleLoader";
-import ExampleAlerts from "./components/Examples/ExampleAlerts";
+import Header from "./components/Header/";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
+    <>
     <AlertProvider>
+      <Header></Header>
       <ExampleLoader />
       <ExampleAlerts />
       <Routes>
-        <Route index element={<h1>Home</h1>} />
+        <Route index element={<Navigate to="home" />} />
         <Route path="home" element={<h1>Home</h1>} />
         <Route path="staff" element={<h1>Staff</h1>} />
         <Route path="news" element={<h1>News</h1>} />
@@ -21,6 +24,7 @@ function App() {
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </AlertProvider>
+    </>
   );
 }
 
