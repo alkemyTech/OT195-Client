@@ -1,0 +1,17 @@
+.rowLogin{
+    display: flex;
+    align-items: center;
+    text-align: left; 
+   
+    
+}
+
+.col_img{
+
+    justify-content: right;
+}
+.img_manos{
+    height: 100vh;
+    width: 120%;
+    
+}
