@@ -1,0 +1,25 @@
+:root {
+    --bg-color: #b6b6b6;
+}
+
+.footer-box {
+    background-color: var(--bg-color);
+}
+
+.img-container {
+    background-color: var(--bg-color);
+    z-index: 2;
+}
+
+.img-container > img {
+    width: 8vw;
+}
+
+.separator {
+    height: .2rem !important;
+    width: 100%;
+    margin: 0;
+    position: absolute;
+    border: black;
+    opacity: 1;
+}
