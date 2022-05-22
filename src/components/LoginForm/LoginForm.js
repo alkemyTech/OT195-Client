@@ -4,7 +4,10 @@ import React from "react";
 
 import { Formik, Form } from "formik";
 import { Button, Container, Col, Row, Image } from "react-bootstrap";
+import { useEffect } from "react";
 import * as Yup from "yup";
+import useLocalStorage from "../../hooks/useLocalStorage";
+import { useNavigate } from "react-router-dom";
 
 //Componentes
 import TextField from "./TextField";
@@ -77,6 +80,9 @@ const loginDispatch = (values, resetForm) => async (dispatch) => {
     // If the ok property is false, we throw a new error message
     // Expected the data to contain an "ok" property which may be 'true' or 'false'
     // Expected the data to contain an "msg" property which contains the error message
+
+    // TODO: Display user friendly error messages
+
     if (!data.ok) throw new Error(data.msg);
 
     // TODO: resetForm();
@@ -95,6 +101,19 @@ const loginDispatch = (values, resetForm) => async (dispatch) => {
 const LoginForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(({ user }) => user);
+
+  const navigate = useNavigate();
+
+  // Custom hook to listen the token
+  const [token] = useLocalStorage("token");
+
+  // TODO: Show a different view when ther already signed in
+  useEffect(() => {
+    // If the login was successful, store the token in the local storage and redirect to "/"
+    if (token) {
+      navigate("/");
+    }
+  }, [token, navigate]);
 
   return (
     <Container>

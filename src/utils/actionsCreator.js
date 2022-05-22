@@ -32,11 +32,8 @@ export const makeAsyncTypes = (entity) => [
 
 // Make Async Mac
 // Create actions dispatchers for async types
-export const makeAsyncMac = (asyncTypes) => {
-  console.log(asyncTypes);
-  return [
-    mac(asyncTypes[0]),
-    mac(asyncTypes[1], "payload"),
-    mac(asyncTypes[2], "error"),
-  ];
-};
+export const makeAsyncMac = (asyncTypes) => [
+  mac(asyncTypes[0]),
+  mac(asyncTypes[1], "payload"),
+  mac(asyncTypes[2], "error"),
+];
