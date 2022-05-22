@@ -4,11 +4,6 @@ import React from "react";
 
 import { Formik, Form } from "formik";
 import { Button, Container, Col, Row, Image } from "react-bootstrap";
-import {
-  setLoginPending,
-  setLoginFulfilled,
-  setLoginRejected,
-} from "../../features/actions/loginActions";
 import * as Yup from "yup";
 
 //Componentes
@@ -21,33 +16,85 @@ import "./LoginForm.css";
 import img_manos from "../../images/img_manos.png";
 import { useDispatch, useSelector } from "react-redux";
 
-const loginDispatch = (values) => async (dispatch) => {
-  const endpoint = "http://localhost:3005/auth/login";
-  //   const endpoint = "http://localhost:3001";
+// Async dispatch action for reducers
+import {
+  setLoginPending,
+  setLoginFulfilled,
+  setLoginRejected,
+} from "../../features/actions/loginActions";
 
+const loginDispatch = (values, resetForm) => async (dispatch) => {
+  // Endpoint to the auth endpoint
+  const endpoint = "http://localhost:3005/auth/login";
+
+  // Update the "loading" state to "pending" on the application store;
   dispatch(setLoginPending());
 
   try {
+    // Try to fetch the server endpoint
     const response = await fetch(endpoint, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      // Data is sent to the server as shown below
+      // =============================
+      //  {
+      //    email: "",
+      //    password: ""
+      //  }
+
       body: JSON.stringify(values),
     });
+
+    // If there was no error, we get the data from the response
+    // Data is expected to be returned as shown below
+
+    /*  Without errors: 
+        ========================
+        {
+          results: {
+            id: "",
+            nombre: "",
+            apellido: "",
+            image: ""
+          },
+          ok: true
+        }
+     */
+
+    /*  With errors: 
+        ========================
+        {
+          msg: "",
+          errcode?: ""
+          ok: false
+        }
+     */
+
     const data = await response.json();
+
+    // If the ok property is false, we throw a new error message
+    // Expected the data to contain an "ok" property which may be 'true' or 'false'
+    // Expected the data to contain an "msg" property which contains the error message
     if (!data.ok) throw new Error(data.msg);
+
+    // TODO: resetForm();
+
+    // If there was no error, we dispatch the results to the application store
+    // Expected the data to contain an "results" property which contains the user information
     return dispatch(setLoginFulfilled(data.results));
   } catch (err) {
-    return dispatch(
-      setLoginRejected({ msg: err.msg || err.message, code: err.code })
-    );
+    // If there was an error, we dispatch the error to the application store
+    // TODO: Should we store the error code too?
+
+    return dispatch(setLoginRejected({ msg: err.message, code: "" }));
   }
 };
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const error = useSelector(({ user }) => user.error);
+  const user = useSelector(({ user }) => user);
 
   return (
     <Container>
@@ -58,7 +105,7 @@ const LoginForm = () => {
           <Formik
             initialValues={{ email: "", password: "" }}
             onSubmit={(values, { resetForm }) => {
-              dispatch(loginDispatch(values));
+              dispatch(loginDispatch(values, resetForm));
             }}
             // validationSchema={Yup.object({
             //   email: Yup.string()
@@ -76,23 +123,26 @@ const LoginForm = () => {
                 name="email"
                 type="text"
                 placeholder="Email"
+                disabled={user.loading === "pending" ? true : false}
               ></TextField>
               <TextField
                 name="password"
                 type="text"
                 placeholder="Contraseña"
                 min="6"
+                disabled={user.loading === "pending" ? true : false}
               ></TextField>
               <Button
                 style={{ marginLeft: "30px" }}
                 type="submit"
                 variant="danger"
+                disabled={user.loading === "pending" ? true : false}
               >
                 Iniciar sesión
               </Button>
             </Form>
           </Formik>
-          <p>{error?.msg}</p>
+          <p>{user.error?.msg}</p>
         </Col>
         <Col className="col_img">
           <Image className="img_manos" src={img_manos}></Image>
