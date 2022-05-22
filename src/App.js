@@ -2,7 +2,9 @@ import React from "react";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ExampleLoader from "./components/Examples/ExampleLoader";
+import ExampleAlerts from "./components/Examples/ExampleAlerts"
 import Header from "./components/Header/";
+import { AlertProvider } from "./contexts/alertContext";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
