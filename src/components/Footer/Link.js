@@ -4,14 +4,14 @@ import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const Link = (props) => {
-  const { navItem } = props;
-  const { name, route } = navItem;
+    const { data } = props;
+    const { name, route } = data;
 
-  return (
-    <Nav.Item as='li'>
-      <Nav.Link as={NavLink} to={route}>{name}</Nav.Link>
-    </Nav.Item>
-  );
+    return (
+        <Nav.Item as='li' className='footer-link mx-2'>
+            <Nav.Link as={NavLink} to={route}>{name}</Nav.Link>
+        </Nav.Item>
+    );
 };
 
 export default Link;

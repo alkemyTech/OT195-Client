@@ -4,12 +4,39 @@ import "./Footer.css";
 
 import { Container, Row } from "react-bootstrap";
 import Brand from './Brand'
+import Menu from './Menu'
 
 const Footer = () => {
 
     const data = { // this object must be filled by fetching information from the server
         name: '',
-        src: ''
+        src: '',
+        links: [
+            {
+              name: "Inicio",
+              route: "/home",
+            },
+            {
+              name: "Nosotros",
+              route: "/staff",
+            },
+            {
+              name: "Novedades",
+              route: "/news",
+            },
+            {
+              name: "Testimonios",
+              route: "/testimonials",
+            },
+            {
+              name: "Contacto",
+              route: "/contact",
+            },
+            {
+              name: "Contribuye",
+              route: "/contribute",
+            },
+          ],
     }
 
     return (
@@ -18,7 +45,10 @@ const Footer = () => {
                 <Brand name={data.name} src={data.src} />
             </Row>
             <Row>
-
+                <Menu links={data.links}/>
+            </Row>
+            <Row>
+                <hr className='separator my-4'/>
             </Row>
         </Container>
     )
