@@ -10,7 +10,7 @@ const Menu = (props) => {
     const { links } = props;
 
     return (
-        <Nav as='ul' className='justify-content-center my-4'>
+        <Nav as='ul' className='justify-content-center my-3 links-menu'>
             {links?
                 links.map((data, key) => (
                     <Link data={data} key={key} />

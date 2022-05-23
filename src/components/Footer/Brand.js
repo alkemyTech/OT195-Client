@@ -10,7 +10,7 @@ const Brand = (props) => {
 
     return (
         <Navbar className='justify-content-center'>
-            <hr className='separator'/>
+            <hr className='separator position-absolute'/>
             <Navbar.Brand as={ Link } to='/' className='px-5 img-container'>
                 <img src={src} alt={name} />
             </Navbar.Brand>

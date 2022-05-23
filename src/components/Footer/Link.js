@@ -8,7 +8,7 @@ const Link = (props) => {
     const { name, route } = data;
 
     return (
-        <Nav.Item as='li' className='footer-link mx-2'>
+        <Nav.Item as='li' className='footer-link mx-1 text-center'>
             <Nav.Link as={NavLink} to={route}>{name}</Nav.Link>
         </Nav.Item>
     );

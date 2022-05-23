@@ -4,13 +4,14 @@ import "./Footer.css";
 
 import { Container, Row } from "react-bootstrap";
 import Brand from './Brand'
-import Menu from './Menu'
+import LinksMenu from './LinksMenu'
+import MediaMenu from './MediaMenu'
 
 const Footer = () => {
 
     const data = { // this object must be filled by fetching information from the server
         name: '',
-        src: '',
+        src: '/images/logo.png',
         links: [
             {
               name: "Inicio",
@@ -37,6 +38,20 @@ const Footer = () => {
               route: "/contribute",
             },
           ],
+          media: [
+              {
+                network: "twitter",
+                url: "https://campus.alkemy.org/"
+              },
+              {
+                network: "facebook",
+                url: "https://campus.alkemy.org/"
+              },
+              {
+                network: "instagram",
+                url: "https://campus.alkemy.org/"
+              }
+          ]
     }
 
     return (
@@ -45,10 +60,16 @@ const Footer = () => {
                 <Brand name={data.name} src={data.src} />
             </Row>
             <Row>
-                <Menu links={data.links}/>
+                <LinksMenu links={data.links}/>
             </Row>
             <Row>
                 <hr className='separator my-4'/>
+            </Row>
+            <Row>
+                <MediaMenu media={data.media}/>
+            </Row>
+            <Row>
+                <span className=' my-2 rights text-center'>2022 by Alkemy. All Rights Reserved.</span>
             </Row>
         </Container>
     )
