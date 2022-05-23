@@ -1,16 +1,25 @@
-import { Card, Button } from "react-bootstrap";
+import { Card, Col, Button } from "react-bootstrap";
 
 const Option = (props) => {
-  const { title, image, action } = props;
+  const { option } = props;
+
+  const { title, image } = option;
 
   return (
-    <Card className="bo-card">
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        {/* <Card.Img>{image}</Card.Img> */}
-        <Button variant="success">Ir</Button>
-      </Card.Body>
-    </Card>
+    <Col
+      xxl={3}
+      md={4}
+      sm={5}
+      className="d-flex flex-column align-items-center"
+    >
+      <Card className="bo-card">
+        <Card.Body>
+          <Card.Title>{title}</Card.Title>
+          <Card.Img src={image} />
+          <Button variant="success">Ir</Button>
+        </Card.Body>
+      </Card>
+    </Col>
   );
 };
 
