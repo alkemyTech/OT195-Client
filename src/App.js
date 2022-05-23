@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import ExampleLoader from "./components/Examples/ExampleLoader";
 import ExampleAlerts from "./components/Examples/ExampleAlerts"
 import Header from "./components/Header/";
+import Footer from "./components/Footer/Footer";
 import { AlertProvider } from "./contexts/alertContext";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,6 +26,7 @@ function App() {
         <Route path="login" element={<h1>Login</h1>} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
+      <Footer />
     </AlertProvider>
     </>
   );
