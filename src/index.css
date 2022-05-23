@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +12,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root{
+  --primary-font: 'Poppins', sans-serif; 
+  --text-1: #000; 
+  --primary-color: #FF0000;
+  --background-color: #FFF;
+  --footer-color: #b6b6b6;
 }
