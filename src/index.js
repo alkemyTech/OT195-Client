@@ -11,11 +11,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
+    <BrowserRouter>
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
