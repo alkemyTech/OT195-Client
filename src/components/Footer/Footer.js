@@ -11,7 +11,7 @@ const Footer = () => {
 
     const data = { // this object must be filled by fetching information from the server
         name: '',
-        src: '/images/logo.png',
+        src: '',
         links: [
             {
               name: "Inicio",
@@ -38,19 +38,19 @@ const Footer = () => {
               route: "/contribute",
             },
           ],
-          media: [
-              {
-                network: "twitter",
-                url: "https://campus.alkemy.org/"
-              },
-              {
-                network: "facebook",
-                url: "https://campus.alkemy.org/"
-              },
-              {
-                network: "instagram",
-                url: "https://campus.alkemy.org/"
-              }
+          media: [ // Example
+            //   {
+            //     network: "twitter",
+            //     url: "https://campus.alkemy.org/"
+            //   },
+            //   {
+            //     network: "facebook",
+            //     url: "https://campus.alkemy.org/"
+            //   },
+            //   {
+            //     network: "instagram",
+            //     url: "https://campus.alkemy.org/"
+            //   }
           ]
     }
 
