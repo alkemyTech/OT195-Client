@@ -16,7 +16,9 @@ const Option = (props) => {
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Img src={image} />
-          <Button variant="success">Ir</Button>
+          <Button className="bo-button" variant="success">
+            Ir
+          </Button>
         </Card.Body>
       </Card>
     </Col>
