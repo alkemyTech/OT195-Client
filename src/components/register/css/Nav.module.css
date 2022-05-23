@@ -14,25 +14,45 @@
     margin-top: -10px;
     margin-left: 10px;
 }
-.list{
-    /* margin-top: 0px; */
+
+.lista1{
+    margin-left: 270px;
+    margin-top: 25px;
+}
+.lista1 li{
+    display:inline;
+    padding-right:20px;
+    text-decoration: none;
 }
 
 .buttonLog{
-    display: flex;
-flex-direction: row;
-align-items: flex-start;
-padding: 10px 25px;
-gap: 10px;
-
-width: 129px;
-height: 44px;
-
-background: #FF0000;
-border-radius: 20px;
-
-/* Inside auto layout */
-flex: none;
-order: 7;
-flex-grow: 0;
+    width: 100px;
+    height: 39px;
+    border-radius: 20px;
+    background-color: #ffffff05;
+    color: black; 
+    font-size: 16px;
+    cursor: pointer;
+    /* border: none; */
+    border-color: black;
 }
+.buttonLog:hover{
+    background-color: rgba(38, 131, 236, 0.81);
+}
+
+.buttonRegis{ 
+    width: 129px;
+    height: 39px;
+    background: #ff0707b2;
+    border-radius: 20px;
+    color: #FFFFFF;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.buttonRegis:hover{
+    background: #ff0000;
+}
+
+
+

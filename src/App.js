@@ -8,7 +8,7 @@ import ExampleLoader from './components/Examples/ExampleLoader';
 function App() {
   return (
     <>
-    {/* <ExampleLoader/> */}
+    {/* <ExampleLoader/> */}  {/* lo comente porque me aparece un ""Charge complete!" en el front de Register.jsx */}
     <Routes>
       <Route path='/register' element= {<Register/>} />
     </Routes>

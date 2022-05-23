@@ -32,9 +32,26 @@ top: 80px;
     line-height: 48px;
 }
 
+p{
+    color: red ;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+input{
+    font-size: 16px;
+    padding-left: 10px; 
+}
+:placeholder-shown{
+    padding-left: 10px; 
+    color: #B0B0B0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
 
 .name{
-position: absolute;
+    position: absolute;
 left: 144px;
 top: 255px;
 border-radius: 8px;
@@ -49,6 +66,11 @@ border-radius: 8px;
     background: #FFFFFF;
     border: 1px solid #B0B0B0;
     border-radius: 8px;
+}
+.errorName{
+    position: absolute;
+    left: 142px;
+    top: 320px;
 }
 
 
@@ -68,6 +90,12 @@ border-radius: 8px;
     border: 1px solid #B0B0B0;
     border-radius: 8px;
 }
+.errorLastName{
+    position: absolute;
+    left: 142px;
+    top: 420px;
+}
+
 
 .email{
     position: absolute;
@@ -85,9 +113,12 @@ border-radius: 8px;
     border: 1px solid #B0B0B0;
     border-radius: 8px;
 }
-.inputEmail:file{
-    size: 1000px;
+.errorEmail{
+    position: absolute;
+    left: 142px;
+    top: 520px;
 }
+
 
 .password{
     position: absolute;
@@ -104,6 +135,11 @@ border-radius: 8px;
     background: #FFFFFF;
     border: 1px solid #B0B0B0;
     border-radius: 8px;
+}
+.errorPassword{
+    position: absolute;
+    left: 142px;
+    top: 620px;
 }
 
 .buttonCreate{
