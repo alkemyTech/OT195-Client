@@ -36,8 +36,7 @@ const Slider = () => {
             alt={item.text}
              style={{
               objectFit: 'cover',
-              width:'450px',
-              height:'450px',
+              height:'600px',
               borderRadius:'5px'
               }}
           />
@@ -51,7 +50,7 @@ const Slider = () => {
       );
     });
 
-  return <Carousel style={{display:'block', width:'700px', }}>{slides}</Carousel>;
+  return <Carousel style={{display:'block', width:'100vw'}} className='my-5'>{slides}</Carousel>;
 };
 
 export default Slider;

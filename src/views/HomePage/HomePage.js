@@ -6,6 +6,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer/Footer";
 import Loader from '../../components/Loader/Loader'
 import Title from "../../components/Title/Title";
+import Slider from "../../components/Slider/Slider";
 
 const HomePage = () => {
 
@@ -20,7 +21,7 @@ const HomePage = () => {
         <>
             <Header image={publicInfo.image}></Header>
             <Title welcomeText={publicInfo.welcomeText}/>
-            
+            <Slider/>
             <Footer image={publicInfo.image}/>
         </>
     )
