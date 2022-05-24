@@ -6,16 +6,16 @@ import { Navbar, Container } from "react-bootstrap";
 
 import "./Header.css";
 
-const Header = () => {
+const Header = (props) => {
   // Endpoint link
   //const endpoint = "localhost";
 
   // Fetching header data
   // const { data, loading } = useFetch(endpoint);
+  const { image } = props;
 
   // Placeholder
   const data = {
-    image: "",
     name: "",
     nav: {
       items: [
@@ -63,7 +63,7 @@ const Header = () => {
     <Container fluid className="navbar-container d-flex flex-column">
       <Navbar className="my-auto">
         <Container fluid>
-          <NavBrand logo={data.image} name={data.name}></NavBrand>
+          <NavBrand image={image} name={data.name}></NavBrand>
           <NavMenu menu={data.nav}></NavMenu>
         </Container>
       </Navbar>
