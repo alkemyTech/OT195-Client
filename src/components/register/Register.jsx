@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik } from "formik";
-import Nav from "./Nav";
+import useFetch  from "../../hooks/useFetch";
 
 import foto from "../register/imagen/Foto3.jpg"
 import style from "../register/css/Register.module.css"
@@ -9,9 +9,9 @@ import style from "../register/css/Register.module.css"
 export default function Register(){
     const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i; 
     const regexString = /[A-Z]+$/i  ; 
+
     return(
         <div  >
-            <Nav/>
             <img className={style.imagen} src={foto}  alt="imagen.." /> 
             <h1 className={style.welcome} >Bienvenido</h1>
             <h1 className={style.create} >Crea tu usuario!</h1>
@@ -47,12 +47,26 @@ export default function Register(){
                   return errors
               }}
               onSubmit={(event) =>{
-                alert(JSON.stringify(event, null, 2))
-              }}
+
+                let requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(event),
+                    redirect: 'follow'
+                };
+
+                fetch("http://127.0.0.1:3001/auth/register", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+                
+            
+            }}
             >
                 {( {values,errors , handleChange, handleBlur, handleSubmit } )=>(
                     <form onSubmit={handleSubmit}>
-                        {console.log(errors)}
                         <div>
                             <label htmlFor="firstName" className={style.name} >Nombre</label>
                             <input
@@ -112,5 +126,6 @@ export default function Register(){
             </Formik>
             {/* <h1>Hola</h1> */}
         </div>
+        
     )
 }

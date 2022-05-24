@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 //Librerías
 
 import { Formik, Form } from "formik";
 import { Button, Container, Col, Row, Image } from "react-bootstrap";
-import { useEffect } from "react";
 import * as Yup from "yup";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { useNavigate } from "react-router-dom";
@@ -28,8 +27,8 @@ import {
 
 const loginDispatch = (values, resetForm) => async (dispatch) => {
   // Endpoint to the auth endpoint
-  const endpoint = "http://localhost:3005/auth/login";
-
+  const endpoint = "http://127.0.0.1:3001/auth/login";
+  
   // Update the "loading" state to "pending" on the application store;
   dispatch(setLoginPending());
 
