@@ -1,0 +1,118 @@
+.register{
+    margin-left: 15%;
+}
+
+.register h5, h3{
+    margin: 0 !important;
+}
+
+.register  form{
+    margin: 25px 0;
+    width: 100% !important;
+}
+
+.register  form > div{
+    margin: 10px 0;
+}
+
+
+.register> div > input{
+    margin: 5px 0 15px 0;
+    width: 100% !important;
+    padding: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+.register-image{
+    object-fit:cover;
+    width: 100%;
+    height: 100%;
+    object-position: 20% 50%;
+}
+
+.image{
+    object-fit:cover;
+    width: 100%;
+    height: 100%;
+    object-position: 20% 50%;
+}
+/* ------------ */
+
+.errorLabel {
+    color: red ;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+
+    
+    .welcome{
+
+        /* font-family: 'Poppins'; */
+        /* font-style: normal; */
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+    }
+    
+
+    
+    .formInput:placeholder-shown{
+        padding-left: 10px; 
+        color: #B0B0B0;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 24px;
+    }
+ 
+    
+
+    
+
+    .formInput{
+        font-size: 16px;
+        padding-left: 10px; 
+        width: 100%;
+        height: 56px;
+        left: 142px;
+        background: #FFFFFF;
+        border: 1px solid #B0B0B0;
+        border-radius: 8px;
+    }
+
+    
+    
+    .buttonDelete{
+    width: 45%;
+    height: 56px;
+    background: #ff0707b2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    margin: 20px 0;
+    /* font-family: 'Poppins'; */
+    /* font-style: normal; */
+    }
+    .buttonDelete:hover{
+        background: #ff0000;
+    }
+
+    .buttonEdit{
+        width: 45%;
+    height: 56px;
+    background: #076affb7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 20px;
+    margin: 20px 0;
+    /* font-family: 'Poppins'; */
+    /* font-style: normal; */
+    }
+    .buttonEdit:hover{
+        background: #076afffa;
+    }

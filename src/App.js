@@ -11,6 +11,7 @@ import Register from "./components/register/Register";
 import { AlertProvider } from "./contexts/alertContext";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import Profile from "./components/profile/Profile";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="login" element={<LoginForm/>} />
         <Route path="contact" element={<ContactForm/>}/>
         <Route path="signup" element={<Register/>}/>
+        <Route path="/profile" element={<Profile/>} /> 
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </AlertProvider>
