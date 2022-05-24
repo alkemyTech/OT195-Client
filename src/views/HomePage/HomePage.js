@@ -18,10 +18,10 @@ const HomePage = () => {
 
     return (
         <>
-            <Header></Header>
+            <Header image={publicInfo.image}></Header>
             <Title welcomeText={publicInfo.welcomeText}/>
             
-            <Footer />
+            <Footer image={publicInfo.image}/>
         </>
     )
     

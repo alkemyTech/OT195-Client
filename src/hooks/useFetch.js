@@ -18,11 +18,11 @@ const useFetch = (endpoint = "", options = defaultOptions) => {
     setLoading(true);
     try {
       const response = await fetch(endpoint, options);
-      const data = response.json();
-      if (!data.ok) {
-        const message = `An error ocurred: ${response.status}, code: ${data?.errcode}`;
-        throw new Error(message);
-      }
+      const data = await response.json();
+      // if (!data.ok) {
+      //   const message = `An error ocurred: ${response.status}, code: ${data?.errcode}`;
+      //   throw new Error(message);
+      // }
 
       return setData(data);
     } catch (err) {
