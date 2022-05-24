@@ -10,7 +10,6 @@ const Option = (props) => {
   const navAction = (param)=>{
     navigate(`:${param}`)
   }
-
   return (
     <Col
       xxl={3}

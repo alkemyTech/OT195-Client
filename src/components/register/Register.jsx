@@ -3,11 +3,15 @@ import { Formik } from "formik";
 import useFetch  from "../../hooks/useFetch";
 import Header from "../Header";
 
+import {Container, Row, Col, Image} from 'react-bootstrap'
+
+
 import foto from "../register/imagen/Foto3.jpg"
-import style from "../register/css/Register.module.css"
+import  "../register/css/Register.css"
 
 
 export default function Register(){
+
     const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i; 
     const regexString = /[A-Z]+$/i  ; 
 
@@ -18,6 +22,7 @@ export default function Register(){
             <h1 className={style.welcome} >Bienvenido</h1>
             <h1 className={style.create} >Crea tu usuario!</h1>
             <Formik
+
               initialValues={{
                    firstName:"",
                    lastName:"",
@@ -70,9 +75,9 @@ export default function Register(){
                 {( {values,errors , handleChange, handleBlur, handleSubmit } )=>(
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="firstName" className={style.name} >Nombre</label>
+                            <label htmlFor="firstName" className="formLabel" >Nombre</label>
                             <input
-                             className={style.inputName}
+                             className="formInput"
                              type="text"
                              id="firstName"
                              name="firstName"
@@ -81,11 +86,11 @@ export default function Register(){
                              placeholder="Nombre"
                             />
                         </div>
-                        { errors.firstName && <p className={style.errorName} >{errors.firstName}</p>}
+                        { errors.firstName && <p className="errorLabel" >{errors.firstName}</p>}
                         <div>
-                            <label htmlFor="lastName" className={style.lastName} >Apellido </label>
+                            <label htmlFor="lastName" className="formLabel" >Apellido </label>
                             <input
-                              className={style.inputLastName} 
+                              className="formInput" 
                               type="text"
                               id="lastName"
                               name="lastName"
@@ -95,11 +100,11 @@ export default function Register(){
                               placeholder="Apellido" 
                             />
                         </div>
-                        { errors.lastName && <p className={style.errorLastName} >{errors.lastName}</p>}
+                        { errors.lastName && <p className="errorLabel" >{errors.lastName}</p>}
                         <div>
-                            <label htmlFor="email" className={style.email} >Email </label>
+                            <label htmlFor="email" className="formLabel" >Email </label>
                             <input 
-                              className={style.inputEmail}
+                              className="formInput"
                               type="email"
                               id="email"
                               name="email"
@@ -108,11 +113,11 @@ export default function Register(){
                               placeholder="Email"
                              />
                         </div>
-                        { errors.email && <p className={style.errorEmail} >{errors.email}</p>}
+                        { errors.email && <p className="errorLabel">{errors.email}</p>}
                         <div>
-                            <label htmlFor="password" className={style.password} >Contraseña </label>
+                            <label htmlFor="password" className="formLabel" >Contraseña </label>
                             <input
-                              className={style.inputPassword}
+                              className="formInput"
                               type="password"
                               id="password"
                               name="password"
@@ -121,13 +126,20 @@ export default function Register(){
                               placeholder="Contraseña"
                             />
                         </div>
-                        { errors.password && <p className={style.errorPassword} >{errors.password}</p>}
-                        <button type="submit" className={style.buttonCreate} >Crear usuario</button>
+                        { errors.password && <p className="errorLabel" >{errors.password}</p>}
+                        <button type="submit" className="buttonCreate" >Crear usuario</button>
                     </form>
                 ) }
             </Formik>
-            {/* <h1>Hola</h1> */}
-        </div>
-        
+
+                        </Col>
+                    </Row>
+                </Container>
+                </Col>
+                <Col xxl={6}>
+                <Image className="register-image"src={foto}></Image>
+                </Col>
+            </Row>
+        </Container>
     )
 }
