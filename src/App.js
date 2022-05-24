@@ -13,8 +13,8 @@ function App() {
     <AlertProvider>
       {/* <ExampleAlerts /> */}
       <Routes>
-        <Route index element={<Navigate to="home" />} />
-        <Route path="home" element={<HomePage />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path="home" element={<h1>Home</h1>} />
         <Route path="staff" element={<h1>Staff</h1>} />
         <Route path="news" element={<h1>News</h1>} />
         <Route path="testimonials" element={<h1>Testimonials</h1>} />

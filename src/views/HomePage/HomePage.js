@@ -7,6 +7,7 @@ import Footer from "../../components/Footer/Footer";
 import Loader from '../../components/Loader/Loader'
 import Title from "../../components/Title/Title";
 import Slider from "../../components/Slider/Slider";
+import News from "../../components/News/News";
 
 const HomePage = () => {
 
@@ -22,6 +23,7 @@ const HomePage = () => {
             <Header image={publicInfo.image}></Header>
             <Title welcomeText={publicInfo.welcomeText}/>
             <Slider/>
+            <News news={publicInfo.news.slice(-4)}/>
             <Footer image={publicInfo.image}/>
         </>
     )
