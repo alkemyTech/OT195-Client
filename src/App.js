@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import ExampleLoader from "./components/Examples/ExampleLoader";
 import ExampleAlerts from "./components/Examples/ExampleAlerts"
+import HomePage from './views/HomePage/HomePage'
 import Header from "./components/Header/";
 import Footer from "./components/Footer/Footer";
 import LoginForm from './components/LoginForm/LoginForm';
@@ -16,11 +16,9 @@ function App() {
   return (
     <>
     <AlertProvider>
-      <Header></Header>
-      <ExampleLoader />
-      <ExampleAlerts />
+      {/* <ExampleAlerts /> */}
       <Routes>
-        <Route index element={<Navigate to="home" />} />
+        <Route path='/' element={<HomePage />} />
         <Route path="home" element={<h1>Home</h1>} />
         <Route path="staff" element={<h1>Staff</h1>} />
         <Route path="news" element={<h1>News</h1>} />
@@ -31,7 +29,6 @@ function App() {
         <Route path="signup" element={<Register/>}/>
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
-      <Footer />
     </AlertProvider>
     </>
   );

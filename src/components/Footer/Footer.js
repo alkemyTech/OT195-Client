@@ -7,11 +7,13 @@ import Brand from './Brand'
 import LinksMenu from './LinksMenu'
 import MediaMenu from './MediaMenu'
 
-const Footer = () => {
+const Footer = (props) => {
+
+  const {image:src} = props
+
 
     const data = { // this object must be filled by fetching information from the server
         name: '',
-        src: '',
         links: [
             {
               name: "Inicio",
@@ -57,7 +59,7 @@ const Footer = () => {
     return (
         <Container fluid className='footer-box'>
             <Row>
-                <Brand name={data.name} src={data.src} />
+                <Brand name={data.name} src={src} />
             </Row>
             <Row>
                 <LinksMenu links={data.links}/>
