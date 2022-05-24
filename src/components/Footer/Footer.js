@@ -17,7 +17,7 @@ const Footer = (props) => {
         links: [
             {
               name: "Inicio",
-              route: "/home",
+              route: "/",
             },
             {
               name: "Nosotros",

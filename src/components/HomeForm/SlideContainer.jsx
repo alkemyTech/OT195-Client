@@ -1,46 +1,24 @@
-import React, {useEffect, useState, useContext} from 'react'
-import {HFormContext, HFormProvider} from "../../contexts/hFormContext";
+import React, {useState, useContext} from 'react'
+import {HomeContext} from "../../contexts/homeContext";
 import Styles from "./HomeForm.module.css";
 
-
-
 const SlideContainer = ({object}) => {
-    const {newData, setNewData} = useContext(HFormContext)
-    const [title, setTitle] = useState(object.title)
+    const {newData, setNewData} = useContext(HomeContext)
     const [text, setText] = useState(object.text)
     const [image, setImage] = useState(object.imageUrl)
 
     return (
-
-
         <div className={Styles.editContainer}>
             <div className={Styles.viewContainer}>
                 <h2 className={Styles.outTitle}>{`Slide ${object.order}`}</h2>
                 <div className={Styles.slideContainer}>
-                    <div>
-                        <h3>{title}</h3>
-                        <p>{text}</p>
-                    </div>
+                    <p className={Styles.slideText}>{text}</p>
                     <img src={image}/>
                 </div>
             </div>
             
-            <div>
-                <label htmlFor="slideTitle" >
-                            <h5>Titulo</h5>
-                            <input id="slideTitle" value={title} onChange={async(event)=>{
-                                const partialData = await newData.map((data)=>{
-                                    if(data.order === object.order){
-                                        setTitle(event.target.value)
-                                        data.title = title
-                                    }
-                                    return data
-                                })
-                                setNewData(partialData)
-                            }}>
-                            </input>
-                </label>
-
+            <div className={Styles.inputContainer}>
+                
                 <label htmlFor="slideImg" >
                             <h5>Imagen</h5>
                             <input id="slideImg" value={image} onChange={(event)=>{

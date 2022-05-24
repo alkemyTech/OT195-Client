@@ -4,8 +4,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import ExampleAlerts from "./components/Examples/ExampleAlerts"
 import HomePage from './views/HomePage/HomePage'
 import { AlertProvider } from "./contexts/alertContext";
-import { HFormProvider } from "./contexts/hFormContext";
-
+import { HomeProvider } from "./contexts/homeContext";
+import Header from "./components/Header";
 import Register from "./components/register/Register";
 import LoginForm from "./components/LoginForm/LoginForm";
 import BackOffice from "./components/Backoffice/Backoffice";
@@ -21,18 +21,29 @@ function App() {
       {/* <ExampleAlerts /> */}
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path="home" element={<h1>Home</h1>} />
-        <Route path="staff" element={<h1>Staff</h1>} />
-        <Route path="news" element={<h1>News</h1>} />
-        <Route path="testimonials" element={<h1>Testimonials</h1>} />
-        <Route path="contribute" element={<h1>Contribute</h1>} />
-        <Route path="login" element={<LoginForm/>} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="staff" element={<><Header/><h1>Staff</h1></>} />
+        <Route path="news" element={<><Header/><h1>News</h1></>} />
+        <Route path="testimonials" element={<><Header/><h1>Testimonials</h1></>} />
+        <Route path="contribute" element={<><Header/><h1>Contribute</h1></>} />
+        <Route path="login" element={<><Header/> <LoginForm/></>} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
-        <Route path="signup" element={<Register/>} />
+        <Route path="signup" element={<>
+          <Register/>
+          <ExampleAlerts/>
+
+        </>
+
+      } />
 
         <Route path="backoffice" element={<BackOffice/>} />
-        <Route path="backoffice/:Slides" element={<HFormProvider><HomeForm/></HFormProvider>} />
+        <Route path="backoffice/:Slides" element={
+        <HomeProvider>
+          <HomeForm/>
+          
+        </HomeProvider>} />
       </Routes>
+      
     </AlertProvider>
     </>
   );

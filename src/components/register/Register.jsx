@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import useFetch  from "../../hooks/useFetch";
+import Header from "../Header";
 
 import foto from "../register/imagen/Foto3.jpg"
 import style from "../register/css/Register.module.css"
@@ -12,6 +13,7 @@ export default function Register(){
 
     return(
         <div  >
+            <Header/>
             <img className={style.imagen} src={foto}  alt="imagen.." /> 
             <h1 className={style.welcome} >Bienvenido</h1>
             <h1 className={style.create} >Crea tu usuario!</h1>

@@ -45,9 +45,10 @@ const loginDispatch = (values, resetForm) => async (dispatch) => {
       //    email: "",
       //    password: ""
       //  }
-
+      
       body: JSON.stringify(values),
     });
+    console.log(values)
 
     // If there was no error, we get the data from the response
     // Data is expected to be returned as shown below
