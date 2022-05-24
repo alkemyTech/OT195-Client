@@ -1,10 +1,8 @@
 import React from "react";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import ExampleLoader from "./components/Examples/ExampleLoader";
 import ExampleAlerts from "./components/Examples/ExampleAlerts"
-import Header from "./components/Header/";
-import Footer from "./components/Footer/Footer";
+import HomePage from './views/HomePage/HomePage'
 import { AlertProvider } from "./contexts/alertContext";
 import { HFormProvider } from "./contexts/hFormContext";
 
@@ -20,10 +18,9 @@ function App() {
   return (
     <>
     <AlertProvider>
-      <Header></Header>
-
+      {/* <ExampleAlerts /> */}
       <Routes>
-        <Route index element={<Navigate to="home" />} />
+        <Route path='/' element={<HomePage />} />
         <Route path="home" element={<h1>Home</h1>} />
         <Route path="staff" element={<h1>Staff</h1>} />
         <Route path="news" element={<h1>News</h1>} />
@@ -36,7 +33,6 @@ function App() {
         <Route path="backoffice" element={<BackOffice/>} />
         <Route path="backoffice/:Slides" element={<HFormProvider><HomeForm/></HFormProvider>} />
       </Routes>
-      <Footer />
     </AlertProvider>
     </>
   );

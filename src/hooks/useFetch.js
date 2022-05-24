@@ -19,10 +19,11 @@ const useFetch = (endpoint = "", options = defaultOptions) => {
     try {
       const response = await fetch(endpoint, options);
       const data = await response.json();
-      if (!data.ok) {
+
+      /* if (!data.ok) {
         const message = `An error ocurred: ${response.status}, code: ${data?.errcode}`;
         throw new Error(message);
-      }
+      } */
 
       return setData(data);
     } catch (err) {
