@@ -19,15 +19,15 @@ const ContactForm = ()=>{
   
 return(
 <>
-    <Container fluid>
+    <Container fluid style={{marginBottom:'40px'}}>
         <Row className='row_contact'>
         <Col>
             <TextContact/>
         </Col>
 
-         <Col>
+         <Col className='inputs'>
               
-                <h1 style={{marginLeft: '30px', marginBottom:'30px'}}>¡Contactate con nosotros!</h1>
+                <h1 style={{marginBottom:'30px'}}>¡Contactate con nosotros!</h1>
             
                     
                 <Formik
@@ -54,7 +54,7 @@ return(
                     })}
                 >
                 <Form>
-                <div className='inputs'>
+                
                 <TextField
                     label="Nombre y apellido:"
                     name="fullname"
@@ -66,21 +66,23 @@ return(
                     type="email"
                  ></TextField>
                 <textarea
-                    label="Escribe tu consulta:"
+                    placeholder="Escribe tu consulta:"
                     name="message"
-                    rows={10}
-                    cols={50}
+                    rows={8}
+                    cols={40}
+                    style={{marginBotton:'10px', marginLeft:'30px'}}
                 >
                  </textarea>
-                 </div>
-
-                <Button 
+                 <div className='button_contact'>
+                 <Button 
                     type="submit"
-                    variant="danger"
-                    
-                >
-                    Enviar consulta
+                    variant="danger">
+                   
+                         Enviar consulta
                 </Button>
+                </div>
+                 
+                          
                 </Form>
             </Formik>
          </Col>
