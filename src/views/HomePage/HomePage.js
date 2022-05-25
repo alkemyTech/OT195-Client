@@ -23,8 +23,8 @@ const HomePage = () => {
         <HomeProvider>
             <Header image={publicInfo.image}></Header>
             <Title welcomeTitle={publicInfo.welcomeTitle}/>
-            <Slider/>
-            <News news={publicInfo.news.slice(-4)}/>
+            <Slider/> 
+           {/*  <News news={publicInfo.news.slice(-4)}/> */}
             <Footer image={publicInfo.image}/>
         </HomeProvider>
     )

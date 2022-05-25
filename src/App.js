@@ -10,9 +10,6 @@ import ContactForm from './components/ContactForm/ContactForm';
 import Register from "./components/register/Register";
 import { AlertProvider } from "./contexts/alertContext";
 import { HomeProvider } from "./contexts/homeContext";
-import Header from "./components/Header";
-import Register from "./components/register/Register";
-import LoginForm from "./components/LoginForm/LoginForm";
 import BackOffice from "./components/Backoffice/Backoffice";
 import HomeForm from "./components/HomeForm/HomeForm";
 
