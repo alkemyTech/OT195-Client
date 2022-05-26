@@ -1,27 +1,26 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
+
 import {Container, Row, Col, Image} from 'react-bootstrap'
+import style from "./css/Profile.module.css"
+import foto from "../register/imagen/manos10.jpg"
 
-import foto from "../register/imagen/Foto3.jpg"
-import  "../register/css/Register.css"
+export default function ProfileEdit( {data , setData}){
 
-
-export default function Register(){
-    const navigate = useNavigate()
     const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
     const regexString = /[A-Z]+$/i  ;
 
     return(
-        <Container fluid >
-            <Row style={{minHeight: "810px"}}>
-                <Col xxl={6} className="d-flex flex-column justify-content-center">
-                <Container>
-                    <Row className="my-5">
-                        <Col xxl={7} className="register-wrapper">
-                        <h5>Bienvenido</h5>
-                        <h3>Crea tu usuario!</h3>
-                        <Formik
+            <div>
+                <Container fluid >
+                <Row style={{minHeight: "810px"}}>
+                    <Col xxl={6} className="d-flex flex-column justify-content-center">
+                    <Container>
+                        <Row className="my-5">
+                            <Col xxl={7} className="register-wrapper">
+                            <h3>Edita tu  perfil</h3>
+                            <br />
+                            <Formik
               initialValues={{
                    firstName:"",
                    lastName:"",
@@ -30,42 +29,20 @@ export default function Register(){
                   }}
               validate={(values)=>{
                 const errors = {};
-                  if(!values.firstName  ){
-                      errors.firstName = "ingresa tu nombre";
-                  }else if( !regexString.test(values.firstName) ){
+                  if( values.firstName.length > 0 && !regexString.test(values.firstName) ){
                       errors.firstName = "solo tiene que ser letras y sin espacios"
                   }
-                  if(!values.lastName){
-                      errors.lastName = "ingresa tu apellido";
-                  } else if(!regexString.test(values.lastName) ){
+                  if(values.lastName.length >0 && !regexString.test(values.lastName) ){
                       errors.lastName = "solo tiene que ser letras y sin espacios"
                   }
-                  if(!values.email){
-                      errors.email = "Ingresa tu email";
-                  }else if(!regexEmail.test(values.email)){
+                  if(!regexEmail.test(values.email)){
                       errors.email = "el formato de email es incorrecto "
                   }
-                  if(!values.password){
-                      errors.password = "ingresa tu contraseña"
-                  } else if(values.password.length < 6 ){
-                      errors.password = " la contraseña debe tener al menos 6 caracteres"
-                  }
-                  let upper = 0;
-                  let  lower= 0;
-                  values.password.split("").forEach(el => 
-                    (el === el.toLocaleLowerCase()  && lower++ ) ||
-                    (el === el.toUpperCase() && upper++)  )
-                    if(upper === 0){
-                        errors.password ="minimo una mayuscula"
-                    }
-                    if( lower === 0){
-                        errors.password = "minimo una mayuscula"
-                    }
                   return errors
               }}
               onSubmit={(event) =>{
+                setData(false)
                 alert(JSON.stringify(event, null, 2))
-                navigate("/login")
               }}
             >
                 {( {values,errors , handleChange, handleBlur, handleSubmit } )=>(
@@ -111,31 +88,20 @@ export default function Register(){
                              />
                         </div>
                         { errors.email && <p className="errorLabel">{errors.email}</p>}
-                        <div>
-                            <label htmlFor="password" className="formLabel" >Contraseña </label>
-                            <input
-                              className="formInput"
-                              type="password"
-                              id="password"
-                              name="password"
-                              value={values.password}
-                              onChange={handleChange}
-                              placeholder="Contraseña"
-                            />
-                        </div>
-                        { errors.password && <p className="errorLabel" >{errors.password}</p>}
-                        <button type="submit" className="buttonCreate" >Crear usuario</button>
+                        <button className={style.buttonSave} type="submit"  >Guardar  cambios</button>
                     </form>
                 ) }
             </Formik>
-                        </Col>
-                    </Row>
-                </Container>
-                </Col>
-                <Col xxl={6}>
-                <Image className="register-image"src={foto}></Image>
-                </Col>
-            </Row>
-        </Container>
+                            </Col>
+                        </Row>
+                    </Container>
+                    </Col>
+                    <Col xxl={6}>
+                    <Image className={style.image} src={foto}></Image>
+                    </Col>
+                </Row>
+            </Container>
+            </div>
     )
+
 }
