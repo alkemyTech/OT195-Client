@@ -35,14 +35,14 @@ export default function ProfileEdit( {data , setData}){
                   if(values.lastName.length >0 && !regexString.test(values.lastName) ){
                       errors.lastName = "solo tiene que ser letras y sin espacios"
                   }
-                  if(!regexEmail.test(values.email)){
+                  if(values.email.length > 0 && !regexEmail.test(values.email)){
                       errors.email = "el formato de email es incorrecto "
                   }
                   return errors
               }}
               onSubmit={(event) =>{
                 setData(false)
-                alert(JSON.stringify(event, null, 2))
+                alert("se guardaron los cambios")
               }}
             >
                 {( {values,errors , handleChange, handleBlur, handleSubmit } )=>(
