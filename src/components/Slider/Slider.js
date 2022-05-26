@@ -1,44 +1,26 @@
-import React from 'react';
-
+import React, {useContext} from 'react';
+import { HomeContext } from '../../contexts/homeContext';
 //Librería
 import Carousel from 'react-bootstrap/Carousel';
 
-import foto3 from '../../images/Foto3.jpg';
-import foto6 from '../../images/Foto6.jpg';
-import foto10 from '../../images/Foto10.jpg';
-
 
 const Slider = () => {
+  const {activitiesData} = useContext(HomeContext);
   
   //Ejemplo de imágenes en array de objetos
 
- const items= [ 
-
-       {id: 1,
-        imageUrl: foto3,
-        text:'Actividad de natación'},
-        {id: 2,
-        imageUrl: foto6,
-        text:'Familias colaboran en las actividades'},
-        {id:3,
-        imageUrl: foto10,
-        text:'Actividades recreativas'},
-        
- ]
-
-
-    const slides= items.map((item, i) => {
+    const slides= activitiesData.map((item, i) => {
       return (
         <Carousel.Item key={i}>
           <img
             className='d-block w-100'
             src={item.imageUrl}
             alt={item.text}
-             style={{
-              objectFit: 'cover',
-              height:'600px',
-              borderRadius:'5px'
-              }}
+            style={{
+            objectFit: 'cover',
+            height:'600px',
+            borderRadius:'5px'
+            }}
           />
           <Carousel.Caption>
             <div style={{backgroundColor: 'lightgrey', opacity:'0.9'}}>

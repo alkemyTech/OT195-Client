@@ -15,8 +15,6 @@ import '../ContactForm/Contact.css'
 
 const ContactForm = ()=>{
 
-  
-  
 return(
 <>
     <Container fluid style={{marginBottom:'40px'}}>

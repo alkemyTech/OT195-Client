@@ -5,12 +5,11 @@ import useFetch from '../../hooks/useFetch';
 import { HomeContext } from '../../contexts/homeContext';
 
 
-const Image = () => {
-    const { data: publicInfo, loading } = useFetch('http://127.0.0.1:3001/organizations/1/public');
-    const {welcomeImage} = useContext(HomeContext)
+const Image = (src) => {
+    const {welcomeData} = useContext(HomeContext)
     return (
         <Container className='img-title d-flex justify-content-center'>
-            <img src={welcomeImage} alt="Hands image" className='img-title'/>
+            <img src={welcomeData.image} alt="Hands image" className='img-title'/>
         </Container>
     )
 }
