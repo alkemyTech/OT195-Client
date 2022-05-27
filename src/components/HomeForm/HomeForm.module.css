@@ -1,0 +1,86 @@
+.main{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.mainHead, .inputContainer{
+    display: flex;
+}
+
+.formContainer{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.icon{
+    width: 60px
+}
+
+.main > p{
+    color: black;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.editContainer{
+    width: 100%;
+    margin: 40px 0;
+}
+
+.outTitle{
+    background-color: #DB5252;
+    color: white;
+    font-weight: 400;
+    padding: 15px;
+    border-radius: 20px;
+    width: 100%;
+}
+
+.viewContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcomeContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%
+}
+
+.welcomeImage{
+    width: 40vw;
+    height: 30vw;
+    border-radius: 30px;
+}
+
+.infoContainer{
+    width:40%
+}
+
+.inputContainer{
+    margin: 20px 0;
+    justify-content: space-around;
+    text-align: center;
+}
+
+.slideText{
+    color: black;
+    position: relative;
+    background-color: #d8d8d8a6;
+    font-size: 24px;
+    z-index: 10;
+    top: 464px;
+    text-align: center;
+}
+
+.saveChange{
+    margin: auto
+}
+
+

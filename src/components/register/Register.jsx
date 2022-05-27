@@ -1,7 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
+import useFetch  from "../../hooks/useFetch";
+import Header from "../Header";
+
 import {Container, Row, Col, Image} from 'react-bootstrap'
+
 
 import foto from "../register/imagen/Foto3.jpg"
 import  "../register/css/Register.css"
@@ -13,15 +17,13 @@ export default function Register(){
     const regexString = /[A-Z]+$/i  ;
 
     return(
-        <Container fluid >
-            <Row style={{minHeight: "810px"}}>
-                <Col xxl={6} className="d-flex flex-column justify-content-center">
-                <Container>
-                    <Row className="my-5">
-                        <Col xxl={7} className="register-wrapper">
-                        <h5>Bienvenido</h5>
-                        <h3>Crea tu usuario!</h3>
-                        <Formik
+        <div  >
+            <Header/>
+            <img className={style.imagen} src={foto}  alt="imagen.." /> 
+            <h1 className={style.welcome} >Bienvenido</h1>
+            <h1 className={style.create} >Crea tu usuario!</h1>
+            <Formik
+
               initialValues={{
                    firstName:"",
                    lastName:"",
@@ -67,10 +69,26 @@ export default function Register(){
                 alert(JSON.stringify(event, null, 2))
                 navigate("/login")
               }}
+
+                let requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(event),
+                    redirect: 'follow'
+                };
+
+                fetch("http://127.0.0.1:3001/auth/register", requestOptions)
+                .then(response => response.text())
+                .then(result => console.log(result))
+                .catch(error => console.log('error', error));
+                
+            
+            }}
             >
                 {( {values,errors , handleChange, handleBlur, handleSubmit } )=>(
                     <form onSubmit={handleSubmit}>
-                        {console.log(errors)}
                         <div>
                             <label htmlFor="firstName" className="formLabel" >Nombre</label>
                             <input
@@ -128,6 +146,7 @@ export default function Register(){
                     </form>
                 ) }
             </Formik>
+
                         </Col>
                     </Row>
                 </Container>
