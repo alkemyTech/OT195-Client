@@ -18,6 +18,7 @@ import HomeForm from "./components/HomeForm/HomeForm";
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import Profile from "./components/profile/Profile";
 
 function App() {
   return (

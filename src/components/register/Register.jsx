@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
 import useFetch  from "../../hooks/useFetch";
 import Header from "../Header";
@@ -11,9 +12,9 @@ import  "../register/css/Register.css"
 
 
 export default function Register(){
-
-    const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i; 
-    const regexString = /[A-Z]+$/i  ; 
+    const navigate = useNavigate()
+    const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+    const regexString = /[A-Z]+$/i  ;
 
     return(
         <div  >
@@ -51,9 +52,23 @@ export default function Register(){
                   } else if(values.password.length < 6 ){
                       errors.password = " la contraseña debe tener al menos 6 caracteres"
                   }
+                  let upper = 0;
+                  let  lower= 0;
+                  values.password.split("").forEach(el => 
+                    (el === el.toLocaleLowerCase()  && lower++ ) ||
+                    (el === el.toUpperCase() && upper++)  )
+                    if(upper === 0){
+                        errors.password ="minimo una mayuscula"
+                    }
+                    if( lower === 0){
+                        errors.password = "minimo una mayuscula"
+                    }
                   return errors
               }}
               onSubmit={(event) =>{
+                alert(JSON.stringify(event, null, 2))
+                navigate("/login")
+              }}
 
                 let requestOptions = {
                     method: 'POST',
