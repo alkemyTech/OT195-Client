@@ -1,18 +1,20 @@
 import React from "react";
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import HomePage from './views/HomePage/HomePage'
+import ExampleAlerts from "./components/Examples/ExampleAlerts";
+import HomePage from "./views/HomePage/HomePage";
 import Header from "./components/Header/";
-import LoginForm from './components/LoginForm/LoginForm';
-import ContactForm from './components/ContactForm/ContactForm';
+import Footer from "./components/Footer/Footer";
+import LoginForm from "./components/LoginForm/LoginForm";
+import ContactForm from "./components/ContactForm/ContactForm";
 import Register from "./components/register/Register";
 import { AlertProvider } from "./contexts/alertContext";
 import { HomeProvider } from "./contexts/homeContext";
 import BackOffice from "./components/Backoffice/Backoffice";
 import HomeForm from "./components/HomeForm/HomeForm";
 
-
 import "bootstrap/dist/css/bootstrap.min.css";
+import Profile from "./components/profile/Profile";
 
 function App() {
   return (
