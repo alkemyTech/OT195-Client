@@ -1,17 +1,19 @@
 import React, {useState, useContext} from 'react'
-import {HomeContext} from "../../contexts/homeContext";
 import Styles from "./HomeForm.module.css";
+import { HomeContext } from '../../contexts/homeContext';
 
 
+const WelcomeContainer = () => {
 
+    const  {welcomeData, setWelcomeData} = useContext(HomeContext)
 
-const WelcomeContainer = ({object}) => {
-    const {newData, setNewData, welcomeImage, setWelcomeImage} = useContext(HomeContext)
-    const [title, setTitle] = useState(object.welcomeTitle)
-    const [text, setText] = useState(object.welcomeText)
+    const [title, setTitle] = useState(welcomeData.title)
+    const [text, setText] = useState(welcomeData.text)
+    const [image, setImage] = useState(welcomeData.image)
+    let partialData = welcomeData;
 
     return (
-        <div className={Styles.editContainer}>
+        <div className={Styles.mainContainer}>
             <div className={Styles.viewContainer}>
                 <h2 className={Styles.outTitle}>{"Bienvenida"}</h2>
                 <div className={Styles.welcomeContainer}>
@@ -20,7 +22,7 @@ const WelcomeContainer = ({object}) => {
                         <p>{text}</p>
                     </div>
                         
-                    <img src={welcomeImage} alt="Hands image" className={Styles.welcomeImage}/>
+                    <img src={image} alt="Hands image" className={Styles.welcomeImage}/>
                     
                 </div>
             </div>
@@ -30,14 +32,18 @@ const WelcomeContainer = ({object}) => {
                             <h5>Titulo</h5>
                             <input id="slideTitle" value={title} onChange={async(event)=>{
                                 setTitle(event.target.value)
+                                partialData.title = event.target.value
+                                setWelcomeData(partialData)
                             }}>
                             </input>
                 </label>
 
                 <label htmlFor="slideImg" >
                             <h5>Imagen</h5>
-                            <input id="slideImg" value={welcomeImage} onChange={(event)=>{
-                                setWelcomeImage(event.target.value)
+                            <input id="slideImg" value={image} onChange={(event)=>{
+                                setImage(event.target.value)
+                                partialData.image = event.target.value
+                                setWelcomeData(partialData)
                             }}>
                             </input>
                 </label>
@@ -46,6 +52,8 @@ const WelcomeContainer = ({object}) => {
                             <h5>Texto</h5>
                             <input id="slideImg" value={text} onChange={(event)=>{
                                 setText(event.target.value)
+                                partialData.text = event.target.value
+                                setWelcomeData(partialData)
                             }}>
                             </input>
                 </label>

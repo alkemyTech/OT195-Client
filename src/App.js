@@ -19,78 +19,35 @@ import Profile from "./components/profile/Profile";
 function App() {
   return (
     <>
-      <AlertProvider>
-        {" "}
-        {/* <ExampleAlerts /> */}{" "}
-        <Routes>
-          <Route path="/" element={<HomePage />} />{" "}
-          <Route path="/home" element={<HomePage />} />{" "}
-          <Route
-            path="staff"
-            element={
-              <>
-                {" "}
-                <Header /> <h1> Staff </h1>
-              </>
-            }
-          />{" "}
-          <Route
-            path="news"
-            element={
-              <>
-                {" "}
-                <Header /> <h1> News </h1>
-              </>
-            }
-          />{" "}
-          <Route
-            path="testimonials"
-            element={
-              <>
-                {" "}
-                <Header /> <h1> Testimonials </h1>
-              </>
-            }
-          />{" "}
-          <Route
-            path="contribute"
-            element={
-              <>
-                {" "}
-                <Header /> <h1> Contribute </h1>
-              </>
-            }
-          />{" "}
-          <Route
-            path="login"
-            element={
-              <>
-                {" "}
-                <Header /> <LoginForm />{" "}
-              </>
-            }
-          />
-          <Route path="*" element={<h1> 404 Not Found </h1>} />
-          <Route
-            path="signup"
-            element={
-              <>
-                <Register />
-                <ExampleAlerts />
-              </>
-            }
-          />
-          <Route path="backoffice" element={<BackOffice />} />{" "}
-          <Route
-            path="backoffice/:Slides"
-            element={
-              <HomeProvider>
-                <HomeForm />
-              </HomeProvider>
-            }
-          />
-        </Routes>
-      </AlertProvider>{" "}
+    
+    <AlertProvider>
+      <Header/>
+      <Routes>
+        <Route path='/' element={
+        <HomeProvider>
+          <HomePage />
+        </HomeProvider>} />
+        <Route path="/home" element={
+        <HomeProvider>
+          <HomePage />
+        </HomeProvider>
+      } />
+        <Route path="staff" element={<ContactForm/>} />
+        <Route path="news" element={<h1>News</h1>} />
+        <Route path="testimonials" element={<h1>Testimonials</h1>} />
+        <Route path="contribute" element={<h1>Contribute</h1>} />
+        <Route path="login" element={<LoginForm/>} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+        <Route path="signup" element={<Register/>} />
+
+        <Route path="backoffice" element={<BackOffice/>} />
+        <Route estric path="backoffice/Slides" element={
+        <HomeProvider>
+          <HomeForm/>
+        </HomeProvider>} />
+      </Routes>
+      
+    </AlertProvider>
     </>
   );
 }

@@ -9,15 +9,15 @@ import './Title.css'
 
 const Title = (props) => {
     
-    const {welcomeTitle, loading} = props;
+    const {title,text, loading} = props;
     
     return (
         <Row className='title-box'>
             <Col className='px-1 py-5 d-flex'>
-                <Text welcomeTitle={welcomeTitle} />
+                <Text title={title} text={text} />
             </Col>
             <Col className='px-1 py-5 d-flex'>
-                <Image />
+                <Image/>
             </Col>
         </Row>
     )

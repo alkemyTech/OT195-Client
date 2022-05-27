@@ -1,0 +1,21 @@
+import React, {useContext} from 'react';
+import { HomeContext } from "../../contexts/homeContext"
+import SlideContainer from './SlideContainer';
+import Styles from "./HomeForm.module.css";
+
+const ActivitiesContainer = () => {
+    const {activitiesData} = useContext(HomeContext)
+    return(
+        <div className={Styles.activitiesContainer}>
+            <h2 className={Styles.outTitle}>Actividades</h2>
+            {activitiesData.map((dbObject)=>{
+                return(
+                        <SlideContainer key={dbObject.order} object={dbObject}/>
+                    )
+            })}
+        </div>
+    )
+}
+
+export default ActivitiesContainer
+

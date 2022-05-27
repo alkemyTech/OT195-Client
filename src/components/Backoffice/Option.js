@@ -8,7 +8,7 @@ const Option = (props) => {
   const navigate = useNavigate();
 
   const navAction = (param)=>{
-    navigate(`:${param}`)
+    navigate(`${param}`)
   }
   return (
     <Col

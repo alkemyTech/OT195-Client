@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import NavBrand from "./NavBrand";
 import NavMenu from "./NavMenu";
 import useFetch from "../../hooks/useFetch";
 import { Navbar, Container } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 import "./Header.css";
 
-const Header = (props) => {
+const Header = () => {
   // Endpoint link
   //const endpoint = "localhost";
 
   // Fetching header data
   // const { data, loading } = useFetch(endpoint);
-  const { image } = props;
+  const location = useLocation()
+  const { data: publicInfo, loading } = useFetch('http://127.0.0.1:3001/organizations/1/public');
 
   // Placeholder
   const data = {
@@ -59,16 +61,22 @@ const Header = (props) => {
     },
   };
 
-  return (
-    <Container fluid className="navbar-container d-flex flex-column">
-      <Navbar className="my-auto">
-        <Container fluid>
-          <NavBrand image={image} name={data.name}></NavBrand>
-          <NavMenu menu={data.nav}></NavMenu>
-        </Container>
-      </Navbar>
-    </Container>
-  );
+
+  if(!loading && !location.pathname.includes("backoffice") ){
+    return(
+      <Container fluid className="navbar-container d-flex flex-column">
+    <Navbar className="my-auto">
+      <Container fluid>
+        <NavBrand image={publicInfo.results.image} name={data.name}></NavBrand>
+        <NavMenu menu={data.nav}></NavMenu>
+      </Container>
+    </Navbar>
+  </Container>
+    )
+  }else{
+    return <></>
+  }
+  
 };
 
 export default Header;

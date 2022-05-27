@@ -1,29 +1,35 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import Styles from "./HomeForm.module.css";
+
 import {HomeContext} from "../../contexts/homeContext";
-import SlideContainer from './SlideContainer';
-import documents from "../../images/backoffice/documents.png";
-import Slider from '../Slider/Slider';
-import Loader from '../Loader/Loader';
 import useFetch from '../../hooks/useFetch';
-import WelcomeContainer from './WelcomeContainer';
+
+import Loader from '../Loader/Loader';
 import Header from "../Backoffice/Header";
 
+import documents from "../../images/backoffice/documents.png";
+
+import WelcomeContainer from './WelcomeContainer';
+import ActivitiesContainer from './ActivitiesContainer';
 
 const HomeForm = () => {
-    const {newData, dbData, setDbData} = useContext(HomeContext)
+    const {activitiesData, welcomeData} = useContext(HomeContext)
+    const navigate = useNavigate()
     const { data: publicInfo, loading } = useFetch('http://127.0.0.1:3001/organizations/1/public');
 
-    function handleSubmit(event){
-        event.preventDefault();
-        setDbData(newData)
+    function saveChanges(){
+        console.log(activitiesData)
+        console.log(welcomeData)
+        navigate("/")
+        /* save changes on db */
     }
-
-    
 
     if(loading){
         return <Loader/>;
     }else{
+        
         return (
             <>
             <Header/>
@@ -33,18 +39,14 @@ const HomeForm = () => {
                 <h1>Slides</h1>
                 
                 <p>Modificá la bienvenida y los slides desplegados en el Home</p>
-                <form className={Styles.formContainer} onSubmit={(e)=>{handleSubmit(e)}}>
+                <div className={Styles.formContainer}>
 
-                    <WelcomeContainer object={publicInfo}/>
+                    <WelcomeContainer/>
+                    <ActivitiesContainer/>
 
-                    {dbData.map((dbObject)=>{
-                        return(
-                                <SlideContainer key={dbObject.order} object={dbObject}/>
-                            )
-                    })}
-
-                    <button className={Styles.saveChange}>Guardar Cambios</button>
-                </form>
+                    <button className={Styles.saveChange} onClick={saveChanges}>Guardar Cambios</button>
+                </div>
+            
             </main>
             
             </>

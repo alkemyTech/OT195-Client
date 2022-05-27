@@ -6,12 +6,12 @@ import Button from '../Button/'
 
 const Title = (props) => {
 
-    const { welcomeTitle } = props;
+    const { title, text } = props;
 
     return (
         <Container className='text-title justify-content-center flex-column d-flex'>
-            <h1 className='mb-4'>{welcomeTitle}</h1>
-            <p className='mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing dignissim ac et eleifend lacus, rhoncus, dignissim sagittis. Tellus ac a, elementum ut. Tellus a morbi tincidunt ultricies malesuada eget turpis. Lacus enim non enim, velit hac turpis interdum arcu. Suspendisse at vel ultrices amet orci enim lectus porttitor ut.</p>
+            <h1 className='mb-4'>{title}</h1>
+            <p className='mb-4'>{text}</p>
             <div>
                 <Button style='primary btn-title' text='Contactanos'/>
             </div>
