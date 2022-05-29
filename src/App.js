@@ -19,35 +19,45 @@ import Profile from "./components/profile/Profile";
 function App() {
   return (
     <>
-    
-    <AlertProvider>
-      <Header/>
-      <Routes>
-        <Route path='/' element={
-        <HomeProvider>
-          <HomePage />
-        </HomeProvider>} />
-        <Route path="/home" element={
-        <HomeProvider>
-          <HomePage />
-        </HomeProvider>
-      } />
-        <Route path="staff" element={<ContactForm/>} />
-        <Route path="news" element={<h1>News</h1>} />
-        <Route path="testimonials" element={<h1>Testimonials</h1>} />
-        <Route path="contribute" element={<h1>Contribute</h1>} />
-        <Route path="login" element={<LoginForm/>} />
-        <Route path="*" element={<h1>404 Not Found</h1>} />
-        <Route path="signup" element={<Register/>} />
+      <AlertProvider>
+        <Header />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomeProvider>
+                <HomePage />
+              </HomeProvider>
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <HomeProvider>
+                <HomePage />
+              </HomeProvider>
+            }
+          />
+          <Route path="staff" element={<ContactForm />} />
+          <Route path="news" element={<h1>News</h1>} />
+          <Route path="testimonials" element={<h1>Testimonials</h1>} />
+          <Route path="contribute" element={<h1>Contribute</h1>} />
+          <Route path="login" element={<LoginForm />} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
+          <Route path="signup" element={<Register />} />
 
-        <Route path="backoffice" element={<BackOffice/>} />
-        <Route estric path="backoffice/Slides" element={
-        <HomeProvider>
-          <HomeForm/>
-        </HomeProvider>} />
-      </Routes>
-      
-    </AlertProvider>
+          <Route path="backoffice" element={<BackOffice />} />
+          <Route
+            estric
+            path="backoffice/Slides"
+            element={
+              <HomeProvider>
+                <HomeForm />
+              </HomeProvider>
+            }
+          />
+        </Routes>
+      </AlertProvider>
     </>
   );
 }

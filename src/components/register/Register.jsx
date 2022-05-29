@@ -66,12 +66,7 @@ export default function Register(){
               }}
               onSubmit={(event) =>{
                 alert(JSON.stringify(event, null, 2))
-
-              }}
-
                 navigate("/login")
-              }}
-
                 let requestOptions = {
                     method: 'POST',
                     headers: {
@@ -80,13 +75,10 @@ export default function Register(){
                     body: JSON.stringify(event),
                     redirect: 'follow'
                 };
-
                 fetch("http://127.0.0.1:3001/auth/register", requestOptions)
                 .then(response => response.text())
                 .then(result => console.log(result))
                 .catch(error => console.log('error', error));
-                
-            
             }}
 
             >
