@@ -15,6 +15,7 @@ import Profile from "./components/profile/Profile";
 import HomePageLayout from "./views/HomePage/HomePageLayout";
 import Backofficelayout from "./views/Backoffice/BackofficeLayout";
 import Backoffice from "./components/Backoffice/Backoffice";
+import News from "./components/Backoffice/News";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="backoffice" element={<Backofficelayout />}>
             <Route index element={<Backoffice />} />
             <Route path="slides" element={<HomeForm />} />
+            <Route path="news" element={<News />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
         </Routes>

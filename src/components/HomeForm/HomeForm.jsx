@@ -32,7 +32,6 @@ const HomeForm = () => {
         
         return (
             <>
-            <Header/>
             <main className={Styles.main}>
     
                 <img src={documents} className={Styles.icon}/>
