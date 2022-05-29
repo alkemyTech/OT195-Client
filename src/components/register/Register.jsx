@@ -67,10 +67,9 @@ export default function Register(){
               onSubmit={(event) =>{
                 alert(JSON.stringify(event, null, 2))
 
-              }}
 
                 navigate("/login")
-              }}
+        
 
                 let requestOptions = {
                     method: 'POST',
