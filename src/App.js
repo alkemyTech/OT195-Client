@@ -1,17 +1,15 @@
 import React from "react";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import ExampleAlerts from "./components/Examples/ExampleAlerts";
 import HomePage from "./views/HomePage/HomePage";
 import LoginForm from "./components/LoginForm/LoginForm";
 import ContactForm from "./components/ContactForm/ContactForm";
+import HomeForm from "./components/HomeForm/HomeForm";
+import OrgForm from "./components/OrgForm/OrgForm";
 import Register from "./components/register/Register";
 import { AlertProvider } from "./contexts/alertContext";
-import { HomeProvider } from "./contexts/homeContext";
-import HomeForm from "./components/HomeForm/HomeForm";
-
+import { AdminProvider } from "./contexts/adminContext";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Profile from "./components/profile/Profile";
 import HomePageLayout from "./views/HomePage/HomePageLayout";
 import Backofficelayout from "./views/Backoffice/BackofficeLayout";
 import Backoffice from "./components/Backoffice/Backoffice";
@@ -21,7 +19,7 @@ import Activities from "./components/Backoffice/Activities";
 
 function App() {
   return (
-    <>
+    <AdminProvider>
       <AlertProvider>
         <Routes>
           <Route element={<HomePageLayout />}>
@@ -37,7 +35,8 @@ function App() {
           </Route>
           <Route path="backoffice" element={<Backofficelayout />}>
             <Route index element={<Backoffice />} />
-            <Route path="slides" element={<HomeForm />} />
+            <Route path="edit-home" element={<HomeForm />} />
+            <Route path="edit-organization" element={<OrgForm />} />
             <Route path="news" element={<News />} />
             <Route path="users" element={<Users />} />
             <Route path="activities" element={<Activities />} />
@@ -45,7 +44,7 @@ function App() {
           </Route>
         </Routes>
       </AlertProvider>
-    </>
+    </AdminProvider>
   );
 }
 

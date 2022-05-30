@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-import useFetch from "../hooks/useFetch";
 
 import imgManos from '../images/img_manos.png';
 import foto3 from '../images/Foto3.jpg';
@@ -7,9 +6,9 @@ import foto6 from '../images/Foto6.jpg';
 import foto10 from '../images/Foto10.jpg';
 
 
-export const HomeContext = createContext();
+export const AdminContext = createContext();
 
-export const HomeProvider = ({children}) =>{
+export const AdminProvider = ({children}) =>{
 
     const activitiesRes = [
         {
@@ -37,17 +36,22 @@ export const HomeProvider = ({children}) =>{
 
     const [activitiesData, setActivitiesData] = useState(activitiesRes)
     const [welcomeData, setWelcomeData] = useState(welcomeRes)
+    const [organizationData, setOrganizationData] = useState(null)
 
+
+    
     const value = {
         activitiesData,
         setActivitiesData,
         welcomeData,
         setWelcomeData,
+        organizationData,
+        setOrganizationData
     }
 
     return(
-        <HomeContext.Provider value={value}>
+        <AdminContext.Provider value={value}>
             {children}
-        </HomeContext.Provider>
+        </AdminContext.Provider>
     )
 }

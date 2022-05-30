@@ -6,9 +6,9 @@ const Option = (props) => {
   const { title, image, path } = option;
   const navigate = useNavigate();
 
-  const navAction = (param) => {
-    navigate(`${param}`);
-  };
+  const navAction = (param)=>{
+    navigate(param)
+  }
   return (
     <Col
       xxl={3}

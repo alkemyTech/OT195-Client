@@ -9,7 +9,7 @@ import './Title.css'
 
 const Title = (props) => {
     
-    const {title,text, loading} = props;
+    const {title,text} = props;
     
     return (
         <Row className='title-box'>

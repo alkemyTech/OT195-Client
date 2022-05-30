@@ -1,6 +1,5 @@
 import { Container, Row } from "react-bootstrap";
 import Option from "./Option";
-import Header from "./Header";
 
 import newspaper from "../../images/backoffice/newspaper.png";
 import chat from "../../images/backoffice/chat.png";
@@ -41,13 +40,13 @@ const Backoffice = () => {
     },
     {
       title: "Organización",
-      path: "organization",
+      path: "edit-organization",
       image: organization,
       action: "",
     },
     {
       title: "Slides",
-      path: "slides",
+      path: "edit-home",
       image: documents,
       action: "",
     },

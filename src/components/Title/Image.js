@@ -2,11 +2,11 @@ import React, {useContext} from 'react';
 
 import { Container } from 'react-bootstrap'
 import useFetch from '../../hooks/useFetch';
-import { HomeContext } from '../../contexts/homeContext';
+import { AdminContext } from '../../contexts/adminContext';
 
 
 const Image = (src) => {
-    const {welcomeData} = useContext(HomeContext)
+    const {welcomeData} = useContext(AdminContext)
     return (
         <Container className='img-title d-flex justify-content-center'>
             <img src={welcomeData.image} alt="Hands image" className='img-title'/>

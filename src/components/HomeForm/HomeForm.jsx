@@ -3,22 +3,15 @@ import { useNavigate } from 'react-router-dom';
 
 import Styles from "./HomeForm.module.css";
 
-import {HomeContext} from "../../contexts/homeContext";
-import useFetch from '../../hooks/useFetch';
-
-import Loader from '../Loader/Loader';
-import Header from "../Backoffice/Header";
-
+import {AdminContext} from "../../contexts/adminContext";
 import documents from "../../images/backoffice/documents.png";
-
 import WelcomeContainer from './WelcomeContainer';
 import ActivitiesContainer from './ActivitiesContainer';
 
 const HomeForm = () => {
-    const {activitiesData, welcomeData} = useContext(HomeContext)
+    const {activitiesData, welcomeData} = useContext(AdminContext)
     const navigate = useNavigate()
     const { data: publicInfo, loading } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
-
 
     function saveChanges(){
         console.log(activitiesData)
@@ -27,15 +20,11 @@ const HomeForm = () => {
         /* save changes on db */
     }
 
-    if(loading){
-        return <Loader/>;
-    }else{
-        
-        return (
-            <>
+    return (
+        <>
             <main className={Styles.main}>
     
-                <img src={documents} className={Styles.icon}/>
+                <img src={documents} alt="Slides" className={Styles.icon}/>
                 <h1>Slides</h1>
                 
                 <p>Modificá la bienvenida y los slides desplegados en el Home</p>
@@ -44,15 +33,12 @@ const HomeForm = () => {
                     <WelcomeContainer/>
                     <ActivitiesContainer/>
 
-                    <button className={Styles.saveChange} onClick={saveChanges}>Guardar Cambios</button>
+                    <button className={Styles.saveChanges} onClick={saveChanges}>Guardar Cambios</button>
                 </div>
             
             </main>
-            
-            </>
-            
-        )
-    }
+        </>
+    )
     
 }
 

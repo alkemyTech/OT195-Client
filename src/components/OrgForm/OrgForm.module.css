@@ -1,0 +1,69 @@
+.main{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mainContainer{
+    width: 100%
+}
+
+.mainContainer{
+    margin: 30px 0;
+    border: 1px solid #DB5252;
+    padding-bottom: 45px;
+    border-radius: 20px;
+}
+
+.mainHead, .inputContainer{
+    display: flex;
+}
+
+.formContainer{
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.icon{
+    width: 60px
+}
+
+.main > p{
+    color: black;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.inputContainer{
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    height: 30vh;
+}
+
+.labelContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.name{
+    position: relative;
+    top: 10vh;
+}
+
+.saveChanges{
+    padding:20px;
+    border-radius: 30px;
+    color: white;
+    background-color: #DB5252;
+    border-color: white;
+    font-size: 20px;
+}
+

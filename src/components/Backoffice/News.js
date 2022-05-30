@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Col, Container, Image, Row, Table } from "react-bootstrap";
-import useFetch from "../../hooks/useFetch";
+//import useFetch from "../../hooks/useFetch";
 import img_manos from "../../images/img_manos.png";
 import NewsTable from "../DataTable/NewsTable";
 

@@ -1,10 +1,10 @@
 import React, {useContext} from 'react';
-import { HomeContext } from "../../contexts/homeContext"
+import { AdminContext } from "../../contexts/adminContext"
 import SlideContainer from './SlideContainer';
 import Styles from "./HomeForm.module.css";
 
 const ActivitiesContainer = () => {
-    const {activitiesData} = useContext(HomeContext)
+    const {activitiesData} = useContext(AdminContext)
     return(
         <div className={Styles.activitiesContainer}>
             <h2 className={Styles.outTitle}>Actividades</h2>

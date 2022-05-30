@@ -1,11 +1,11 @@
 import React, {useContext} from 'react';
-import { HomeContext } from '../../contexts/homeContext';
+import { AdminContext } from '../../contexts/adminContext';
 //Librería
 import Carousel from 'react-bootstrap/Carousel';
 
 
 const Slider = () => {
-  const {activitiesData} = useContext(HomeContext);
+  const {activitiesData} = useContext(AdminContext);
   
   //Ejemplo de imágenes en array de objetos
 

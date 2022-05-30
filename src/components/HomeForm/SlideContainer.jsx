@@ -1,9 +1,9 @@
 import React, {useState, useContext, useEffect} from 'react'
-import {HomeContext} from "../../contexts/homeContext";
+import {AdminContext} from "../../contexts/adminContext";
 import Styles from "./HomeForm.module.css";
 
 const SlideContainer = ({object}) => {
-    const {activitiesData, setActivitiesData} = useContext(HomeContext)
+    const {activitiesData, setActivitiesData} = useContext(AdminContext)
     const [text, setText] =useState(object.text)
     const [image, setImage] = useState(object.imageUrl)
     

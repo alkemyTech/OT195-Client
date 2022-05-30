@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
+import React, {useContext, useEffect} from "react";
 import NavBrand from "./NavBrand";
 import NavMenu from "./NavMenu";
 import useFetch from "../../hooks/useFetch";
 import { Navbar, Container } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-
+import { AdminContext } from "../../contexts/adminContext";
 import "./Header.css";
 
 const Header = () => {
   // Endpoint link
   //const endpoint = "localhost";
 
-  // Fetching header data
+  // Fetching header data 
   // const { data, loading } = useFetch(endpoint);
   const location = useLocation();
   const { data: publicInfo, loading } = useFetch(
@@ -20,7 +20,14 @@ const Header = () => {
 
   );
 
-  // Placeholder
+  // context for data
+    const {organizationData, setOrganizationData} = useContext(AdminContext)
+
+    useEffect(()=>{
+      setOrganizationData(publicInfo)
+    }, [publicInfo, setOrganizationData])
+
+
   const data = {
     name: "",
     nav: {
@@ -76,12 +83,13 @@ const Header = () => {
   };
 
   if (!loading && !location.pathname.includes("backoffice")) {
+
     return (
       <Container fluid className="navbar-container d-flex flex-column">
         <Navbar className="my-auto">
           <Container fluid>
             <NavBrand
-              image={publicInfo.results.image}
+              image={organizationData.results.image}
               name={data.name}
             ></NavBrand>
             <NavMenu menu={data.nav}></NavMenu>
