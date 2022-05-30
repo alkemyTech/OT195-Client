@@ -10,7 +10,6 @@ const WelcomeContainer = () => {
     const [title, setTitle] = useState(welcomeData.title)
     const [text, setText] = useState(welcomeData.text)
     const [image, setImage] = useState(welcomeData.image)
-    let partialData = welcomeData;
 
     return (
         <div className={Styles.mainContainer}>
@@ -22,7 +21,7 @@ const WelcomeContainer = () => {
                         <p>{text}</p>
                     </div>
                         
-                    <img src={image} alt="Hands image" className={Styles.welcomeImage}/>
+                    <img src={image} alt="Hands" className={Styles.welcomeImage}/>
                     
                 </div>
             </div>
@@ -32,6 +31,7 @@ const WelcomeContainer = () => {
                             <h5>Titulo</h5>
                             <input id="slideTitle" value={title} onChange={async(event)=>{
                                 setTitle(event.target.value)
+                                let partialData = welcomeData;
                                 partialData.title = event.target.value
                                 setWelcomeData(partialData)
                             }}>
@@ -42,6 +42,7 @@ const WelcomeContainer = () => {
                             <h5>Imagen</h5>
                             <input id="slideImg" value={image} onChange={(event)=>{
                                 setImage(event.target.value)
+                                let partialData = welcomeData;
                                 partialData.image = event.target.value
                                 setWelcomeData(partialData)
                             }}>
@@ -52,6 +53,7 @@ const WelcomeContainer = () => {
                             <h5>Texto</h5>
                             <input id="slideImg" value={text} onChange={(event)=>{
                                 setText(event.target.value)
+                                let partialData = welcomeData;
                                 partialData.text = event.target.value
                                 setWelcomeData(partialData)
                             }}>

@@ -24,7 +24,6 @@ const Option = (props) => {
             className="bo-button"
             variant="success"
             onClick={() => {
-              console.log(path)
               navAction(path);
             }}
           >

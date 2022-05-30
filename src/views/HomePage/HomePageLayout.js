@@ -1,7 +1,6 @@
 import Footer from "../../components/Footer/Footer";
 import { Outlet } from "react-router-dom";
 import Header from "../../components/Header/";
-import { AdminProvider } from "../../contexts/adminContext";
 import useFetch from "../../hooks/useFetch";
 
 const HomePageLayout = () => {
@@ -10,11 +9,11 @@ const HomePageLayout = () => {
   );
 
   return (
-    <AdminProvider>
+    <>
       <Header></Header>
       <Outlet></Outlet>
       <Footer image={publicInfo.results?.image}></Footer>
-    </AdminProvider>
+    </>
   );
 };
 

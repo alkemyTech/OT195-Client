@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import useFetch from "../../hooks/useFetch";
 
@@ -23,7 +23,6 @@ const HomePage = () => {
             <Title title={welcomeData.title} text={welcomeData.text}/>
             <Slider/> 
             {<News news={publicInfo.results.news.slice(-4)}/>}
-            <Footer image={publicInfo.results.image}/>
             </>
     )
 

@@ -1,5 +1,4 @@
 import React, { createContext, useState } from "react";
-import useFetch from "../hooks/useFetch";
 
 import imgManos from '../images/img_manos.png';
 import foto3 from '../images/Foto3.jpg';
@@ -37,13 +36,17 @@ export const AdminProvider = ({children}) =>{
 
     const [activitiesData, setActivitiesData] = useState(activitiesRes)
     const [welcomeData, setWelcomeData] = useState(welcomeRes)
-    const [organizationData, setWOrganizationData] = useState(welcomeRes)
+    const [organizationData, setOrganizationData] = useState(null)
 
+
+    
     const value = {
         activitiesData,
         setActivitiesData,
         welcomeData,
         setWelcomeData,
+        organizationData,
+        setOrganizationData
     }
 
     return(

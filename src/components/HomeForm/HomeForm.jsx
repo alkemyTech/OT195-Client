@@ -4,18 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import Styles from "./HomeForm.module.css";
 
 import {AdminContext} from "../../contexts/adminContext";
-import useFetch from '../../hooks/useFetch';
-
-import Loader from '../Loader/Loader';
 import documents from "../../images/backoffice/documents.png";
-
 import WelcomeContainer from './WelcomeContainer';
 import ActivitiesContainer from './ActivitiesContainer';
 
 const HomeForm = () => {
     const {activitiesData, welcomeData} = useContext(AdminContext)
     const navigate = useNavigate()
-    const { data: publicInfo, loading } = useFetch('http://localhost:3005/organizations/1/public');
 
     function saveChanges(){
         console.log(activitiesData)
@@ -24,12 +19,8 @@ const HomeForm = () => {
         /* save changes on db */
     }
 
-    if(loading){
-        return <Loader/>;
-    }else{
-        
-        return (
-            <>
+    return (
+        <>
             <main className={Styles.main}>
     
                 <img src={documents} alt="Slides" className={Styles.icon}/>
@@ -41,15 +32,12 @@ const HomeForm = () => {
                     <WelcomeContainer/>
                     <ActivitiesContainer/>
 
-                    <button className={Styles.saveChange} onClick={saveChanges}>Guardar Cambios</button>
+                    <button className={Styles.saveChanges} onClick={saveChanges}>Guardar Cambios</button>
                 </div>
             
             </main>
-            
-            </>
-            
-        )
-    }
+        </>
+    )
     
 }
 

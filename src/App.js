@@ -8,7 +8,7 @@ import HomeForm from "./components/HomeForm/HomeForm";
 import OrgForm from "./components/OrgForm/OrgForm";
 import Register from "./components/register/Register";
 import { AlertProvider } from "./contexts/alertContext";
-
+import { AdminProvider } from "./contexts/adminContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomePageLayout from "./views/HomePage/HomePageLayout";
 import Backofficelayout from "./views/Backoffice/BackofficeLayout";
@@ -17,7 +17,7 @@ import News from "./components/Backoffice/News";
 
 function App() {
   return (
-    <>
+    <AdminProvider>
       <AlertProvider>
         <Routes>
           <Route element={<HomePageLayout />}>
@@ -40,7 +40,7 @@ function App() {
           </Route>
         </Routes>
       </AlertProvider>
-    </>
+    </AdminProvider>
   );
 }
 

@@ -10,12 +10,11 @@
     width: 100%
 }
 
-.mainContainer, .activitiesContainer{
+.mainContainer{
     margin: 30px 0;
     border: 1px solid #DB5252;
-    padding-bottom: 20px;
-    border-radius: 20px
-    ;
+    padding-bottom: 45px;
+    border-radius: 20px;
 }
 
 .mainHead, .inputContainer{
@@ -39,89 +38,32 @@
     font-size: 20px;
 }
 
-.slideContainer{
-    width: 40%;
-    margin: 20px;
-}
-
-.slideImg{
-    width: 100%;
-}
-
-.outTitle{
-    background-color: #DB5252;
-    color: white;
-    font-weight: 400;
-    padding: 15px;
-    width: 100%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-}
-
-.outSubTitle{
-    color: #DB5252;
-}
-
-.viewContainer{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.welcomeContainer{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 80%;
-    margin: 20px;
-}
-
-.welcomeImage{
-    width: 40vw;
-    height: 30vw;
-    border-radius: 30px;
-}
-
-.infoContainer{
-    width:40%
-}
-
 .inputContainer{
-    margin: 0px 0;
-    justify-content: space-around;
-    text-align: center;
-}
-
-.inputContainer input{
-    width: 90%
-}
-.slideText{
-    color: black;
-    position: relative;
-    background-color: #d8d8d8a6;
-    font-size: 24px;
-    z-index: 10;
-    bottom: 74px;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    align-self: end;
-}
-
-.saveChange{
-    margin: auto
-}
-
-.activitiesContainer{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.slideTextContainer{
     display:flex;
-    flex-direction: column;
-    
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    height: 30vh;
 }
 
+.labelContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.name{
+    position: relative;
+    top: 10vh;
+}
+
+.saveChanges{
+    padding:20px;
+    border-radius: 30px;
+    color: white;
+    background-color: #DB5252;
+    border-color: white;
+    font-size: 20px;
+}
 
