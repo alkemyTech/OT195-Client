@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import useFetch from "../../hooks/useFetch";
 
-import Footer from "../../components/Footer/Footer";
 import Loader from "../../components/Loader/Loader";
 import Title from "../../components/Title/Title";
 import Slider from "../../components/Slider/Slider";
