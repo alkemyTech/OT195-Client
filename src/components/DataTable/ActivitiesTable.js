@@ -8,34 +8,23 @@ const UsersTable = () => {
 
   const dataPlaceholder = [
     {
-      firstName: "Alejandro",
-      lastName: "Hernandez",
-      email: "alhernandez008@test.com",
+      name: "Actividad 1",
     },
     {
-      firstName: "Lara",
-      lastName: "Rodriguez",
-      email: "lara_rod98@test.com",
+      name: "Actividad 2",
     },
     {
-      firstName: "Ernesto",
-      lastName: "Figueroa",
-      email: "figernest01@test.com",
+      name: "Actividad 3",
+    },
+    {
+      name: "Actividad 4",
     },
   ];
 
   const colDefs = [
     {
       title: "Nombre",
-      field: "firstName",
-    },
-    {
-      title: "Apellido",
-      field: "lastName",
-    },
-    {
-      title: "Email",
-      field: "email",
+      field: "name",
     },
   ];
 
