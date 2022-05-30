@@ -11,8 +11,9 @@ import { HomeContext } from "../../contexts/homeContext";
 
 const HomePage = () => {
   const { data: publicInfo, loading } = useFetch(
-    "http://localhost:3005/organizations/1/public"
+    process.env.REACT_APP_PUBLIC_ENDPOINT
   );
+
   const { welcomeData } = useContext(HomeContext);
 
   if (loading) {
@@ -23,7 +24,7 @@ const HomePage = () => {
       <Title title={welcomeData.title} text={welcomeData.text} />
       <Slider />
       {<News news={publicInfo.results.news.slice(-4)} />}
-      {/* <Footer image={publicInfo.results.image} /> */}
+      <Footer image={publicInfo.results.image} />
     </>
   );
 };

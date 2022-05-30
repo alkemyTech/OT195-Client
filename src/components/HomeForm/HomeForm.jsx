@@ -17,7 +17,8 @@ import ActivitiesContainer from './ActivitiesContainer';
 const HomeForm = () => {
     const {activitiesData, welcomeData} = useContext(HomeContext)
     const navigate = useNavigate()
-    const { data: publicInfo, loading } = useFetch('http://localhost:3005/organizations/1/public');
+    const { data: publicInfo, loading } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
+
 
     function saveChanges(){
         console.log(activitiesData)
