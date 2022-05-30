@@ -1,6 +1,5 @@
 import { Container, Row } from "react-bootstrap";
 import Option from "./Option";
-import Header from "./Header";
 
 import newspaper from "../../images/backoffice/newspaper.png";
 import chat from "../../images/backoffice/chat.png";
@@ -17,41 +16,49 @@ const Backoffice = () => {
   const dataPlaceholder = [
     {
       title: "Novedades",
+      path: "news",
       image: newspaper,
       action: "",
     },
     {
       title: "Actividades",
+      path: "activities",
       image: toDoList,
       action: "",
     },
     {
       title: "Categorias",
+      path: "categories",
       image: note,
       action: "",
     },
     {
       title: "Testimonios",
+      path: "testimonials",
       image: chat,
       action: "",
     },
     {
       title: "Organización",
+      path: "edit-organization",
       image: organization,
       action: "",
     },
     {
       title: "Slides",
+      path: "edit-home",
       image: documents,
       action: "",
     },
     {
       title: "Usuarios",
+      path: "users",
       image: group,
       action: "",
     },
     {
       title: "Miembros",
+      path: "members",
       image: crowdOfUsers,
       action: "",
     },
@@ -59,7 +66,6 @@ const Backoffice = () => {
 
   return (
     <>
-      <Header></Header>
       <Container fluid className="bo-container d-flex">
         <Container className="bo-container__options">
           <Row className="justify-content-center">

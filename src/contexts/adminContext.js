@@ -37,6 +37,7 @@ export const AdminProvider = ({children}) =>{
 
     const [activitiesData, setActivitiesData] = useState(activitiesRes)
     const [welcomeData, setWelcomeData] = useState(welcomeRes)
+    const [organizationData, setWOrganizationData] = useState(welcomeRes)
 
     const value = {
         activitiesData,

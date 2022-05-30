@@ -1,5 +1,10 @@
-import { useCallback, useEffect, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useState
+} from "react";
 
+// This options will be passed by default if the user doesn't add their own options as an argument
 const defaultOptions = {
   method: "GET",
   mode: "cors",
@@ -42,7 +47,12 @@ const useFetch = (endpoint = "", options = defaultOptions) => {
     fetchJSON();
   };
 
-  return { data, loading, error, refetch };
+  return {
+    data,
+    loading,
+    error,
+    refetch
+  };
 };
 
 export default useFetch;

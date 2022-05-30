@@ -14,8 +14,8 @@ const WelcomeContainer = () => {
 
     return (
         <div className={Styles.mainContainer}>
+            
             <div className={Styles.viewContainer}>
-                <h2 className={Styles.outTitle}>{"Bienvenida"}</h2>
                 <div className={Styles.welcomeContainer}>
                     <div className={Styles.infoContainer}>
                         <h3>{title}</h3>

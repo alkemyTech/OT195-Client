@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import NavBrand from "./NavBrand";
 import NavMenu from "./NavMenu";
 import useFetch from "../../hooks/useFetch";
@@ -13,8 +13,10 @@ const Header = () => {
 
   // Fetching header data
   // const { data, loading } = useFetch(endpoint);
-  const location = useLocation()
-  const { data: publicInfo, loading } = useFetch('http://127.0.0.1:3001/organizations/1/public');
+  const location = useLocation();
+  const { data: publicInfo, loading } = useFetch(
+    "http://localhost:3005/organizations/1/public"
+  );
 
   // Placeholder
   const data = {
@@ -57,26 +59,37 @@ const Header = () => {
           style: "primary",
           route: "/signup",
         },
+        {
+          text: "Cerrar Sesión",
+          style: "primary",
+          route: "/signup",
+        },
+        {
+          text: "Backoffice",
+          style: "primary",
+          route: "/backoffice",
+        },
       ],
     },
   };
 
-
-  if(!loading && !location.pathname.includes("backoffice") ){
-    return(
+  if (!loading && !location.pathname.includes("backoffice")) {
+    return (
       <Container fluid className="navbar-container d-flex flex-column">
-    <Navbar className="my-auto">
-      <Container fluid>
-        <NavBrand image={publicInfo.results.image} name={data.name}></NavBrand>
-        <NavMenu menu={data.nav}></NavMenu>
+        <Navbar className="my-auto">
+          <Container fluid>
+            <NavBrand
+              image={publicInfo.results.image}
+              name={data.name}
+            ></NavBrand>
+            <NavMenu menu={data.nav}></NavMenu>
+          </Container>
+        </Navbar>
       </Container>
-    </Navbar>
-  </Container>
-    )
-  }else{
-    return <></>
+    );
+  } else {
+    return <></>;
   }
-  
 };
 
 export default Header;

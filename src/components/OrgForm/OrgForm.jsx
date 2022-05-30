@@ -9,10 +9,10 @@ import useFetch from '../../hooks/useFetch';
 import Loader from '../Loader/Loader';
 import Header from "../Backoffice/Header";
 
-import documents from "../../images/backoffice/documents.png";
+import organization from "../../images/backoffice/organization.png";
+
 
 import WelcomeContainer from './WelcomeContainer';
-import ActivitiesContainer from './ActivitiesContainer';
 
 const OrgForm = () => {
     const {activitiesData, welcomeData} = useContext(AdminContext)
@@ -31,26 +31,19 @@ const OrgForm = () => {
     }else{
         
         return (
-            <>
-            <Header/>
             <main className={Styles.main}>
     
-                <img src={documents} className={Styles.icon}/>
-                <h1>Slides</h1>
+                <img src={organization} className={Styles.icon}/>
+                <h1>Organización</h1>
                 
-                <p>Modificá la bienvenida y los slides desplegados en el org</p>
+                <p>Modificá el nombre y logo de la organización</p>
                 <div className={Styles.formContainer}>
 
                     <WelcomeContainer/>
-                    <ActivitiesContainer/>
-
                     <button className={Styles.saveChange} onClick={saveChanges}>Guardar Cambios</button>
                 </div>
             
             </main>
-            
-            </>
-            
         )
     }
     
