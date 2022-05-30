@@ -15,7 +15,9 @@ const Header = () => {
   // const { data, loading } = useFetch(endpoint);
   const location = useLocation();
   const { data: publicInfo, loading } = useFetch(
-    "http://localhost:3005/organizations/1/public"
+
+    process.env.REACT_APP_PUBLIC_ENDPOINT
+
   );
 
   // context for data

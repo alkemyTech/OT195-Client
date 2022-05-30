@@ -11,21 +11,23 @@ import { AdminContext} from '../../contexts/adminContext';
 
 const HomePage = () => {
 
+  const { data: publicInfo, loading } = useFetch(
+    process.env.REACT_APP_PUBLIC_ENDPOINT
+  );
 
-    const { data: publicInfo, loading } = useFetch('http://127.0.0.1:3001/organizations/1/public');
-    const {welcomeData} = useContext(AdminContext)
+  const { welcomeData } = useContext(HomeContext);
 
-
-    if(loading) {
-        return <Loader />
-    }
-    return (<>
-            <Title title={welcomeData.title} text={welcomeData.text}/>
-            <Slider/> 
-            {<News news={publicInfo.results.news.slice(-4)}/>}
-            </>
-    )
-
-}
+  if (loading) {
+    return <Loader />;
+  }
+  return (
+    <>
+      <Title title={welcomeData.title} text={welcomeData.text} />
+      <Slider />
+      {<News news={publicInfo.results.news.slice(-4)} />}
+      <Footer image={publicInfo.results.image} />
+    </>
+  );
+};
 
 export default HomePage;
