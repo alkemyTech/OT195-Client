@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import Styles from "./HomeForm.module.css";
+import Styles from "./OrgForm.module.css";
 import { AdminContext } from '../../contexts/adminContext';
 
 

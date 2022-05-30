@@ -8,7 +8,17 @@ const Option = (props) => {
   const navigate = useNavigate();
 
   const navAction = (param)=>{
-    navigate(`${param}`)
+    let selection = "";
+
+    if(param === "Slides"){
+      selection = "edit-home"
+    } else if(param === "Organización"){
+      selection = "edit-organization"
+    }else{
+      selection = param;
+    }
+
+    navigate(selection)
   }
   return (
     <Col

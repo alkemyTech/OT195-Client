@@ -1,6 +1,6 @@
 import React, {useState, useContext, useEffect} from 'react'
 import {AdminContext} from "../../contexts/adminContext";
-import Styles from "./HomeForm.module.css";
+import Styles from "./OrgForm.module.css";
 
 const SlideContainer = ({object}) => {
     const {activitiesData, setActivitiesData} = useContext(AdminContext)

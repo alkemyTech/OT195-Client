@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Styles from "./HomeForm.module.css";
+import Styles from "./OrgForm.module.css";
 
 import {AdminContext} from "../../contexts/adminContext";
 import useFetch from '../../hooks/useFetch';
@@ -14,7 +14,7 @@ import documents from "../../images/backoffice/documents.png";
 import WelcomeContainer from './WelcomeContainer';
 import ActivitiesContainer from './ActivitiesContainer';
 
-const HomeForm = () => {
+const OrgForm = () => {
     const {activitiesData, welcomeData} = useContext(AdminContext)
     const navigate = useNavigate()
     const { data: publicInfo, loading } = useFetch('http://127.0.0.1:3001/organizations/1/public');
@@ -38,7 +38,7 @@ const HomeForm = () => {
                 <img src={documents} className={Styles.icon}/>
                 <h1>Slides</h1>
                 
-                <p>Modificá la bienvenida y los slides desplegados en el Home</p>
+                <p>Modificá la bienvenida y los slides desplegados en el org</p>
                 <div className={Styles.formContainer}>
 
                     <WelcomeContainer/>
@@ -56,4 +56,4 @@ const HomeForm = () => {
     
 }
 
-export default HomeForm;
+export default OrgForm;

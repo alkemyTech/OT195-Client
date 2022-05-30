@@ -7,9 +7,9 @@ import foto6 from '../images/Foto6.jpg';
 import foto10 from '../images/Foto10.jpg';
 
 
-export const HomeContext = createContext();
+export const AdminContext = createContext();
 
-export const HomeProvider = ({children}) =>{
+export const AdminProvider = ({children}) =>{
 
     const activitiesRes = [
         {
@@ -46,8 +46,8 @@ export const HomeProvider = ({children}) =>{
     }
 
     return(
-        <HomeContext.Provider value={value}>
+        <AdminContext.Provider value={value}>
             {children}
-        </HomeContext.Provider>
+        </AdminContext.Provider>
     )
 }

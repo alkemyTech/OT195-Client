@@ -1,7 +1,7 @@
 import React, {useContext} from 'react';
 import { AdminContext } from "../../contexts/adminContext"
 import SlideContainer from './SlideContainer';
-import Styles from "./HomeForm.module.css";
+import Styles from "./OrgForm.module.css";
 
 const ActivitiesContainer = () => {
     const {activitiesData} = useContext(AdminContext)
@@ -17,5 +17,5 @@ const ActivitiesContainer = () => {
     )
 }
 
-export default ActivitiesContainer
+export default ActivitiesContainer;
 

@@ -7,29 +7,23 @@ import LoginForm from './components/LoginForm/LoginForm';
 import ContactForm from './components/ContactForm/ContactForm';
 import Register from "./components/register/Register";
 import { AlertProvider } from "./contexts/alertContext";
-import { HomeProvider } from "./contexts/homeContext";
+import { AdminProvider } from "./contexts/adminContext";
 import BackOffice from "./components/Backoffice/Backoffice";
 import HomeForm from "./components/HomeForm/HomeForm";
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
+import OrgForm from "./components/OrgForm/OrgForm";
 
 function App() {
   return (
-    <>
     
+    <AdminProvider>
     <AlertProvider>
       <Header/>
       <Routes>
-        <Route path='/' element={
-        <HomeProvider>
-          <HomePage />
-        </HomeProvider>} />
-        <Route path="/home" element={
-        <HomeProvider>
-          <HomePage />
-        </HomeProvider>
-      } />
+        <Route path='/' element={<HomePage />} />
+        <Route path="/home" element={<HomePage/>} />
         <Route path="staff" element={<ContactForm/>} />
         <Route path="news" element={<h1>News</h1>} />
         <Route path="testimonials" element={<h1>Testimonials</h1>} />
@@ -39,14 +33,12 @@ function App() {
         <Route path="signup" element={<Register/>} />
 
         <Route path="backoffice" element={<BackOffice/>} />
-        <Route estric path="backoffice/Slides" element={
-        <HomeProvider>
-          <HomeForm/>
-        </HomeProvider>} />
+        <Route estric path="backoffice/edit-home" element={<HomeForm/>} />
+        <Route estric path="backoffice/edit-organization" element={<OrgForm/>} />
       </Routes>
       
     </AlertProvider>
-    </>
+    </AdminProvider>
   );
 }
 

@@ -7,13 +7,13 @@ import Loader from '../../components/Loader/Loader'
 import Title from "../../components/Title/Title";
 import Slider from "../../components/Slider/Slider";
 import News from "../../components/News/News";
-import { HomeContext} from '../../contexts/homeContext';
+import { AdminContext} from '../../contexts/adminContext';
 
 const HomePage = () => {
 
 
     const { data: publicInfo, loading } = useFetch('http://127.0.0.1:3001/organizations/1/public');
-    const {welcomeData} = useContext(HomeContext)
+    const {welcomeData} = useContext(AdminContext)
 
 
     if(loading) {
