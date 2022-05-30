@@ -15,7 +15,7 @@ const HomePage = () => {
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );
 
-  const { welcomeData } = useContext(HomeContext);
+  const { welcomeData } = useContext(AdminContext);
 
   if (loading) {
     return <Loader />;
