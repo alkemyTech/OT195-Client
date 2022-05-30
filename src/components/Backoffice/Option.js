@@ -1,15 +1,14 @@
 import { Card, Col, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-
 const Option = (props) => {
   const { option } = props;
-  const { title, image} = option;
+  const { title, image, path } = option;
   const navigate = useNavigate();
 
-  const navAction = (param)=>{
-    navigate(`${param}`)
-  }
+  const navAction = (param) => {
+    navigate(`${param}`);
+  };
   return (
     <Col
       xxl={3}
@@ -21,7 +20,13 @@ const Option = (props) => {
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <Card.Img src={image} />
-          <Button className="bo-button" variant="success" onClick={()=>{navAction(title)}}>
+          <Button
+            className="bo-button"
+            variant="success"
+            onClick={() => {
+              navAction(path);
+            }}
+          >
             Ir
           </Button>
         </Card.Body>

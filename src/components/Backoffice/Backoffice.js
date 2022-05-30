@@ -17,41 +17,49 @@ const Backoffice = () => {
   const dataPlaceholder = [
     {
       title: "Novedades",
+      path: "news",
       image: newspaper,
       action: "",
     },
     {
       title: "Actividades",
+      path: "activities",
       image: toDoList,
       action: "",
     },
     {
       title: "Categorias",
+      path: "categories",
       image: note,
       action: "",
     },
     {
       title: "Testimonios",
+      path: "testimonials",
       image: chat,
       action: "",
     },
     {
       title: "Organización",
+      path: "organization",
       image: organization,
       action: "",
     },
     {
       title: "Slides",
+      path: "slides",
       image: documents,
       action: "",
     },
     {
       title: "Usuarios",
+      path: "users",
       image: group,
       action: "",
     },
     {
       title: "Miembros",
+      path: "members",
       image: crowdOfUsers,
       action: "",
     },
@@ -59,7 +67,6 @@ const Backoffice = () => {
 
   return (
     <>
-      <Header></Header>
       <Container fluid className="bo-container d-flex">
         <Container className="bo-container__options">
           <Row className="justify-content-center">

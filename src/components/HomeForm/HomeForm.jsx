@@ -19,6 +19,7 @@ const HomeForm = () => {
     const navigate = useNavigate()
     const { data: publicInfo, loading } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
 
+
     function saveChanges(){
         console.log(activitiesData)
         console.log(welcomeData)
@@ -32,7 +33,6 @@ const HomeForm = () => {
         
         return (
             <>
-            <Header/>
             <main className={Styles.main}>
     
                 <img src={documents} className={Styles.icon}/>

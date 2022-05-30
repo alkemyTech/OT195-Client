@@ -1,0 +1,16 @@
+.newsTable img {
+    width: 100%;
+    max-width: 150px;
+    text-align: center;
+    display: block;
+
+}
+
+.newsContainer {
+    min-height: calc(100vh - 10vh);
+}
+
+.newsTitle{
+    margin-bottom: 30px;
+    text-transform: capitalize;
+}

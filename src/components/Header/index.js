@@ -15,7 +15,9 @@ const Header = () => {
   // const { data, loading } = useFetch(endpoint);
   const location = useLocation();
   const { data: publicInfo, loading } = useFetch(
+
     process.env.REACT_APP_PUBLIC_ENDPOINT
+
   );
 
   // Placeholder
@@ -58,6 +60,16 @@ const Header = () => {
           text: "Registrate",
           style: "primary",
           route: "/signup",
+        },
+        {
+          text: "Cerrar Sesión",
+          style: "primary",
+          route: "/signup",
+        },
+        {
+          text: "Backoffice",
+          style: "primary",
+          route: "/backoffice",
         },
       ],
     },

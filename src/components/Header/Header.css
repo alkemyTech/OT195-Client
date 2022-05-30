@@ -4,6 +4,10 @@
     background-color: var(--background-color)
 }
 
+.navbar-container img {
+    object-fit:cover;
+}
+
 .navbar-items {
     font-size: 16px;
     font-family: var(--primary-font);
