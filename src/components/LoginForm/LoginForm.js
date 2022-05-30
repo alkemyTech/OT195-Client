@@ -23,18 +23,16 @@ import {
   setLoginPending,
   setLoginFulfilled,
   setLoginRejected,
+  logOut,
 } from "../../features/actions/loginActions";
 
 const loginDispatch = (values, resetForm) => async (dispatch) => {
-  // Endpoint to the auth endpoint
-  const endpoint = "http://127.0.0.1:3001/auth/login";
-  
   // Update the "loading" state to "pending" on the application store;
   dispatch(setLoginPending());
 
   try {
     // Try to fetch the server endpoint
-    const response = await fetch(endpoint, {
+    const response = await fetch(process.env.REACT_APP_LOGIN_ENDPOINT, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -45,10 +43,9 @@ const loginDispatch = (values, resetForm) => async (dispatch) => {
       //    email: "",
       //    password: ""
       //  }
-      
+
       body: JSON.stringify(values),
     });
-    console.log(values)
 
     // If there was no error, we get the data from the response
     // Data is expected to be returned as shown below
@@ -146,7 +143,7 @@ const LoginForm = () => {
               ></TextField>
               <TextField
                 name="password"
-                type="text"
+                type="password"
                 placeholder="Contraseña"
                 min="6"
                 disabled={user.loading === "pending" ? true : false}
