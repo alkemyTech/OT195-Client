@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import MaterialTable from "material-table";
 
 import AddBox from "@material-ui/icons/AddBox";
@@ -42,25 +42,48 @@ const tableIcons = {
 };
 
 const DataTable = (props) => {
-  const { columns, data } = props;
+  const { columns: colDefs, data: tableData } = props;
+
+  const [columns, setColumns] = useState(colDefs);
+  const [data, setData] = useState(tableData);
 
   return (
     <MaterialTable
       columns={columns}
       data={data}
       icons={tableIcons}
-      actions={[
-        {
-          icon: Edit,
-          tooltip: "Editar",
-          onClick: (event, rowData) => {},
-        },
-        {
-          icon: DeleteOutline,
-          tooltip: "Eliminar",
-          onClick: (event, rowData) => {},
-        },
-      ]}
+      editable={{
+        onRowAdd: (newData) =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              setData([...data, newData]);
+
+              resolve();
+            }, 1000);
+          }),
+        onRowUpdate: (newData, oldData) =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              const dataUpdate = [...data];
+              const index = oldData.tableData.id;
+              dataUpdate[index] = newData;
+              setData([...dataUpdate]);
+
+              resolve();
+            }, 1000);
+          }),
+        onRowDelete: (oldData) =>
+          new Promise((resolve, reject) => {
+            setTimeout(() => {
+              const dataDelete = [...data];
+              const index = oldData.tableData.id;
+              dataDelete.splice(index, 1);
+              setData([...dataDelete]);
+
+              resolve();
+            }, 1000);
+          }),
+      }}
       options={{
         actionsColumnIndex: -1,
         showTitle: false,
