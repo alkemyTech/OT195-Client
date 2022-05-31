@@ -1,8 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 
 import useFetch from "../../hooks/useFetch";
 
-import Footer from "../../components/Footer/Footer";
 import Loader from "../../components/Loader/Loader";
 import Title from "../../components/Title/Title";
 import Slider from "../../components/Slider/Slider";
@@ -23,8 +22,7 @@ const HomePage = () => {
     <>
       <Title title={welcomeData.title} text={welcomeData.text} />
       <Slider />
-      <News />
-      <Footer image={publicInfo.results.image} />
+      {<News news={publicInfo.results.news.slice(-4)} />}
     </>
   );
 };

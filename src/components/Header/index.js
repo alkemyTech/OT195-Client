@@ -13,17 +13,16 @@ const Header = () => {
 
   // Fetching header data
   // const { data, loading } = useFetch(endpoint);
+
+  const {organizationData, setOrganizationData} = useContext(AdminContext)
   const location = useLocation();
   const { data: publicInfo, loading } = useFetch(
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );
 
-  // context for data
-  const { organizationData, setOrganizationData } = useContext(AdminContext);
-
-  useEffect(() => {
-    setOrganizationData(publicInfo);
-  }, [publicInfo, setOrganizationData]);
+  useEffect(()=>{
+    setOrganizationData(publicInfo)
+  },[publicInfo, loading, setOrganizationData])
 
   const data = {
     name: "",
