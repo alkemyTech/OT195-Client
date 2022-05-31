@@ -22,12 +22,7 @@ const HomePage = () => {
     <>
       <Title title={welcomeData.title} text={welcomeData.text} />
       <Slider />
-<<<<<<< HEAD
       {<News news={publicInfo.results.news.slice(-4)} />}
-=======
-      <News />
-      <Footer image={publicInfo.results.image} />
->>>>>>> 88fb81a820c04ac7924e501b99722bcc6575e31a
     </>
   );
 };

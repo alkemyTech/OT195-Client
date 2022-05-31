@@ -20,18 +20,9 @@ const Header = () => {
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );
 
-<<<<<<< HEAD
   useEffect(()=>{
     setOrganizationData(publicInfo)
   },[publicInfo, loading, setOrganizationData])
-=======
-  // context for data
-  const { organizationData, setOrganizationData } = useContext(AdminContext);
-
-  useEffect(() => {
-    setOrganizationData(publicInfo);
-  }, [publicInfo, setOrganizationData]);
->>>>>>> 88fb81a820c04ac7924e501b99722bcc6575e31a
 
   const data = {
     name: "",
