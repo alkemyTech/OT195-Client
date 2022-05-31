@@ -7,10 +7,9 @@ import Loader from "../../components/Loader/Loader";
 import Title from "../../components/Title/Title";
 import Slider from "../../components/Slider/Slider";
 import News from "../../components/News/News";
-import { AdminContext} from '../../contexts/adminContext';
+import { AdminContext } from "../../contexts/adminContext";
 
 const HomePage = () => {
-
   const { data: publicInfo, loading } = useFetch(
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );
@@ -24,7 +23,7 @@ const HomePage = () => {
     <>
       <Title title={welcomeData.title} text={welcomeData.text} />
       <Slider />
-      {<News news={publicInfo.results.news.slice(-4)} />}
+      <News />
       <Footer image={publicInfo.results.image} />
     </>
   );

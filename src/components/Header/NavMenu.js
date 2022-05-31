@@ -1,4 +1,6 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logOut } from "../../features/actions/loginActions";
 
 import NavLink from "./NavLink";
 
@@ -8,6 +10,8 @@ import NavButton from "../Button";
 
 const NavMenu = (props) => {
   const { menu } = props;
+  const user = useSelector(({ user }) => user);
+  const dispatch = useDispatch();
 
   // Use the 'useLocation' hook from react router to get the exact location
   const location = useLocation();
@@ -30,14 +34,31 @@ const NavMenu = (props) => {
             ))
           : null}
         {menu?.items
-          ? menu.buttons.map((item, index) => (
-              <NavButton
-                text={item.text}
-                style={item.style}
-                callbackClick={() => buttonHandleClick(item.route)}
-                key={index}
-              ></NavButton>
-            ))
+          ? menu.buttons.map((item, index) =>
+              user.loading === "succeded"
+                ? item.text !== "Log In" &&
+                  item.text !== "Registrate" && (
+                    <NavButton
+                      text={item.text}
+                      style={item.style}
+                      callbackClick={() =>
+                        item.text === "Cerrar Sesión"
+                          ? dispatch(logOut())
+                          : buttonHandleClick(item.route)
+                      }
+                      key={index}
+                    ></NavButton>
+                  )
+                : item.text !== "Backoffice" &&
+                  item.text !== "Cerrar Sesión" && (
+                    <NavButton
+                      text={item.text}
+                      style={item.style}
+                      callbackClick={() => buttonHandleClick(item.route)}
+                      key={index}
+                    ></NavButton>
+                  )
+            )
           : null}
       </Nav>
     </Navbar.Collapse>
