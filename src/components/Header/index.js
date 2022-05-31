@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import NavBrand from "./NavBrand";
 import NavMenu from "./NavMenu";
 import useFetch from "../../hooks/useFetch";
@@ -11,22 +11,19 @@ const Header = () => {
   // Endpoint link
   //const endpoint = "localhost";
 
-  // Fetching header data 
+  // Fetching header data
   // const { data, loading } = useFetch(endpoint);
   const location = useLocation();
   const { data: publicInfo, loading } = useFetch(
-
     process.env.REACT_APP_PUBLIC_ENDPOINT
-
   );
 
   // context for data
-    const {organizationData, setOrganizationData} = useContext(AdminContext)
+  const { organizationData, setOrganizationData } = useContext(AdminContext);
 
-    useEffect(()=>{
-      setOrganizationData(publicInfo)
-    }, [publicInfo, setOrganizationData])
-
+  useEffect(() => {
+    setOrganizationData(publicInfo);
+  }, [publicInfo, setOrganizationData]);
 
   const data = {
     name: "",
@@ -69,21 +66,20 @@ const Header = () => {
           route: "/signup",
         },
         {
-          text: "Cerrar Sesión",
-          style: "primary",
-          route: "/signup",
-        },
-        {
           text: "Backoffice",
           style: "primary",
           route: "/backoffice",
+        },
+        {
+          text: "Cerrar Sesión",
+          style: "primary",
+          route: "/signup",
         },
       ],
     },
   };
 
   if (!loading && !location.pathname.includes("backoffice")) {
-
     return (
       <Container fluid className="navbar-container d-flex flex-column">
         <Navbar className="my-auto">
