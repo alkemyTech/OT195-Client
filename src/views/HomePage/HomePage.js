@@ -24,7 +24,6 @@ const HomePage = () => {
       <Title title={welcomeData.title} text={welcomeData.text} />
       <Slider />
       {<News news={publicInfo.results.news.slice(-4)} />}
-      <Footer image={publicInfo.results.image} />
     </>
   );
 };
