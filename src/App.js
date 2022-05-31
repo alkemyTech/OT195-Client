@@ -3,6 +3,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import HomePage from "./views/HomePage/HomePage";
 import News from "./components/News/News";
+import Detail from "./components/Detail/Detail";
 import LoginForm from "./components/LoginForm/LoginForm";
 import ContactForm from "./components/ContactForm/ContactForm";
 import HomeForm from "./components/HomeForm/HomeForm";
@@ -28,6 +29,7 @@ function App() {
             <Route path="home" element={<HomePage />} />
             <Route path="staff" element={<h1>Staff</h1>} />
             <Route path="news" element={<News />} />
+            <Route path="news/:id" element={<Detail />} />
             <Route path="testimonials" element={<h1>Testimonials</h1>} />
             <Route path="contact" element={<ContactForm />} />
             <Route path="contribute" element={<h1>Contribute</h1>} />

@@ -24,7 +24,6 @@ const HomePage = () => {
       <Title title={welcomeData.title} text={welcomeData.text} />
       <Slider />
       <News />
-      <Footer image={publicInfo.results.image} />
     </>
   );
 };

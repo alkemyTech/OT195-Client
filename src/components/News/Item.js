@@ -5,22 +5,24 @@ import Button from '../Button'
 
 import { Link } from 'react-router-dom'
 
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const Item = (props) => {
 
     const { image, text, link } = props;
 
     const navigate = useNavigate();
-
+    const location = useLocation();
 
     const callbackClick = () => {
-        return navigate(link);
+        return navigate(location.pathname + '/' + link);
     }
+
+    console.log(location);
 
     return (
         <Card>
-            <Card.Img src={image}/>
+            <Card.Img src={'http://localhost:3005/images/' + image}/>
             <Card.Text className='p-3'>
                 {text}
             </Card.Text>
