@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import NavBrand from "./NavBrand";
 import NavMenu from "./NavMenu";
 import useFetch from "../../hooks/useFetch";
@@ -11,7 +11,7 @@ const Header = () => {
   // Endpoint link
   //const endpoint = "localhost";
 
-  // Fetching header data 
+  // Fetching header data
   // const { data, loading } = useFetch(endpoint);
 
   const {organizationData, setOrganizationData} = useContext(AdminContext)
@@ -20,9 +20,18 @@ const Header = () => {
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );
 
+<<<<<<< HEAD
   useEffect(()=>{
     setOrganizationData(publicInfo)
   },[publicInfo, loading, setOrganizationData])
+=======
+  // context for data
+  const { organizationData, setOrganizationData } = useContext(AdminContext);
+
+  useEffect(() => {
+    setOrganizationData(publicInfo);
+  }, [publicInfo, setOrganizationData]);
+>>>>>>> 88fb81a820c04ac7924e501b99722bcc6575e31a
 
   const data = {
     name: "",
@@ -65,14 +74,14 @@ const Header = () => {
           route: "/signup",
         },
         {
-          text: "Cerrar Sesión",
-          style: "primary",
-          route: "/signup",
-        },
-        {
           text: "Backoffice",
           style: "primary",
           route: "/backoffice",
+        },
+        {
+          text: "Cerrar Sesión",
+          style: "primary",
+          route: "/signup",
         },
       ],
     },
