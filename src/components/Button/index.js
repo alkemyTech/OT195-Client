@@ -5,11 +5,15 @@ import "./Buttons.css";
 
 // This component recieves text, the style class ('primary' or 'secondary' for now) and a callback for onClick event
 const ButtonComponent = (props) => {
-  const { text, style, callbackClick } = props;
+  const { styles, callbackClick, children, ...args } = props;
 
   return (
-    <Button className={`navbar-button ${style}`} onClick={callbackClick}>
-      {text}
+    <Button
+      className={`navbar-button ${styles}`}
+      {...args}
+      onClick={callbackClick}
+    >
+      {children}
     </Button>
   );
 };

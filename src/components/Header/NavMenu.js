@@ -39,15 +39,16 @@ const NavMenu = (props) => {
                 ? item.text !== "Log In" &&
                   item.text !== "Registrate" && (
                     <NavButton
-                      text={item.text}
-                      style={item.style}
+                      styles={item.style}
                       callbackClick={() =>
                         item.text === "Cerrar Sesión"
                           ? dispatch(logOut())
                           : buttonHandleClick(item.route)
                       }
                       key={index}
-                    ></NavButton>
+                    >
+                      {item.text}
+                    </NavButton>
                   )
                 : item.text !== "Backoffice" &&
                   item.text !== "Cerrar Sesión" && (

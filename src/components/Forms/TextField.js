@@ -9,6 +9,7 @@ const TextField = ({
   min,
   max,
   placeholder,
+  accept = "",
   disabled = false,
   ...props
 }) => {
@@ -25,6 +26,7 @@ const TextField = ({
           type={type}
           min={min}
           max={max}
+          accept={accept}
           placeholder={placeholder}
         ></Form.Control>
         {meta.touched && meta.error ? <h6>{meta.error}</h6> : null}

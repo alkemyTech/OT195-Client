@@ -11,6 +11,11 @@ export const DataTableContext = React.createContext({
     setSelectedRowData: () => {},
   },
   setShowEdit: () => {},
+  actions: {
+    showAdd: false,
+    showEdit: false,
+    setShowEdit: () => {},
+  },
 });
 
 // export const DataTableProvider = ({ children }) => {

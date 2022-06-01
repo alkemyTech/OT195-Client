@@ -89,14 +89,15 @@ const NewsTable = () => {
   const CustomToolbar = () => {
     return (
       <ButtonComponent
-        text="Nuevo"
-        style="primary"
+        styles="primary"
         callbackClick={() => {
           setModalOpen(true);
           setSelectedRowData([]);
           setShowAdd(true);
         }}
-      ></ButtonComponent>
+      >
+        Nuevo
+      </ButtonComponent>
     );
   };
 
@@ -112,7 +113,11 @@ const NewsTable = () => {
           selectedRowData,
           setSelectedRowData,
         },
-        setShowEdit,
+        actions: {
+          showAdd,
+          showEdit,
+          setShowEdit,
+        },
       }}
     >
       <Container>

@@ -6,11 +6,16 @@ import Select from "../Forms/Select";
 
 import * as Bootstrap from "react-bootstrap";
 import Button from "../Button";
-import { useContext, useEffect, useState } from "react";
-import { DataTableContext } from "../../contexts/DataTableContext";
 
 const NewsForm = (props) => {
   const { values } = props;
+
+  const SUPPORTED_FORMATS = [
+    "image/jpg",
+    "image/jpeg",
+    "image/gif",
+    "image/png",
+  ];
 
   return (
     <Formik
@@ -21,7 +26,14 @@ const NewsForm = (props) => {
         categoria: "categoria-1",
       }}
       validationSchema={Yup.object({
-        contenido: Yup.string().required(),
+        name: Yup.string().required("El nombre es requerido."),
+        imagen: Yup.mixed().test(
+          "fileFormat",
+          "Formato no válido",
+          (value) => value && SUPPORTED_FORMATS.includes(value.type)
+        ),
+        categoria: Yup.string().required("La categoria es requerida."),
+        contenido: Yup.string().required("El contenido es requerido."),
       })}
       onSubmit={(values) => console.log(values)}
     >
@@ -32,15 +44,16 @@ const NewsForm = (props) => {
           <option value="categoria-2">Categoria 2</option>
           <option value="categoria-3">Categoria 3</option>
         </Select>
-        <TextField name="imagen" type="file" label="Imagen"></TextField>
+        <TextField
+          name="imagen"
+          type="file"
+          label="Imagen"
+          accept="image/png, image/jpeg, image/jpg"
+        ></TextField>
         <RichText name="contenido" label="Contenido"></RichText>
-        <Button text="Submit" type="submit" style="primary"></Button>
-        {/* <Button
-          text="Cancelar"
-          type="button"
-          style="secondary"
-          callbackClick={() => setModalOpen(false)}
-        ></Button> */}
+        <Button type="submit" styles="primary">
+          Submit
+        </Button>
       </Bootstrap.Form>
     </Formik>
   );

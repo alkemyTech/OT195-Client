@@ -45,7 +45,7 @@ const tableIcons = {
 const DataTable = (props) => {
   const { columns: colDefs, data: tableData, title } = props;
 
-  const { selectedRow, setModalOpen, CustomToolbar, modal, setShowEdit } =
+  const { selectedRow, setModalOpen, CustomToolbar, modal, actions } =
     useContext(DataTableContext);
   const [columns] = useState(colDefs);
   const [data] = useState(tableData);
@@ -71,7 +71,7 @@ const DataTable = (props) => {
           onClick: (event, rowData) => {
             modal.setModalOpen(true);
             selectedRow.setSelectedRowData(rowData);
-            setShowEdit(true);
+            actions.setShowEdit(true);
           },
         },
       ]}
