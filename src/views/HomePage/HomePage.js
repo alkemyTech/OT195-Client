@@ -22,7 +22,9 @@ const HomePage = () => {
     <>
       <Title title={welcomeData.title} text={welcomeData.text} />
       <Slider />
+      <News />
       {<News news={publicInfo.results.news.slice(-4)} />}
+
     </>
   );
 };

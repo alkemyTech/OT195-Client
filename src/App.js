@@ -6,9 +6,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 /* views */
 import HomePage from "./views/HomePage/HomePage";
-import NewsPage from "./views/News/NewsPage";
 
+import News from "./components/News/News";
+import Detail from "./components/Detail/Detail";
+
+import NewsPage from "./views/News/NewsPage";
 /* Forms */
+
 import LoginForm from "./components/LoginForm/LoginForm";
 import ContactForm from "./components/ContactForm/ContactForm";
 import HomeForm from "./components/HomeForm/HomeForm";
@@ -37,8 +41,9 @@ function App() {
           <Route element={<HomePageLayout />}>
             <Route index element={<HomePage />} />
             <Route path="home" element={<HomePage />} />
-            <Route path="staff" element={<ContactForm />} />
-            <Route path="news" element={<NewsPage/>} />
+            <Route path="staff" element={<h1>Staff</h1>} />
+            <Route path="news" element={<News />} />
+            <Route path="news/:id" element={<Detail />} />
             <Route path="testimonials" element={<h1>Testimonials</h1>} />
             <Route path="contact" element={<ContactForm />} />
             <Route path="contribute" element={<h1>Contribute</h1>} />
