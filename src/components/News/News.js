@@ -8,9 +8,11 @@ import "./News.css";
 
 const News = () => {
   const { data: publicInfo, loading } = useFetch(
-    process.env.REACT_APP_PUBLIC_ENDPOINT
+    process.env.REACT_APP_NEWS_ENDPOINT
   );
-  const news = publicInfo.results ? publicInfo.results.news.slice(-4) : [];
+  console.log(publicInfo.results)
+
+  const news = publicInfo.results ? publicInfo.results.slice(-4) : [];
 
   if (loading) {
     return <Loader />;
@@ -29,7 +31,7 @@ const News = () => {
       <Row>
         {news.map((data, key) => (
           <Col md={3} sm={6} key={key}>
-            <Item image={data.image} text={data.text} link={data.link} />
+            <Item image={data.image} text={data.content} link={data.id} />
           </Col>
         ))}
       </Row>
