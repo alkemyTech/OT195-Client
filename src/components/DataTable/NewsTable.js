@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
-import img_manos from "../../images/img_manos.png";
 import { Container, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 import DataTable from "./DataTable";
 
 import NewsForm from "../Forms/NewsForm";
@@ -13,23 +13,55 @@ import useFetch from "../../hooks/useFetch";
 import Loader from "../Loader/Loader";
 
 const NewsTable = () => {
-  // Fetching data
-  // const {data, loading} = useFetch(process.env.REACT_APP_NEWS_ENDPOINT)
+  const navigate = useNavigate();
 
-  const [modalOpen, setModalOpen] = useState(false);
+  // TABLE  =============================
+  // Columns Definitions
+  const [colDefs] = useState([
+    {
+      title: "Nombre",
+      field: "name",
+    },
+    {
+      title: "Imagen",
+      field: "image",
+      render: (rowData) => (
+        <Image
+          src={rowData.image}
+          style={{ width: "100%", maxWidth: "150px", display: "block" }}
+          alt={rowData.name}
+        />
+      ),
+    },
+    {
+      title: "Fecha de Creación",
+      field: "createdAt",
+    },
+  ]);
+
+  // DATA ===================================
+  // Data from last row selected
   const [selectedRowData, setSelectedRowData] = useState([]);
 
-  const {
-    data: detailsData,
-    loading: detailsLoading,
-    error,
-  } = useFetch(`http://localhost:3005/news/${selectedRowData?.id}`);
-
+  // DataTable data
   const { data, loading, refetch } = useFetch(`http://localhost:3005/news`);
 
+  // Data details from row selected on edit
+  const { data: detailsData, loading: detailsLoading } = useFetch(
+    `http://localhost:3005/news/${selectedRowData?.id}`
+  );
+
+  // MODAL =========================
+  const [modalOpen, setModalOpen] = useState(false);
+
+  // FORMS ============================
+  // Display "POST" Form
   const [showEdit, setShowEdit] = useState(false);
+
+  // Display "PUT/PATCH" Form
   const [showAdd, setShowAdd] = useState(false);
 
+  // Method to POST Form to the server endpoint
   const postForm = async (values) => {
     try {
       console.log(JSON.stringify(values));
@@ -72,6 +104,7 @@ const NewsTable = () => {
     }
   };
 
+  // Method to PUT Form the server endpoint
   const patchForm = (values) => {
     Swal.fire({
       title: "¿Deseas guardar los cambios?",
@@ -125,68 +158,15 @@ const NewsTable = () => {
     });
   };
 
-  const [colDefs] = useState([
-    {
-      title: "Nombre",
-      field: "name",
-    },
-    {
-      title: "Imagen",
-      field: "image",
-      render: (rowData) => (
-        <Image
-          src={rowData.image}
-          style={{ width: "100%", maxWidth: "150px", display: "block" }}
-          alt={rowData.name}
-        />
-      ),
-    },
-    {
-      title: "Fecha de Creación",
-      field: "createdAt",
-    },
-  ]);
-
-  // const dataPlaceholder = [
-  //   {
-  //     name: "Novedad 1",
-  //     id: 10,
-  //     image: img_manos,
-  //     createdAt: "29-05-2022",
-  //   },
-  //   {
-  //     name: "Novedad 2",
-  //     id: 11,
-  //     image: img_manos,
-  //     createdAt: "25-04-2022",
-  //   },
-  //   {
-  //     name: "Novedad 3",
-  //     id: 13,
-  //     image: img_manos,
-  //     createdAt: "20-04-2022",
-  //   },
-  //   {
-  //     name: "Novedad 4",
-  //     id: 13,
-  //     image: img_manos,
-  //     createdAt: "20-04-2022",
-  //   },
-  //   {
-  //     name: "Novedad 5",
-  //     id: 13,
-  //     image: img_manos,
-  //     createdAt: "20-04-2022",
-  //   },
-  // ];
-
   useEffect(() => {
+    // Hide every form whenever the user closes the modal window
     if (!modalOpen) {
       setShowAdd(false);
       setShowEdit(false);
     }
   }, [modalOpen]);
 
+  // Custom component on the DataTable header
   const CustomToolbar = () => {
     return (
       <ButtonComponent
@@ -218,6 +198,9 @@ const NewsTable = () => {
           showAdd,
           showEdit,
           setShowEdit,
+          goToDetails: (row) => {
+            navigate("/news/" + row.id);
+          },
         },
       }}
     >

@@ -47,7 +47,9 @@ const DataTable = (props) => {
 
   const { selectedRow, CustomToolbar, modal, actions } =
     useContext(DataTableContext);
+
   const [columns] = useState(colDefs);
+
   const [data, setData] = useState(tableData);
 
   useEffect(() => {
@@ -86,7 +88,9 @@ const DataTable = (props) => {
         {
           icon: Search,
           tooltip: "Ver detalle",
-          onClick: (event, rowData) => {},
+          onClick: (event, rowData) => {
+            actions.goToDetails(rowData);
+          },
         },
       ]}
       options={{
