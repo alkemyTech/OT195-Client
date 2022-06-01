@@ -1,4 +1,4 @@
-import React, { forwardRef, useContext, useState } from "react";
+import React, { forwardRef, useContext, useEffect, useState } from "react";
 import MaterialTable, { MTableToolbar } from "material-table";
 
 import AddBox from "@material-ui/icons/AddBox";
@@ -45,10 +45,14 @@ const tableIcons = {
 const DataTable = (props) => {
   const { columns: colDefs, data: tableData, title } = props;
 
-  const { selectedRow, setModalOpen, CustomToolbar, modal, actions } =
+  const { selectedRow, CustomToolbar, modal, actions } =
     useContext(DataTableContext);
   const [columns] = useState(colDefs);
-  const [data] = useState(tableData);
+  const [data, setData] = useState(tableData);
+
+  useEffect(() => {
+    setData(tableData);
+  }, [tableData]);
 
   return (
     <MaterialTable

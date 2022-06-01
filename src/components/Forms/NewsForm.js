@@ -8,7 +8,9 @@ import * as Bootstrap from "react-bootstrap";
 import Button from "../Button";
 
 const NewsForm = (props) => {
-  const { values } = props;
+  const { values, fetchMethod } = props;
+
+  console.log(values);
 
   const SUPPORTED_FORMATS = [
     "image/jpg",
@@ -20,22 +22,22 @@ const NewsForm = (props) => {
   return (
     <Formik
       initialValues={{
-        name: values ? values?.name : "",
+        name: values?.name || "",
         imagen: "",
-        contenido: values ? values?.contenido : "",
+        content: values?.content || "",
         categoria: "categoria-1",
       }}
       validationSchema={Yup.object({
         name: Yup.string().required("El nombre es requerido."),
-        imagen: Yup.mixed().test(
-          "fileFormat",
-          "Formato no válido",
-          (value) => value && SUPPORTED_FORMATS.includes(value.type)
-        ),
+        // imagen: Yup.mixed().test(
+        //   "fileFormat",
+        //   "Formato no válido",
+        //   (value) => value && SUPPORTED_FORMATS.includes(value.type)
+        // ),
         categoria: Yup.string().required("La categoria es requerida."),
-        contenido: Yup.string().required("El contenido es requerido."),
+        content: Yup.string().required("El contenido es requerido."),
       })}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={(values) => fetchMethod(values)}
     >
       <Bootstrap.Form as={Form}>
         <TextField name="name" type="text" label="Titulo"></TextField>
@@ -50,9 +52,9 @@ const NewsForm = (props) => {
           label="Imagen"
           accept="image/png, image/jpeg, image/jpg"
         ></TextField>
-        <RichText name="contenido" label="Contenido"></RichText>
+        <RichText name="content" label="Contenido"></RichText>
         <Button type="submit" styles="primary">
-          Submit
+          Guardar
         </Button>
       </Bootstrap.Form>
     </Formik>

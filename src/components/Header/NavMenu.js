@@ -53,11 +53,12 @@ const NavMenu = (props) => {
                 : item.text !== "Backoffice" &&
                   item.text !== "Cerrar Sesión" && (
                     <NavButton
-                      text={item.text}
-                      style={item.style}
+                      styles={item.style}
                       callbackClick={() => buttonHandleClick(item.route)}
                       key={index}
-                    ></NavButton>
+                    >
+                      {item.text}
+                    </NavButton>
                   )
             )
           : null}
