@@ -129,9 +129,9 @@ const LoginForm = () => {
                   "Por favor, complete su dirección de correo electrónico"
                 )
                 .email("Ingrese un email válido."),
-              password: Yup.string()
-                .required("La contraseña es obligatoria")
-                .min(6, "La contraseña debe tener al menos 6 caracteres"),
+              // password: Yup.string()
+              //   .required("La contraseña es obligatoria")
+              //   .min(6, "La contraseña debe tener al menos 6 caracteres"),
             })}
           >
             <Form className="form_login">
