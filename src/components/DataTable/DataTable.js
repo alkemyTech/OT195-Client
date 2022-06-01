@@ -78,6 +78,16 @@ const DataTable = (props) => {
             actions.setShowEdit(true);
           },
         },
+        {
+          icon: DeleteOutline,
+          tooltip: "Eliminar",
+          onClick: (event, rowData) => {},
+        },
+        {
+          icon: Search,
+          tooltip: "Ver detalle",
+          onClick: (event, rowData) => {},
+        },
       ]}
       options={{
         actionsColumnIndex: -1,

@@ -25,16 +25,20 @@ const NewsTable = () => {
     error,
   } = useFetch(`http://localhost:3005/news/${selectedRowData?.id}`);
 
-  const { data, loading } = useFetch(`http://localhost:3005/news`);
+  const { data, loading, refetch } = useFetch(`http://localhost:3005/news`);
 
   const [showEdit, setShowEdit] = useState(false);
   const [showAdd, setShowAdd] = useState(false);
 
   const postForm = async (values) => {
     try {
+      console.log(JSON.stringify(values));
+
       const response = await fetch("http://localhost:3005/news", {
         method: "POST",
         headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
           "X-Api-Key": window.localStorage.getItem("token"),
         },
         body: JSON.stringify(values),
@@ -50,6 +54,8 @@ const NewsTable = () => {
           confirmButtonText: "Continuar",
         });
       }
+
+      refetch();
 
       return Swal.fire({
         title: "Entrada creada!",
@@ -74,13 +80,15 @@ const NewsTable = () => {
       confirmButtonText: "Guardar",
       cancelButtonText: `Cancelar`,
     }).then(async (result) => {
-      if (result.isConfirmed) {
+      if (result) {
         try {
           const response = await fetch(
             "http://localhost:3005/news/" + selectedRowData.id,
             {
-              method: "PATCH",
+              method: "PUT",
               headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
                 "X-Api-Key": window.localStorage.getItem("token"),
               },
               body: JSON.stringify(values),
@@ -92,21 +100,23 @@ const NewsTable = () => {
           if (!data.ok) {
             return Swal.fire({
               title: "Error!",
-              text: "Hubo un error al crear la entrada.",
+              text: "Hubo un error al editar la entrada.",
               type: "error",
               confirmButtonText: "Continuar",
             });
           }
 
+          refetch();
+
           return Swal.fire({
-            title: "Entrada creada!",
+            title: "Entrada editada!",
             type: "success",
             confirmButtonText: "Continuar",
           });
         } catch (err) {
           return Swal.fire({
             title: "Error!",
-            text: "Hubo un error al crear la entrada.",
+            text: "Hubo un error al editar la entrada.",
             type: "error",
             confirmButtonText: "Continuar",
           });
