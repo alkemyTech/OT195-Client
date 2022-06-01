@@ -11,7 +11,6 @@ import ActivitiesContainer from './ActivitiesContainer';
 const HomeForm = () => {
     const {activitiesData, welcomeData} = useContext(AdminContext)
     const navigate = useNavigate()
-    const { data: publicInfo, loading } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
 
     function saveChanges(){
         console.log(activitiesData)

@@ -6,8 +6,6 @@ import Carousel from 'react-bootstrap/Carousel';
 
 const Slider = () => {
   const {activitiesData} = useContext(AdminContext);
-  
-  //Ejemplo de imágenes en array de objetos
 
     const slides= activitiesData.map((item, i) => {
       return (

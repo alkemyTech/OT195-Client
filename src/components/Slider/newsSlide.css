@@ -1,0 +1,29 @@
+
+
+.carouselNew > .carousel-indicators{
+    bottom:0px;
+    top: 450px;
+    position: none
+}
+
+.carouselItemNew > .carousel-caption {
+    position: unset;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+    padding: 20px 20vw;
+    color: black;
+}
+
+.newTitle{
+    font-size: 40px;
+    margin: 10px;
+}
+.newContent{
+    font-size: 20px;
+}
+.carouselNew > a{
+    height: 500px
+}
+
