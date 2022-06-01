@@ -1,7 +1,8 @@
-import React from 'react';
+import React from "react";
 
-import Card from 'react-bootstrap/Card'
-import Button from '../Button'
+import Card from "react-bootstrap/Card";
+import Button from "../Button";
+
 
 
 import { useNavigate, useLocation } from 'react-router-dom'
@@ -33,3 +34,4 @@ const Item = (props) => {
 
 
 export default Item;
+

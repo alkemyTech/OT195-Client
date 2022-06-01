@@ -1,47 +1,131 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image } from "react-bootstrap";
 import img_manos from "../../images/img_manos.png";
-
+import { Container, Row, Col } from "react-bootstrap";
+import Swal from "sweetalert2";
 import DataTable from "./DataTable";
+
+import NewsForm from "../Forms/NewsForm";
+import ButtonComponent from "../Button";
+import { DataTableContext } from "../../contexts/DataTableContext";
+import FormModal from "../Forms/FormModal";
+import useFetch from "../../hooks/useFetch";
+import Loader from "../Loader/Loader";
 
 const NewsTable = () => {
   // Fetching data
   // const {data, loading} = useFetch(process.env.REACT_APP_NEWS_ENDPOINT)
 
-  const dataPlaceholder = [
-    {
-      name: "Novedad 1",
-      id: 10,
-      image: img_manos,
-      createdAt: "29-05-2022",
-    },
-    {
-      name: "Novedad 2",
-      id: 11,
-      image: img_manos,
-      createdAt: "25-04-2022",
-    },
-    {
-      name: "Novedad 3",
-      id: 13,
-      image: img_manos,
-      createdAt: "20-04-2022",
-    },
-    {
-      name: "Novedad 4",
-      id: 13,
-      image: img_manos,
-      createdAt: "20-04-2022",
-    },
-    {
-      name: "Novedad 5",
-      id: 13,
-      image: img_manos,
-      createdAt: "20-04-2022",
-    },
-  ];
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedRowData, setSelectedRowData] = useState([]);
 
-  const colDefs = [
+  const {
+    data: detailsData,
+    loading: detailsLoading,
+    error,
+  } = useFetch(`http://localhost:3005/news/${selectedRowData?.id}`);
+
+  const { data, loading, refetch } = useFetch(`http://localhost:3005/news`);
+
+  const [showEdit, setShowEdit] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
+
+  const postForm = async (values) => {
+    try {
+      console.log(JSON.stringify(values));
+
+      const response = await fetch("http://localhost:3005/news", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "X-Api-Key": window.localStorage.getItem("token"),
+        },
+        body: JSON.stringify(values),
+      });
+
+      const data = await response.json();
+
+      if (!data.ok) {
+        return Swal.fire({
+          title: "Error!",
+          text: "Hubo un error al crear la entrada.",
+          type: "error",
+          confirmButtonText: "Continuar",
+        });
+      }
+
+      refetch();
+
+      return Swal.fire({
+        title: "Entrada creada!",
+        type: "success",
+        confirmButtonText: "Continuar",
+      });
+    } catch (err) {
+      return Swal.fire({
+        title: "Error!",
+        text: "Hubo un error al crear la entrada.",
+        type: "error",
+        confirmButtonText: "Continuar",
+      });
+    }
+  };
+
+  const patchForm = (values) => {
+    Swal.fire({
+      title: "¿Deseas guardar los cambios?",
+      showCancelButton: true,
+      type: "question",
+      confirmButtonText: "Guardar",
+      cancelButtonText: `Cancelar`,
+    }).then(async (result) => {
+      if (result) {
+        try {
+          const response = await fetch(
+            "http://localhost:3005/news/" + selectedRowData.id,
+            {
+              method: "PUT",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "X-Api-Key": window.localStorage.getItem("token"),
+              },
+              body: JSON.stringify(values),
+            }
+          );
+
+          const data = await response.json();
+
+          if (!data.ok) {
+            return Swal.fire({
+              title: "Error!",
+              text: "Hubo un error al editar la entrada.",
+              type: "error",
+              confirmButtonText: "Continuar",
+            });
+          }
+
+          refetch();
+
+          return Swal.fire({
+            title: "Entrada editada!",
+            type: "success",
+            confirmButtonText: "Continuar",
+          });
+        } catch (err) {
+          return Swal.fire({
+            title: "Error!",
+            text: "Hubo un error al editar la entrada.",
+            type: "error",
+            confirmButtonText: "Continuar",
+          });
+        }
+      }
+    });
+  };
+
+  const [colDefs] = useState([
     {
       title: "Nombre",
       field: "name",
@@ -61,14 +145,107 @@ const NewsTable = () => {
       title: "Fecha de Creación",
       field: "createdAt",
     },
-  ];
+  ]);
+
+  // const dataPlaceholder = [
+  //   {
+  //     name: "Novedad 1",
+  //     id: 10,
+  //     image: img_manos,
+  //     createdAt: "29-05-2022",
+  //   },
+  //   {
+  //     name: "Novedad 2",
+  //     id: 11,
+  //     image: img_manos,
+  //     createdAt: "25-04-2022",
+  //   },
+  //   {
+  //     name: "Novedad 3",
+  //     id: 13,
+  //     image: img_manos,
+  //     createdAt: "20-04-2022",
+  //   },
+  //   {
+  //     name: "Novedad 4",
+  //     id: 13,
+  //     image: img_manos,
+  //     createdAt: "20-04-2022",
+  //   },
+  //   {
+  //     name: "Novedad 5",
+  //     id: 13,
+  //     image: img_manos,
+  //     createdAt: "20-04-2022",
+  //   },
+  // ];
+
+  useEffect(() => {
+    if (!modalOpen) {
+      setShowAdd(false);
+      setShowEdit(false);
+    }
+  }, [modalOpen]);
+
+  const CustomToolbar = () => {
+    return (
+      <ButtonComponent
+        styles="primary"
+        callbackClick={() => {
+          setModalOpen(true);
+          setSelectedRowData([]);
+          setShowAdd(true);
+        }}
+      >
+        Nuevo
+      </ButtonComponent>
+    );
+  };
 
   return (
-    <DataTable
-      columns={colDefs}
-      data={dataPlaceholder}
-      title="Listado de Novedades"
-    ></DataTable>
+    <DataTableContext.Provider
+      value={{
+        CustomToolbar,
+        modal: {
+          modalOpen,
+          setModalOpen,
+        },
+        selectedRow: {
+          selectedRowData,
+          setSelectedRowData,
+        },
+        actions: {
+          showAdd,
+          showEdit,
+          setShowEdit,
+        },
+      }}
+    >
+      <Container>
+        <Row>
+          <Col>
+            <DataTable
+              columns={colDefs}
+              data={loading ? [] : data.entries}
+              title="Listado de Novedades"
+            ></DataTable>
+            <FormModal>
+              {showAdd ? <NewsForm fetchMethod={postForm}></NewsForm> : null}
+              {showEdit ? (
+                detailsLoading ? (
+                  <Loader></Loader>
+                ) : (
+                  <NewsForm
+                    values={detailsLoading ? [] : detailsData.results}
+                    fetchMethod={patchForm}
+                  ></NewsForm>
+                )
+              ) : null}
+            </FormModal>
+          </Col>
+        </Row>
+      </Container>
+    </DataTableContext.Provider>
   );
 };
 

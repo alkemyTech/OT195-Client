@@ -50,7 +50,7 @@ export const loginReducer = createReducer(loginInitialState, (builder) => {
       const { token, ...data } = payload;
 
       // Storage token key on local storage
-      window.localStorage.setItem("token", JSON.stringify(token));
+      window.localStorage.setItem("token", token);
 
       return {
         entity: {

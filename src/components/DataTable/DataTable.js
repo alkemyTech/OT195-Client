@@ -1,5 +1,5 @@
-import React, { forwardRef, useState } from "react";
-import MaterialTable from "material-table";
+import React, { forwardRef, useContext, useEffect, useState } from "react";
+import MaterialTable, { MTableToolbar } from "material-table";
 
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
@@ -16,6 +16,7 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
+import { DataTableContext } from "../../contexts/DataTableContext";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -42,51 +43,55 @@ const tableIcons = {
 };
 
 const DataTable = (props) => {
-  const { columns: colDefs, data: tableData } = props;
+  const { columns: colDefs, data: tableData, title } = props;
 
-  const [columns, setColumns] = useState(colDefs);
+  const { selectedRow, CustomToolbar, modal, actions } =
+    useContext(DataTableContext);
+  const [columns] = useState(colDefs);
   const [data, setData] = useState(tableData);
+
+  useEffect(() => {
+    setData(tableData);
+  }, [tableData]);
 
   return (
     <MaterialTable
+      title={title}
       columns={columns}
       data={data}
-      icons={tableIcons}
-      editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              setData([...data, newData]);
-
-              resolve();
-            }, 1000);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              const dataUpdate = [...data];
-              const index = oldData.tableData.id;
-              dataUpdate[index] = newData;
-              setData([...dataUpdate]);
-
-              resolve();
-            }, 1000);
-          }),
-        onRowDelete: (oldData) =>
-          new Promise((resolve, reject) => {
-            setTimeout(() => {
-              const dataDelete = [...data];
-              const index = oldData.tableData.id;
-              dataDelete.splice(index, 1);
-              setData([...dataDelete]);
-
-              resolve();
-            }, 1000);
-          }),
+      components={{
+        Toolbar: (props) => (
+          <div>
+            <MTableToolbar {...props} />
+            {CustomToolbar ? <CustomToolbar></CustomToolbar> : null}
+          </div>
+        ),
       }}
+      icons={tableIcons}
+      actions={[
+        {
+          icon: Edit,
+          tooltip: "Editar",
+          onClick: (event, rowData) => {
+            modal.setModalOpen(true);
+            selectedRow.setSelectedRowData(rowData);
+            actions.setShowEdit(true);
+          },
+        },
+        {
+          icon: DeleteOutline,
+          tooltip: "Eliminar",
+          onClick: (event, rowData) => {},
+        },
+        {
+          icon: Search,
+          tooltip: "Ver detalle",
+          onClick: (event, rowData) => {},
+        },
+      ]}
       options={{
         actionsColumnIndex: -1,
-        showTitle: false,
+        draggable: false,
       }}
       localization={{
         header: {
