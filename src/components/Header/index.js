@@ -1,22 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import NavBrand from "./NavBrand";
 import NavMenu from "./NavMenu";
 import useFetch from "../../hooks/useFetch";
 import { Navbar, Container } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
-import { AdminContext } from "../../contexts/adminContext";
 import "./Header.css";
 
 const Header = () => {
-  // Endpoint link
-  //const endpoint = "localhost";
-
-  // Fetching header data
-  // const { data, loading } = useFetch(endpoint);
-
-  const { organizationData, setOrganizationData } = useContext(AdminContext);
-  const location = useLocation();
-
   const { data: publicInfo, loading } = useFetch(
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );

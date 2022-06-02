@@ -4,20 +4,10 @@ import {Container, Row, Col, Image} from 'react-bootstrap'
 import style from "./css/Profile.module.css"
 
 import foto from "../register/imagen/manos10.jpg"
+import Button from "../Button";
 
 
-export default function  ProfileView( {data , setData }){
-
-    function handleClick(event){
-        event.preventDefault();
-        if(data === false){
-            setData(true);
-        }else{
-            setData(false);
-        }
-    };
-
-
+export default function  ProfileView({userData , setEditView }){
     return(
         <div>
             <Container fluid >
@@ -27,44 +17,21 @@ export default function  ProfileView( {data , setData }){
                     <Row className="my-5">
                         <Col xxl={7} className="register-wrapper">
                         <h3>Mi perfil</h3>
-                        <br />
-                        <div>
-                            <label htmlFor="firstName" className="formLabel" >Nombre</label>
-                            <input
-                             className="formInput"
-                             type="text"
-                             id="firstName"
-                             name="firstName"
-                             value="EjemploNombre" 
-                             readOnly 
-                             />
-                        </div>
-                        <br />
-                        <div>
-                            <label htmlFor="lastName" className="formLabel" >Apellido </label>
-                            <input
-                              className="formInput" 
-                              type="text"
-                              id="lastName"
-                              name="lastName"
-                              value="EjemploApellido" 
-                              readOnly 
-                            />
-                        </div>
-                        <br />
-                        <div>
-                            <label htmlFor="email" className="formLabel" >Email </label>
-                            <input 
-                              className="formInput"
-                              type="email"
-                              id="email"
-                              name="email"
-                              value="EjemploEmail" 
-                              readOnly 
-                             />
-                        </div>
-                        <button className={style.buttonDelete} >Eleminar cuenta</button> 
-                        <button className={style.buttonEdit} onClick={event => handleClick(event)}  >Editar Datos</button>
+                        <Container className="my-3" fluid>
+                            <Row style={{fontWeight: "bold"}}>
+                                <Col><p>Nombre</p></Col>
+                                <Col><p>Apellido</p></Col>
+                                <Col><p>Email</p></Col>
+                            </Row>
+                            <Row>
+                                <Col><p>{userData.firstName}</p></Col>
+                                <Col><p>{userData.lastName}</p></Col>
+                                <Col><p>{userData.email}</p></Col>
+                            </Row>
+                        </Container>
+
+                        <Button callbackClick={() => setEditView(true)} styles="secondary" >Editar</Button>
+                        <Button styles="primary" >Eliminar</Button> 
                         </Col>
                     </Row>
                 </Container>

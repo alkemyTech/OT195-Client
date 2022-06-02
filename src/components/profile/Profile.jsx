@@ -1,28 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 
 
 import ProfileView from "./ProfileView";
 import ProfileEdit from "./ProfileEdit";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 
 
 export default function Profile(){
     
-    const [data , setData] = useState(false);
+    const [editView , setEditView] = useState(false);
+    const user = useSelector(({user}) => user.entity)
+    const navigate = useNavigate()
 
+    useEffect(() =>{
+        if(!user.roleId) navigate('/')
+    }, [user, navigate])
 
-    if(data === false){
+    if(editView === false){
         return(
             <div>
-                <ProfileView data={data} setData={setData} />
+                <ProfileView setEditView={setEditView} userData={user} />
             </div>
         )
     }
 
     return(
         <div>
-            <ProfileEdit data={data } setData={setData} />
+            <ProfileEdit setEditView={setEditView} userData={user}/>
         </div>
     )
 }

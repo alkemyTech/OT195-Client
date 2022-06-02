@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./views/HomePage/HomePage";
 import News from "./components/News/News";
 import Detail from "./components/Detail/Detail";
-import ProfileView from "./components/profile/ProfileView";
 
 import NewsPage from "./views/News/NewsPage";
 /* Forms */
@@ -32,6 +31,7 @@ import Backoffice from "./components/Backoffice/Backoffice";
 import EditNews from "./components/Backoffice/News";
 import Users from "./components/Backoffice/Users";
 import Activities from "./components/Backoffice/Activities";
+import Profile from "./components/profile/Profile";
 
 function App() {
   return (
@@ -49,7 +49,7 @@ function App() {
             <Route path="contribute" element={<h1>Contribute</h1>} />
             <Route path="login" element={<LoginForm />} />
             <Route path="signup" element={<Register />} />
-            <Route path="profile" element={<ProfileView />} />
+            <Route path="profile" element={<Profile />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
           <Route path="backoffice" element={<Backofficelayout />}>
