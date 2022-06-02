@@ -5,7 +5,7 @@ import Button from "../Button";
 import Select from "./Select";
 import { useSelector } from "react-redux";
 
-const ProfileForm = ({ setEditView, userData }) => {
+const ProfileForm = ({ setEditView, userData, formMethod }) => {
   const user = useSelector(({ user }) => user.entity);
 
   return (
@@ -16,6 +16,7 @@ const ProfileForm = ({ setEditView, userData }) => {
         email: userData.email,
         roleId: userData.roleId,
       }}
+      onSubmit={(values) => formMethod(values)}
     >
       <Bootstrap.Form as={Form}>
         <TextField name="firstName" label="Nombre"></TextField>
@@ -27,10 +28,14 @@ const ProfileForm = ({ setEditView, userData }) => {
             <option value="2">User</option>
           </Select>
         )}
-        <Button styles="primary">Guardar Cambios</Button>
-        <Button styles="secondary" callbackClick={() => setEditView(false)}>
-          Cancelar
+        <Button styles="primary" type="submit">
+          Guardar
         </Button>
+        {setEditView ? (
+          <Button styles="secondary" callbackClick={() => setEditView(false)}>
+            Cancelar
+          </Button>
+        ) : null}
       </Bootstrap.Form>
     </Formik>
   );

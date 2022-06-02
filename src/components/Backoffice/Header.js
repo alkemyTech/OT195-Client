@@ -1,6 +1,11 @@
-import { Container, Navbar} from "react-bootstrap";
+import { Container, Navbar } from "react-bootstrap";
+import useFetch from "../../hooks/useFetch";
 
 const Header = () => {
+  const { data, loading } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
+
+  if (loading) return <p>Loading</p>;
+
   return (
     <Container
       fluid
@@ -12,7 +17,13 @@ const Header = () => {
           aria-controls="basic-navbar-nav"
         ></Navbar.Toggle>
         <Navbar.Brand>
-          <img alt="" src="" width="100" height="53"></img>
+          <img
+            alt=""
+            src={data.results.image}
+            width="100"
+            height="53"
+            style={{ objectFit: "cover" }}
+          ></img>
         </Navbar.Brand>
       </Navbar>
     </Container>

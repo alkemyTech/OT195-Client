@@ -6,11 +6,6 @@ const Users = () => {
   return (
     <Container fluid className="newsContainer">
       <Container className="my-5">
-        <Row className="usersTitle">
-          <Col>
-            <h2>Listado de Usuarios</h2>
-          </Col>
-        </Row>
         <Row>
           <Col>
             <UsersTable></UsersTable>

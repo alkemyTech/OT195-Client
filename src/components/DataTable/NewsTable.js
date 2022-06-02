@@ -71,9 +71,7 @@ const NewsTable = () => {
   // Method to POST Form to the server endpoint
   const postForm = async (values) => {
     try {
-      console.log(JSON.stringify(values));
-
-      const response = await fetch("http://localhost:3005/news", {
+      const response = await fetch(process.env.REACT_APP_NEWS_ENDPOINT, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -123,7 +121,7 @@ const NewsTable = () => {
       if (result) {
         try {
           const response = await fetch(
-            "http://localhost:3005/news/" + selectedRowData.id,
+            process.env.REACT_APP_NEWS_ENDPOINT + selectedRowData.id,
             {
               method: "PUT",
               headers: {
