@@ -10,7 +10,6 @@ const News = () => {
   const { data: publicInfo, loading } = useFetch(
     process.env.REACT_APP_NEWS_ENDPOINT
   );
-  console.log(publicInfo.results)
 
   const news = publicInfo.results ? publicInfo.results.slice(-4) : [];
 

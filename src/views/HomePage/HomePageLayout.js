@@ -4,9 +4,7 @@ import Header from "../../components/Header/";
 import useFetch from "../../hooks/useFetch";
 
 const HomePageLayout = () => {
-  const { data: publicInfo } = useFetch(
-    "http://localhost:3005/organizations/1/public"
-  );
+  const { data: publicInfo } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
 
   return (
     <>

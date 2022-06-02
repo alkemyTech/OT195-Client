@@ -65,17 +65,18 @@ export default function Register(){
                   return errors
               }}
               onSubmit={(event) =>{
-                alert(JSON.stringify(event, null, 2))
-                navigate("/login")
-                let requestOptions = {
+
+                const requestOptions = {
                     method: 'POST',
                     headers: {
+                        Accept: 'application/json',
+                        "X-Api-Key": window.localStorage.getItem("token"),
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify(event),
-                    redirect: 'follow'
+
                 };
-                fetch("http://127.0.0.1:3001/auth/register", requestOptions)
+                fetch("http://localhost:3005/auth/register", requestOptions)
                 .then(response => response.text())
                 .then(result => console.log(result))
                 .catch(error => console.log('error', error));
@@ -84,7 +85,6 @@ export default function Register(){
             >
                 {( {values,errors , handleChange, handleBlur, handleSubmit } )=>(
                     <form onSubmit={handleSubmit}>
-                        {console.log(errors)}
                         <div>
                             <label htmlFor="firstName" className="formLabel" >Nombre</label>
                             <input

@@ -1,7 +1,7 @@
 import React from "react";
 
 export const DataTableContext = React.createContext({
-  CustomToolbar: () => {},
+  CustomToolbar: "",
   modal: {
     modalOpen: false,
     setModalOpen: () => {},
