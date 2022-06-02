@@ -49,13 +49,13 @@ function App() {
             <Route path="contribute" element={<h1>Contribute</h1>} />
             <Route path="login" element={<LoginForm />} />
             <Route path="signup" element={<Register />} />
+            <Route path="profile" element={<ProfileView />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
           <Route path="backoffice" element={<Backofficelayout />}>
             <Route index element={<Backoffice />} />
             <Route path="edit-home" element={<HomeForm />} />
             <Route path="edit-organization" element={<OrgForm />} />
-            <Route path="profile" element={<ProfileView />} />
             <Route path="news" element={<EditNews />} />
             <Route path="users" element={<Users />} />
             <Route path="activities" element={<Activities />} />

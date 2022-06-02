@@ -11,8 +11,6 @@ export default function Profile(){
     
     const [data , setData] = useState(false);
 
-    console.log(data)
-
 
     if(data === false){
         return(
