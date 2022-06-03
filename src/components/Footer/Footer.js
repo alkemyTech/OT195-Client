@@ -9,7 +9,7 @@ import MediaMenu from './MediaMenu'
 
 const Footer = (props) => {
 
-  const {image:src} = props
+  const {image:src, media} = props
 
 
     const data = { // this object must be filled by fetching information from the server
@@ -40,20 +40,6 @@ const Footer = (props) => {
               route: "/contribute",
             },
           ],
-          media: [ // Example
-            //   {
-            //     network: "twitter",
-            //     url: "https://campus.alkemy.org/"
-            //   },
-            //   {
-            //     network: "facebook",
-            //     url: "https://campus.alkemy.org/"
-            //   },
-            //   {
-            //     network: "instagram",
-            //     url: "https://campus.alkemy.org/"
-            //   }
-          ]
     }
 
     return (
@@ -68,7 +54,7 @@ const Footer = (props) => {
                 <hr className='separator my-4'/>
             </Row>
             <Row>
-                <MediaMenu media={data.media}/>
+                <MediaMenu media={media}/>
             </Row>
             <Row>
                 <span className=' my-2 rights text-center'>2022 by Alkemy. All Rights Reserved.</span>
