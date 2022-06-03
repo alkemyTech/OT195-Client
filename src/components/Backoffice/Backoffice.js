@@ -78,6 +78,7 @@ const Backoffice = () => {
       title: "Editar Perfil",
       path: "profile",
       image: singleUser,
+      path: "profile",
       action: "",
       roleId: 2,
     },

@@ -1,8 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useState
-} from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // This options will be passed by default if the user doesn't add their own options as an argument
 const defaultOptions = {
@@ -51,7 +47,7 @@ const useFetch = (endpoint = "", options = defaultOptions) => {
     data,
     loading,
     error,
-    refetch
+    refetch,
   };
 };
 

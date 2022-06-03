@@ -6,9 +6,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 /* views */
 import HomePage from "./views/HomePage/HomePage";
-
 import News from "./components/News/News";
 import Detail from "./components/Detail/Detail";
+import ProfileView from "./components/profile/ProfileView";
 
 import NewsPage from "./views/News/NewsPage";
 /* Forms */
@@ -42,7 +42,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="home" element={<HomePage />} />
             <Route path="staff" element={<h1>Staff</h1>} />
-            <Route path="news" element={<News />} />
+            <Route path="news" element={<NewsPage />} />
             <Route path="news/:id" element={<Detail />} />
             <Route path="testimonials" element={<h1>Testimonials</h1>} />
             <Route path="contact" element={<ContactForm />} />
@@ -55,6 +55,7 @@ function App() {
             <Route index element={<Backoffice />} />
             <Route path="edit-home" element={<HomeForm />} />
             <Route path="edit-organization" element={<OrgForm />} />
+            <Route path="profile" element={<ProfileView />} />
             <Route path="news" element={<EditNews />} />
             <Route path="users" element={<Users />} />
             <Route path="activities" element={<Activities />} />

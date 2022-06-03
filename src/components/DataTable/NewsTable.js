@@ -41,14 +41,21 @@ const NewsTable = () => {
 
   // DATA ===================================
   // Data from last row selected
-  const [selectedRowData, setSelectedRowData] = useState([]);
+  const [selectedRowData, setSelectedRowData] = useState({
+    id: "",
+    name: "",
+    image: "",
+    content: "",
+  });
 
   // DataTable data
-  const { data, loading, refetch } = useFetch(`http://localhost:3005/news`);
+  const { data, loading, refetch } = useFetch(
+    process.env.REACT_APP_NEWS_ENDPOINT
+  );
 
   // Data details from row selected on edit
   const { data: detailsData, loading: detailsLoading } = useFetch(
-    `http://localhost:3005/news/${selectedRowData?.id}`
+    process.env.REACT_APP_NEWS_ENDPOINT + selectedRowData.id
   );
 
   // MODAL =========================
@@ -209,7 +216,7 @@ const NewsTable = () => {
           <Col>
             <DataTable
               columns={colDefs}
-              data={loading ? [] : data.entries}
+              data={loading ? [] : data.results}
               title="Listado de Novedades"
             ></DataTable>
             <FormModal>
