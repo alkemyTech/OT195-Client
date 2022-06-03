@@ -217,7 +217,7 @@ const NewsTable = () => {
               data={loading ? [] : data.results}
               title="Listado de Novedades"
             ></DataTable>
-            <FormModal>
+            <FormModal name="Entrada">
               {showAdd ? <NewsForm fetchMethod={postForm}></NewsForm> : null}
               {showEdit ? (
                 detailsLoading ? (

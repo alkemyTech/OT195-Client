@@ -198,7 +198,7 @@ const UsersTable = () => {
               data={loading ? [] : data.results}
               title="Listado de Usuarios"
             ></DataTable>
-            <FormModal>
+            <FormModal name="Usuario">
               {/* {showAdd ? (
                 <ProfileForm fetchMethod={postForm}></ProfileForm>
               ) : null} */}
