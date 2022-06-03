@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import { DataTableContext } from "../../contexts/DataTableContext";
 import { Container, CloseButton, Modal } from "react-bootstrap";
 
-const FormModal = ({ children }) => {
+const FormModal = ({ children, name }) => {
   const { modal, actions } = useContext(DataTableContext);
   return (
     <Modal
@@ -15,8 +15,8 @@ const FormModal = ({ children }) => {
       <Container fluid>
         <Modal.Header>
           <Modal.Title>
-            {actions.showAdd ? "Nueva entrada" : null}
-            {actions.showEdit ? "Editando entrada" : null}
+            {actions.showAdd ? `Agregando ${name}` : null}
+            {actions.showEdit ? `Editando ${name}` : null}
           </Modal.Title>
           <CloseButton
             aria-label="Hide"

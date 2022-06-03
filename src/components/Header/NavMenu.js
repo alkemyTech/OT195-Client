@@ -51,7 +51,8 @@ const NavMenu = (props) => {
                     </NavButton>
                   )
                 : item.text !== "Backoffice" &&
-                  item.text !== "Cerrar Sesión" && (
+                  item.text !== "Cerrar Sesión" &&
+                  item.text !== "Mi Perfil" && (
                     <NavButton
                       styles={item.style}
                       callbackClick={() => buttonHandleClick(item.route)}
