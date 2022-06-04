@@ -22,9 +22,7 @@ const ActivitiesLayout = () => {
         <Col>
           <Outlet></Outlet>
         </Col>
-      </Row>
-      <Row>
-        <Col className="d-flex justify-content-center">
+        <Col className="d-flex justify-content-center" xxl={12}>
           <Button styles="primary" callbackClick={() => handleClick()}>
             Volver al inicio
           </Button>

@@ -38,7 +38,10 @@ const Activity = () => {
         </Col>
       </Row>
       <Row className="my-3">
-        <Col dangerouslySetInnerHTML={{ __html: data?.results.content }}></Col>
+        <Col
+          dangerouslySetInnerHTML={{ __html: data?.results.content }}
+          className="activity-content"
+        ></Col>
       </Row>
     </Container>
   );
