@@ -8,6 +8,7 @@ import * as Yup from "yup";
 //Componentes
 import TextField from '../LoginForm/TextField'
 import TextContact from './TextContact';
+import TextArea from './TextArea';
 
 //Css
 import '../ContactForm/Contact.css'
@@ -15,75 +16,92 @@ import '../ContactForm/Contact.css'
 
 const ContactForm = ()=>{
 
+    const handleSubmit = async(values) => {
+
+        try {
+            const response = await fetch(process.env.REACT_APP_CONTACT_ENDPOINT, {
+              method: "POST",
+              mode: "cors",
+              headers: {
+                "Content-Type": "application/json",
+                "X-Api-Key": window.localStorage.getItem("token"),
+              },
+              body: JSON.stringify(values),
+            });
+      
+            const data = await response.json();
+            if (!data.ok) throw new Error(data.msg);
+        } catch (err) {
+            throw new Error(err.message);
+        }
+    }
+    
+
 return(
 <>
     <Container fluid style={{marginBottom:'40px'}}>
         <Row className='row_contact'>
-        <Col>
-            <TextContact/>
-        </Col>
+            <Col>
+                <TextContact/>
+            </Col>
 
-         <Col className='inputs'>
-              
-                <h1 style={{marginBottom:'30px'}}>¡Contactate con nosotros!</h1>
-            
+            <Col className='inputs'>
+                
+                <h1 style={{margin:'30px 0'}}>¡Contactate con nosotros!</h1>
                     
                 <Formik
-                    initialValues={{ fullname:"", email: "",  message:"" }}
-                    onSubmit={(values, actions) =>{
-                        actions.resetForm({
-                            values:{
-                                fullname:'',
-                                email:'',
-                                message:'',
-                            }
-                        })
-                     
-                       } 
-                        }
+                    initialValues={{ name:"", email: "", phone:"",  message:"" }}
+                    onSubmit={(values) =>{
+                            handleSubmit(values);
+                    } 
+                    }
                     validationSchema={Yup.object({
-                    fullname: Yup.string()
+                    name: Yup.string()
                         .required("Por favor, complete su apellido y nombre"),
                     email: Yup.string()
                         .required("Por favor, complete su dirección de correo electrónico")
                         .email("Ingrese un email válido."),
+                    phone: Yup.string()
+                        .required("Por favor, complete su número de teléfono"),
                     message: Yup.string()
                         .required('Recuerde completar su consulta')
                     })}
                 >
-                <Form>
-                
-                <TextField
-                    label="Nombre y apellido:"
-                    name="fullname"
-                    type="text"
-                  ></TextField>
-                <TextField
-                    label="Correo electrónico:"
-                    name="email"
-                    type="email"
-                 ></TextField>
-                <textarea
-                    placeholder="Escribe tu consulta:"
-                    name="message"
+                    <Form>
+                    
+                    <TextField
+                        label="Nombre y apellido:"
+                        name="name"
+                        type="text"
+                    ></TextField>
+                    <TextField
+                        label="Correo electrónico:"
+                        name="email"
+                        type="email"
+                    ></TextField>
+                    <TextField
+                        label="Número de teléfono:"
+                        name="phone"
+                        type="string"
+                    ></TextField>
+                    <TextArea
+                    label='Escribe tu consulta'
+                    name='message'
                     rows={8}
-                    cols={40}
-                    style={{marginBotton:'10px', marginLeft:'30px'}}
-                >
-                 </textarea>
-                 <div className='button_contact'>
-                 <Button 
-                    type="submit"
-                    variant="danger">
-                   
-                         Enviar consulta
-                </Button>
-                </div>
-                 
-                          
-                </Form>
-            </Formik>
-         </Col>
+                    ></TextArea>
+                    <div className='button_contact'>
+                    <Button 
+                        type="submit"
+                        variant="danger">
+                    
+                            Enviar consulta
+                    </Button>
+                    </div>
+                    
+                            
+                    </Form>
+                </Formik>
+            </Col>
         </Row>
     </Container>
     </>
