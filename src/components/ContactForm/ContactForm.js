@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 
 //Librerías
 import { Formik, Form } from 'formik';
@@ -6,17 +8,29 @@ import {Button, Container, Row, Col} from 'react-bootstrap'
 import * as Yup from "yup";
 
 //Componentes
+import Loader from '../Loader/Loader'
 import TextField from '../LoginForm/TextField'
 import TextContact from './TextContact';
 import TextArea from './TextArea';
+
+// Alerts
+import { useAlert } from "../../contexts/alertContext";
 
 //Css
 import '../ContactForm/Contact.css'
 
 
-const ContactForm = ()=>{
+const ContactForm = () => {
+
+    const navigate = useNavigate();
+
+    const { showSuccessAlert, showErrorAlert, show} = useAlert();
+
+    const [loading, setLoading] = useState(false);
+    const [send, setSend] = useState(false);
 
     const handleSubmit = async(values) => {
+        setLoading(true);
 
         try {
             const response = await fetch(process.env.REACT_APP_CONTACT_ENDPOINT, {
@@ -30,82 +44,99 @@ const ContactForm = ()=>{
             });
       
             const data = await response.json();
-            if (!data.ok) throw new Error(data.msg);
+
+            if (!data.ok) {
+                showErrorAlert(data.msg, "Error")
+            } else {
+                showSuccessAlert(data.msg, "Success!")
+            }
         } catch (err) {
-            throw new Error(err.message);
+            showErrorAlert('An error has ocurred. Please try again later', "Error")
         }
+        setLoading(false)
+        setSend(true)
     }
-    
+    useEffect(() => {
+        if(!show && send) {
+            navigate('/')
+        }
+    })
 
-return(
-<>
-    <Container fluid style={{marginBottom:'40px'}}>
-        <Row className='row_contact'>
-            <Col>
-                <TextContact/>
-            </Col>
+    if(loading) {
+        return (
+            <Loader />
+        )
+    }
 
-            <Col className='inputs'>
-                
-                <h1 style={{margin:'30px 0'}}>¡Contactate con nosotros!</h1>
+    return(
+    <>
+        <Container fluid style={{marginBottom:'40px'}}>
+            <Row className='row_contact'>
+                <Col>
+                    <TextContact/>
+                </Col>
+
+                <Col className='inputs'>
                     
-                <Formik
-                    initialValues={{ name:"", email: "", phone:"",  message:"" }}
-                    onSubmit={(values) =>{
-                            handleSubmit(values);
-                    } 
-                    }
-                    validationSchema={Yup.object({
-                    name: Yup.string()
-                        .required("Por favor, complete su apellido y nombre"),
-                    email: Yup.string()
-                        .required("Por favor, complete su dirección de correo electrónico")
-                        .email("Ingrese un email válido."),
-                    phone: Yup.string()
-                        .required("Por favor, complete su número de teléfono"),
-                    message: Yup.string()
-                        .required('Recuerde completar su consulta')
-                    })}
-                >
-                    <Form>
-                    
-                    <TextField
-                        label="Nombre y apellido:"
-                        name="name"
-                        type="text"
-                    ></TextField>
-                    <TextField
-                        label="Correo electrónico:"
-                        name="email"
-                        type="email"
-                    ></TextField>
-                    <TextField
-                        label="Número de teléfono:"
-                        name="phone"
-                        type="string"
-                    ></TextField>
-                    <TextArea
-                    label='Escribe tu consulta'
-                    name='message'
-                    rows={8}
-                    ></TextArea>
-                    <div className='button_contact'>
-                    <Button 
-                        type="submit"
-                        variant="danger">
-                    
-                            Enviar consulta
-                    </Button>
-                    </div>
-                    
-                            
-                    </Form>
-                </Formik>
-            </Col>
-        </Row>
-    </Container>
-    </>
-)
+                    <h1 style={{margin:'30px 0'}}>¡Contactate con nosotros!</h1>
+                        
+                    <Formik
+                        initialValues={{ name:"", email: "", phone:"",  message:"" }}
+                        onSubmit={(values) =>{
+                                handleSubmit(values);
+                        } 
+                        }
+                        validationSchema={Yup.object({
+                        name: Yup.string()
+                            .required("Por favor, complete su apellido y nombre"),
+                        email: Yup.string()
+                            .required("Por favor, complete su dirección de correo electrónico")
+                            .email("Ingrese un email válido."),
+                        phone: Yup.string()
+                            .required("Por favor, complete su número de teléfono"),
+                        message: Yup.string()
+                            .required('Recuerde completar su consulta')
+                        })}
+                    >
+                        <Form>
+                        
+                        <TextField
+                            label="Nombre y apellido:"
+                            name="name"
+                            type="text"
+                        ></TextField>
+                        <TextField
+                            label="Correo electrónico:"
+                            name="email"
+                            type="email"
+                        ></TextField>
+                        <TextField
+                            label="Número de teléfono:"
+                            name="phone"
+                            type="string"
+                        ></TextField>
+                        <TextArea
+                        label='Escribe tu consulta'
+                        name='message'
+                        rows={8}
+                        ></TextArea>
+                        <div className='button_contact'>
+                        <Button 
+                            type="submit"
+                            variant="danger">
+                        
+                                Enviar consulta
+                        </Button>
+                        </div>
+                        
+                                
+                        </Form>
+                    </Formik>
+                </Col>
+            </Row>
+        </Container>
+        </>
+    )
 
 
 }
