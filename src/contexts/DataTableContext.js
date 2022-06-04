@@ -10,7 +10,6 @@ export const DataTableContext = React.createContext({
     selectedRowData: [],
     setSelectedRowData: () => {},
   },
-  setShowEdit: () => {},
   actions: {
     showAdd: false,
     showEdit: false,

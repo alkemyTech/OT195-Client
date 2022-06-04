@@ -4,7 +4,7 @@ import UsersTable from "../DataTable/UsersTable";
 
 const Users = () => {
   return (
-    <Container fluid className="newsContainer">
+    <Container fluid>
       <Container className="my-5">
         <Row>
           <Col>
