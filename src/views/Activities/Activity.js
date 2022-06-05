@@ -17,9 +17,12 @@ const Activity = () => {
     return (
       <Container>
         <Row>
-          <Col>
-            <p>
-              La página no existe o se encuentra fuera de servicio actualmente.
+          <Col className="text-center">
+            <p className="my-5">
+              <strong>
+                La página no existe o se encuentra fuera de servicio
+                actualmente.
+              </strong>
             </p>
           </Col>
         </Row>
@@ -30,9 +33,9 @@ const Activity = () => {
     <Container>
       <Row className="my-2">
         <Col className="text-center">
-          {/* <img src={data?.results.image} alt={data?.results.name}></img> */}
           <Image
-            src={imagen}
+            src={data?.results.image}
+            alt={data?.results.name}
             style={{ maxWidth: "100%", height: "580px " }}
           ></Image>
         </Col>
