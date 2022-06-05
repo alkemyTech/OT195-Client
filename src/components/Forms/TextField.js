@@ -16,10 +16,10 @@ const TextField = ({
   const [field, meta] = useField(props);
   return (
     <Form.Group className="mb-3" as={Row}>
-      <Col sm="2">
+      <Col sm="2" className="fieldLabel">
         <Form.Label>{label}</Form.Label>
       </Col>
-      <Col sm="10">
+      <Col sm="10" className="fieldControl">
         <Form.Control
           {...field}
           disabled={disabled}

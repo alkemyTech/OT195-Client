@@ -12,7 +12,7 @@ import Detail from "./components/Detail/Detail";
 import NewsPage from "./views/News/NewsPage";
 /* Forms */
 
-import LoginForm from "./components/LoginForm/LoginForm";
+import LoginView from "./components/LoginForm/LoginView";
 import ContactForm from "./components/ContactForm/ContactForm";
 import HomeForm from "./components/HomeForm/HomeForm";
 import OrgForm from "./components/OrgForm/OrgForm";
@@ -49,7 +49,7 @@ function App() {
             <Route path="testimonials" element={<h1>Testimonials</h1>} />
             <Route path="contact" element={<ContactForm />} />
             <Route path="contribute" element={<h1>Contribute</h1>} />
-            <Route path="login" element={<LoginForm />} />
+            <Route path="login" element={<LoginView />} />
             <Route path="signup" element={<Register />} />
             <Route path="profile" element={<Profile />} />
             <Route path="actividades" element={<ActivitiesLayout />}>
