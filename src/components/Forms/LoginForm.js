@@ -73,7 +73,7 @@ const loginDispatch = (values, resetForm) => async (dispatch) => {
 
     // TODO: Display user friendly error messages
 
-    if (!data.ok) throw new Error(data.msg);
+    // if (!data.ok) throw new Error(data.msg);
 
     // TODO: resetForm();
 
@@ -83,8 +83,9 @@ const loginDispatch = (values, resetForm) => async (dispatch) => {
   } catch (err) {
     // If there was an error, we dispatch the error to the application store
     // TODO: Should we store the error code too?
+    console.log(err);
 
-    return dispatch(setLoginRejected({ msg: err.message, code: "" }));
+    // return dispatch(setLoginRejected({ msg: err.message, code: "" }));
   }
 };
 
@@ -142,7 +143,7 @@ const LoginForm = () => {
       </Formik>
       <Bootstrap.Row>
         <Bootstrap.Col>
-          <p>{user?.error.msg}</p>
+          <p>{user.error?.msg}</p>
         </Bootstrap.Col>
       </Bootstrap.Row>
     </Bootstrap.Container>

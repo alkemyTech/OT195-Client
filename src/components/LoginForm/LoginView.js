@@ -25,7 +25,11 @@ const LoginView = () => {
                   Inicia sesión en tu cuenta!
                 </h2>
               </Col>
-              <Col xxl={7} className="m-auto" style={{ padding: "0" }}>
+              <Col
+                xxl={7}
+                className="m-auto loginForm__container"
+                style={{ padding: "0" }}
+              >
                 <LoginForm></LoginForm>
               </Col>
               <Col xxl={7} className="registerText m-auto  mt-5">

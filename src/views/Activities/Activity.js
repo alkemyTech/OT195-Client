@@ -1,7 +1,8 @@
 import React from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Image, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import imagen from "../../images/Foto3.jpg";
 
 const Activity = () => {
   const { id } = useParams();
@@ -27,16 +28,21 @@ const Activity = () => {
 
   return (
     <Container>
+      <Row className="my-2">
+        <Col className="text-center">
+          {/* <img src={data?.results.image} alt={data?.results.name}></img> */}
+          <Image
+            src={imagen}
+            style={{ maxWidth: "100%", height: "580px " }}
+          ></Image>
+        </Col>
+      </Row>
       <Row className="my-3">
         <Col className="text-center">
           <h3>{data?.results.name}</h3>
         </Col>
       </Row>
-      <Row className="my-2">
-        <Col className="text-center">
-          <img src={data?.results.image} alt={data?.results.name}></img>
-        </Col>
-      </Row>
+
       <Row className="my-3">
         <Col
           dangerouslySetInnerHTML={{ __html: data?.results.content }}

@@ -12,7 +12,10 @@ const ActivitiesLayout = () => {
   };
 
   return (
-    <Container className="my-5" style={{ minHeight: "70vh" }}>
+    <Container
+      className="my-5 activity-container"
+      style={{ minHeight: "70vh" }}
+    >
       <Row>
         <Col className="text-center">
           <h2>Actividades</h2>
