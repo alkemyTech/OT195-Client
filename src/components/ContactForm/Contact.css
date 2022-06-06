@@ -1,15 +1,16 @@
 .row_contact{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     text-align: left; 
-    height: 100vh;
+    min-height: 100vh;
+    height: max-content;
     width: 100%;
    
 }
 
 .inputs{
-    width: 400px;
+    width: 30%;
     margin-bottom: 20px;
     margin-left: 50px;
    
@@ -20,4 +21,16 @@
     margin-left: 30px;
     margin-top: 20px;
 
+}
+
+.textarea-field {
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    width: 250px;
+    justify-content: flex-start;
+}
+
+.textContactContainer{
+    width:40%
 }
