@@ -1,7 +1,7 @@
 .row_contact{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     text-align: left; 
     height: 100vh;
     width: 100%;
@@ -9,10 +9,13 @@
 }
 
 .inputs{
-    width: 400px;
-    margin-bottom: 20px;
-    margin-left: 50px;
-   
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.col_text{
+    width:50%
 }
 
 .button_contact{
