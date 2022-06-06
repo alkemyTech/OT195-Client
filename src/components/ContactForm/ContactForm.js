@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 //Librerías
 import { Formik, Form } from 'formik';
-import {Button, Container, Row, Col} from 'react-bootstrap'
+import {Button, Container} from 'react-bootstrap'
 import * as Yup from "yup";
 
 //Componentes
@@ -31,7 +31,6 @@ const ContactForm = () => {
 
     const handleSubmit = async(values) => {
         setLoading(true);
-
         try {
             const response = await fetch(process.env.REACT_APP_CONTACT_ENDPOINT, {
               method: "POST",
@@ -71,12 +70,11 @@ const ContactForm = () => {
     return(
     <>
         <Container fluid style={{marginBottom:'40px'}}>
-            <Row className='row_contact'>
-                <Col>
-                    <TextContact/>
-                </Col>
+            <div className='row_contact'>
 
-                <Col className='inputs'>
+                    <TextContact/>
+
+                <div className='inputs'>
                     
                     <h1 style={{margin:'30px 0'}}>¡Contactate con nosotros!</h1>
                         
@@ -132,8 +130,8 @@ const ContactForm = () => {
                                 
                         </Form>
                     </Formik>
-                </Col>
-            </Row>
+                </div>
+            </div>
         </Container>
         </>
     )
