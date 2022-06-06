@@ -32,6 +32,7 @@ import EditNews from "./components/Backoffice/News";
 import Users from "./components/Backoffice/Users";
 import Activities from "./components/Backoffice/Activities";
 import Profile from "./components/profile/Profile";
+import Categories from "./components/Backoffice/Categories";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
             <Route path="edit-organization" element={<OrgForm />} />
             <Route path="news" element={<EditNews />} />
             <Route path="users" element={<Users />} />
+            <Route path="categories" element={<Categories />} />
             <Route path="activities" element={<Activities />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
