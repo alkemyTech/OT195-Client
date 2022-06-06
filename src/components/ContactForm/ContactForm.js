@@ -8,7 +8,7 @@ import * as Yup from "yup";
 //Componentes
 import TextField from '../LoginForm/TextField'
 import TextContact from './TextContact';
-import TextArea from "../LoginForm/TextArea"
+import TextArea from "./TextArea"
 
 //Css
 import '../ContactForm/Contact.css'
