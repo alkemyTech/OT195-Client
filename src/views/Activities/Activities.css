@@ -1,0 +1,25 @@
+.activity-container h2 {
+    font-family: var(--primary-font);
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 72px;
+}
+
+.activity-container h3 {
+    font-family: var(--secondary-font);
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 50px;
+}
+
+.activity-content{
+    font-family: var(--secondary-font);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 25px;
+    letter-spacing: -0.015em;
+}
+
+.activity-content li {
+    margin: 0.5em 0;
+}
