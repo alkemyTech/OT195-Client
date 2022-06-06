@@ -8,10 +8,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import HomePage from "./views/HomePage/HomePage";
 import News from "./components/News/News";
 import Detail from "./components/Detail/Detail";
-
 import NewsPage from "./views/News/NewsPage";
-/* Forms */
 
+/* Forms */
 import LoginForm from "./components/LoginForm/LoginForm";
 import ContactForm from "./components/ContactForm/ContactForm";
 import HomeForm from "./components/HomeForm/HomeForm";

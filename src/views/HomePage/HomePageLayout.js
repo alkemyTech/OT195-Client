@@ -10,7 +10,7 @@ const HomePageLayout = () => {
     <>
       <Header></Header>
       <Outlet></Outlet>
-      <Footer image={publicInfo.results?.image}></Footer>
+      <Footer image={publicInfo.results?.image} media={publicInfo.results?.socialMedia}></Footer>
     </>
   );
 };

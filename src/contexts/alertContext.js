@@ -15,10 +15,12 @@ const AlertProvider = ({ children }) => {
   };
 
   const closeAlert = () => {
-    setShow(false);
-    setTitle("");
-    setType("");
-    setText("");
+    if(show) {
+      setShow(false);
+      setTitle("");
+      setType("");
+      setText("");
+    }
   };
 
   const showSuccessAlert = (title, text) => {
@@ -46,6 +48,7 @@ const AlertProvider = ({ children }) => {
     showSuccessAlert,
     showErrorAlert,
     showInfoAlert,
+    show
   };
 
   return (
