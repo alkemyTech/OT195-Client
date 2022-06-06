@@ -10,8 +10,7 @@ import News from "./components/News/News";
 import Detail from "./components/Detail/Detail";
 import NewsPage from "./views/News/NewsPage";
 
-/* Forms */
-import LoginForm from "./components/LoginForm/LoginForm";
+import LoginView from "./components/LoginForm/LoginView";
 import ContactForm from "./components/ContactForm/ContactForm";
 import HomeForm from "./components/HomeForm/HomeForm";
 import OrgForm from "./components/OrgForm/OrgForm";
@@ -31,6 +30,8 @@ import EditNews from "./components/Backoffice/News";
 import Users from "./components/Backoffice/Users";
 import Activities from "./components/Backoffice/Activities";
 import Profile from "./components/profile/Profile";
+import ActivitiesLayout from "./views/Activities/ActivitiesLayout";
+import Activity from "./views/Activities/Activity";
 
 function App() {
   return (
@@ -46,9 +47,12 @@ function App() {
             <Route path="testimonials" element={<h1>Testimonials</h1>} />
             <Route path="contact" element={<ContactForm />} />
             <Route path="contribute" element={<h1>Contribute</h1>} />
-            <Route path="login" element={<LoginForm />} />
+            <Route path="login" element={<LoginView />} />
             <Route path="signup" element={<Register />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="actividades" element={<ActivitiesLayout />}>
+              <Route path=":id" element={<Activity />} />
+            </Route>
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
           <Route path="backoffice" element={<Backofficelayout />}>

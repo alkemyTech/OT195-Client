@@ -1,8 +1,8 @@
 import React from 'react';
 
 //Librerías
-import { Formik, Form, Field } from 'formik';
-import {Button, Container, Row, Col} from 'react-bootstrap'
+import { Formik, Form } from 'formik';
+import {Button, Container} from 'react-bootstrap'
 import * as Yup from "yup";
 
 //Componentes
@@ -17,77 +17,112 @@ import '../ContactForm/Contact.css'
 const ContactForm = ()=>{
 
 
+    const handleSubmit = async(values) => {
+        setLoading(true);
+        try {
+            const response = await fetch(process.env.REACT_APP_CONTACT_ENDPOINT, {
+              method: "POST",
+              mode: "cors",
+              headers: {
+                "Content-Type": "application/json",
+                "X-Api-Key": window.localStorage.getItem("token"),
+              },
+              body: JSON.stringify(values),
+            });
+      
+            const data = await response.json();
 
-return(
-<>
-    <Container fluid style={{marginBottom:'40px'}}>
-        <Row className='row_contact'>
-        <div className="col_text">
-            <TextContact/>
-        </div>
+            if (!data.ok) {
+                showErrorAlert(data.msg, "Error")
+            } else {
+                showSuccessAlert(data.msg, "Success!")
+            }
+        } catch (err) {
+            showErrorAlert('An error has ocurred. Please try again later', "Error")
+        }
+        setLoading(false)
+        setSend(true)
+    }
+    useEffect(() => {
+        if(!show && send) {
+            navigate('/')
+        }
+    })
 
-         <div className='inputs'>
-              
-                <h1 style={{marginBottom:'30px'}}>¡Contactate con nosotros!</h1>
-            
+    if(loading) {
+        return (
+            <Loader />
+        )
+    }
+
+    return(
+    <>
+        <Container fluid style={{marginBottom:'40px'}}>
+            <div className='row_contact'>
+
+                    <TextContact/>
+
+                <div className='inputs'>
                     
-                <Formik
-                    initialValues={{ fullname:"", email: "",  message:"" }}
-                    onSubmit={(values, actions) =>{
-                        actions.resetForm({
-                            values:{
-                                fullname:'',
-                                email:'',
-                                message:'',
-                            }
-                        })
-
-                        alert()
-                       } 
-                    
-                    }
-                    validationSchema={Yup.object({
-                    fullname: Yup.string()
-                        .required("Por favor, complete su apellido y nombre"),
-                    email: Yup.string()
-                        .required("Por favor, complete su dirección de correo electrónico")
-                        .email("Ingrese un email válido."),
-                    message: Yup.string()
-                        .required('Recuerde completar su consulta')
-                    })}
-                >
-                <Form>
-                
-                <TextField
-                    label="Nombre y apellido:"
-                    name="fullname"
-                    type="text"
-                  ></TextField>
-                <TextField
-                    label="Correo electrónico:"
-                    name="email"
-                    type="email"
-                 ></TextField>
-
-                {/* <Field name="message" as={<TextArea/>}/> */}
-                <Field as={TextArea}/>
-
-                 <div className='button_contact'>
-                 <Button 
-                    type="submit"
-                    variant="danger">
-                        Enviar consulta
-                </Button>
+                    <h1 style={{margin:'30px 0'}}>¡Contactate con nosotros!</h1>
+                        
+                    <Formik
+                        initialValues={{ name:"", email: "", phone:"",  message:"" }}
+                        onSubmit={(values) =>{
+                                handleSubmit(values);
+                        } 
+                        }
+                        validationSchema={Yup.object({
+                        name: Yup.string()
+                            .required("Por favor, complete su apellido y nombre"),
+                        email: Yup.string()
+                            .required("Por favor, complete su dirección de correo electrónico")
+                            .email("Ingrese un email válido."),
+                        phone: Yup.string()
+                            .required("Por favor, complete su número de teléfono"),
+                        message: Yup.string()
+                            .required('Recuerde completar su consulta')
+                        })}
+                    >
+                        <Form>
+                        
+                        <TextField
+                            label="Nombre y apellido:"
+                            name="name"
+                            type="text"
+                        ></TextField>
+                        <TextField
+                            label="Correo electrónico:"
+                            name="email"
+                            type="email"
+                        ></TextField>
+                        <TextField
+                            label="Número de teléfono:"
+                            name="phone"
+                            type="string"
+                        ></TextField>
+                        <TextArea
+                        label='Escribe tu consulta'
+                        name='message'
+                        rows={8}
+                        ></TextArea>
+                        <div className='button_contact'>
+                        <Button 
+                            type="submit"
+                            variant="danger">
+                        
+                                Enviar consulta
+                        </Button>
+                        </div>
+                        
+                                
+                        </Form>
+                    </Formik>
                 </div>
-                 
-                          
-                </Form>
-            </Formik>
-         </div>
-        </Row>
-    </Container>
-    </>
-)
+            </div>
+        </Container>
+        </>
+    )
 
 
 }

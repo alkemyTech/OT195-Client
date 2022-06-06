@@ -11,12 +11,9 @@
 
 .inputs{
     width: 30%;
-    display: flex;
-    flex-direction: column;
-}
-
-.col_text{
-    width:50%
+    margin-bottom: 20px;
+    margin-left: 50px;
+   
 }
 
 .button_contact{
@@ -32,4 +29,8 @@
     margin: 30px;
     width: 250px;
     justify-content: flex-start;
+}
+
+.textContactContainer{
+    width:40%
 }
