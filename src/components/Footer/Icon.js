@@ -6,11 +6,11 @@ import { SocialIcon } from 'react-social-icons';
 const Icon = (props) => {
 
     const { data } = props;
-    const { url, network } = data;
+    const { url, name } = data;
 
     return (
         <Nav.Item as='li' className='footer-icon mx-3'>
-            <SocialIcon url={url} network={network}/>
+            <SocialIcon url={url} network={name.toLowerCase()}/>
         </Nav.Item>
     );
 };
