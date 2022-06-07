@@ -43,7 +43,7 @@ const tableIcons = {
 };
 
 const DataTable = (props) => {
-  const { columns: colDefs, data: tableData, title } = props;
+  const { columns: colDefs, data: tableData, title, noAction } = props;
 
   const { selectedRow, CustomToolbar, modal, actions } =
     useContext(DataTableContext);
@@ -70,7 +70,9 @@ const DataTable = (props) => {
         ),
       }}
       icons={tableIcons}
-      actions={[
+
+      
+      actions= {noAction? undefined: [
         {
           icon: Edit,
           tooltip: "Editar",
@@ -93,6 +95,8 @@ const DataTable = (props) => {
           },
         },
       ]}
+
+
       options={{
         actionsColumnIndex: -1,
         draggable: false,
@@ -102,6 +106,7 @@ const DataTable = (props) => {
           actions: "Acciones",
         },
       }}
+    
     />
   );
 };

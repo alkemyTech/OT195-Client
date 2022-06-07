@@ -32,6 +32,7 @@ import Activities from "./components/Backoffice/Activities";
 import Profile from "./components/profile/Profile";
 import ActivitiesLayout from "./views/Activities/ActivitiesLayout";
 import Activity from "./views/Activities/Activity";
+import ContactsList from "./components/Backoffice/ContactsList";
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
             <Route path="news" element={<EditNews />} />
             <Route path="users" element={<Users />} />
             <Route path="activities" element={<Activities />} />
+            <Route path="contacts" element={<ContactsList/>} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
         </Routes>

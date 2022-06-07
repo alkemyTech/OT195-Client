@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
 
 //Librerías
 import { Formik, Form } from 'formik';
@@ -6,16 +8,26 @@ import {Button, Container} from 'react-bootstrap'
 import * as Yup from "yup";
 
 //Componentes
+import Loader from '../Loader/Loader'
 import TextField from '../LoginForm/TextField'
 import TextContact from './TextContact';
-import TextArea from "./TextArea"
+import TextArea from './TextArea';
+
+// Alerts
+import { useAlert } from "../../contexts/alertContext";
 
 //Css
 import '../ContactForm/Contact.css'
 
 
-const ContactForm = ()=>{
+const ContactForm = () => {
 
+    const navigate = useNavigate();
+
+    const { showSuccessAlert, showErrorAlert, show} = useAlert();
+
+    const [loading, setLoading] = useState(false);
+    const [send, setSend] = useState(false);
 
     const handleSubmit = async(values) => {
         setLoading(true);

@@ -68,8 +68,8 @@ const Backoffice = () => {
       roleId: 1,
     },
     {
-      title: "Miembros",
-      path: "members",
+      title: "Contactos",
+      path: "contacts",
       image: crowdOfUsers,
       action: "",
       roleId: 1,
@@ -78,7 +78,6 @@ const Backoffice = () => {
       title: "Editar Perfil",
       path: "profile",
       image: singleUser,
-      path: "profile",
       action: "",
       roleId: 2,
     },
