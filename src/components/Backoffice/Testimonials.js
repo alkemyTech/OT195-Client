@@ -1,17 +1,14 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-//import useFetch from "../../hooks/useFetch";
+import TestimonialsTable from "../DataTable/TestimonialsTable";
 
-import NewsTable from "../DataTable/NewsTable";
-
-const News = () => {
+const Testimonials = () => {
   return (
     <Container fluid>
       <Container className="my-5">
-        <NewsTable></NewsTable>
+        <TestimonialsTable></TestimonialsTable>
       </Container>
     </Container>
   );
 };
-
-export default News;
+export default Testimonials;

@@ -43,7 +43,12 @@ const tableIcons = {
 };
 
 const DataTable = (props) => {
-  const { columns: colDefs, data: tableData, title } = props;
+  const {
+    columns: colDefs,
+    data: tableData,
+    title,
+    detailAction = true,
+  } = props;
 
   const { selectedRow, CustomToolbar, modal, actions } =
     useContext(DataTableContext);
@@ -85,13 +90,15 @@ const DataTable = (props) => {
           tooltip: "Eliminar",
           onClick: (event, rowData) => {},
         },
-        {
-          icon: Search,
-          tooltip: "Ver detalle",
-          onClick: (event, rowData) => {
-            actions.goToDetails(rowData);
-          },
-        },
+        detailAction
+          ? {
+              icon: Search,
+              tooltip: "Ver detalle",
+              onClick: (event, rowData) => {
+                actions.goToDetails(rowData);
+              },
+            }
+          : null,
       ]}
       options={{
         actionsColumnIndex: -1,
