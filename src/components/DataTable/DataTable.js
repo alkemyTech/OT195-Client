@@ -43,7 +43,14 @@ const tableIcons = {
 };
 
 const DataTable = (props) => {
-  const { columns: colDefs, data: tableData, title, noAction } = props;
+  const {
+    columns: colDefs,
+    data: tableData,
+    title,
+    detailAction = false,
+    deleteAction = false,
+    editAction = false,
+  } = props;
 
   const { selectedRow, CustomToolbar, modal, actions } =
     useContext(DataTableContext);
@@ -70,33 +77,35 @@ const DataTable = (props) => {
         ),
       }}
       icons={tableIcons}
-
-      
-      actions= {noAction? undefined: [
-        {
-          icon: Edit,
-          tooltip: "Editar",
-          onClick: (event, rowData) => {
-            modal.setModalOpen(true);
-            selectedRow.setSelectedRowData(rowData);
-            actions.setShowEdit(true);
-          },
-        },
-        {
-          icon: DeleteOutline,
-          tooltip: "Eliminar",
-          onClick: (event, rowData) => {},
-        },
-        {
-          icon: Search,
-          tooltip: "Ver detalle",
-          onClick: (event, rowData) => {
-            actions.goToDetails(rowData);
-          },
-        },
+      actions={[
+        editAction
+          ? {
+              icon: Edit,
+              tooltip: "Editar",
+              onClick: (event, rowData) => {
+                modal.setModalOpen(true);
+                selectedRow.setSelectedRowData(rowData);
+                actions.setShowEdit(true);
+              },
+            }
+          : null,
+        deleteAction
+          ? {
+              icon: DeleteOutline,
+              tooltip: "Eliminar",
+              onClick: (event, rowData) => {},
+            }
+          : null,
+        detailAction
+          ? {
+              icon: Search,
+              tooltip: "Ver detalle",
+              onClick: (event, rowData) => {
+                actions.goToDetails(rowData);
+              },
+            }
+          : null,
       ]}
-
-
       options={{
         actionsColumnIndex: -1,
         draggable: false,
@@ -106,7 +115,6 @@ const DataTable = (props) => {
           actions: "Acciones",
         },
       }}
-    
     />
   );
 };

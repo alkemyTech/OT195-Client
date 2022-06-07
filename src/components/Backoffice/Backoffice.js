@@ -84,20 +84,18 @@ const Backoffice = () => {
   ];
 
   return (
-    <>
-      <Container fluid className="bo-container d-flex">
-        <Container className="bo-container__options">
-          <Row className="justify-content-center">
-            {dataPlaceholder.map(
-              (el) =>
-                user.entity.roleId === el.roleId && (
-                  <Option key={el.title} option={el}></Option>
-                )
-            )}
-          </Row>
-        </Container>
+    <Container fluid className="bo-container d-flex">
+      <Container className="bo-container__options">
+        <Row className="justify-content-center">
+          {dataPlaceholder.map(
+            (el) =>
+              user.entity.roleId === el.roleId && (
+                <Option key={el.title} option={el}></Option>
+              )
+          )}
+        </Row>
       </Container>
-    </>
+    </Container>
   );
 };
 

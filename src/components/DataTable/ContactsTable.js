@@ -63,7 +63,6 @@ const ContactsTable = () => {
               columns={colDefs}
               data={loading ? [] : data.results}
               title="Listado de Contactos"
-              noAction={true}
             ></DataTable>
             
           </Col>
