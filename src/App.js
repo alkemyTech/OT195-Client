@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 /* views */
 import HomePage from "./views/HomePage/HomePage";
-import News from "./components/News/News";
 import Detail from "./components/Detail/Detail";
 
 import NewsPage from "./views/News/NewsPage";
@@ -55,6 +54,9 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="actividades" element={<ActivitiesLayout />}>
               <Route path=":id" element={<Activity />} />
+            </Route>
+            <Route path="novedades" element={<NewsPage />}>
+              <Route path=":id" element={<NewsPage />} />
             </Route>
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
