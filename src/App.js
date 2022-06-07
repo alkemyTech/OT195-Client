@@ -33,6 +33,7 @@ import Users from "./components/Backoffice/Users";
 import Activities from "./components/Backoffice/Activities";
 import Profile from "./components/profile/Profile";
 import Categories from "./components/Backoffice/Categories";
+import Testimonials from "./components/Backoffice/Testimonials";
 import ActivitiesLayout from "./views/Activities/ActivitiesLayout";
 import Activity from "./views/Activities/Activity";
 
@@ -65,6 +66,7 @@ function App() {
             <Route path="news" element={<EditNews />} />
             <Route path="users" element={<Users />} />
             <Route path="categories" element={<Categories />} />
+            <Route path="testimonials" element={<Testimonials />} />
             <Route path="activities" element={<Activities />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
