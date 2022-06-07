@@ -47,7 +47,9 @@ const DataTable = (props) => {
     columns: colDefs,
     data: tableData,
     title,
-    detailAction = true,
+    detailAction = false,
+    deleteAction = false,
+    editAction = false,
   } = props;
 
   const { selectedRow, CustomToolbar, modal, actions } =
@@ -76,20 +78,24 @@ const DataTable = (props) => {
       }}
       icons={tableIcons}
       actions={[
-        {
-          icon: Edit,
-          tooltip: "Editar",
-          onClick: (event, rowData) => {
-            modal.setModalOpen(true);
-            selectedRow.setSelectedRowData(rowData);
-            actions.setShowEdit(true);
-          },
-        },
-        {
-          icon: DeleteOutline,
-          tooltip: "Eliminar",
-          onClick: (event, rowData) => {},
-        },
+        editAction
+          ? {
+              icon: Edit,
+              tooltip: "Editar",
+              onClick: (event, rowData) => {
+                modal.setModalOpen(true);
+                selectedRow.setSelectedRowData(rowData);
+                actions.setShowEdit(true);
+              },
+            }
+          : null,
+        deleteAction
+          ? {
+              icon: DeleteOutline,
+              tooltip: "Eliminar",
+              onClick: (event, rowData) => {},
+            }
+          : null,
         detailAction
           ? {
               icon: Search,

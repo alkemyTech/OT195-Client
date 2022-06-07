@@ -7,9 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 /* views */
 import HomePage from "./views/HomePage/HomePage";
 import Detail from "./components/Detail/Detail";
-
 import NewsPage from "./views/News/NewsPage";
-/* Forms */
 
 import LoginView from "./components/LoginForm/LoginView";
 import ContactForm from "./components/ContactForm/ContactForm";
@@ -34,6 +32,7 @@ import Profile from "./components/profile/Profile";
 import Testimonials from "./components/Backoffice/Testimonials";
 import ActivitiesLayout from "./views/Activities/ActivitiesLayout";
 import Activity from "./views/Activities/Activity";
+import ContactsList from "./components/Backoffice/ContactsList";
 
 function App() {
   return (
@@ -68,6 +67,7 @@ function App() {
             <Route path="users" element={<Users />} />
             <Route path="testimonials" element={<Testimonials />} />
             <Route path="activities" element={<Activities />} />
+            <Route path="contacts" element={<ContactsList/>} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
         </Routes>
