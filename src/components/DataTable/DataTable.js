@@ -88,7 +88,9 @@ const DataTable = (props) => {
         {
           icon: DeleteOutline,
           tooltip: "Eliminar",
-          onClick: (event, rowData) => {},
+          onClick: (event, rowData) => {
+            actions.deleteRow(rowData);
+          },
         },
         detailAction
           ? {
