@@ -96,6 +96,7 @@ const DataTable = (props) => {
               onClick: (event, rowData) => {},
             }
           : null,
+
         detailAction
           ? {
               icon: Search,
