@@ -15,6 +15,7 @@ export const DataTableContext = React.createContext({
     showEdit: false,
     goToDetails: () => {},
     setShowEdit: () => {},
+    deleteRow: () => {},
   },
 });
 
