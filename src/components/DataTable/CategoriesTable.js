@@ -3,8 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { DataTableContext } from "../../contexts/DataTableContext";
 import DataTable from "./DataTable";
 import Swal from "sweetalert2";
-// import useFetch from "../../hooks/useFetch";
-// import FormModal from "../Forms/FormModal";
+import useFetch from "../../hooks/useFetch";
 
 const CategoriesTable = () => {
   const [colDefs] = useState([
@@ -23,32 +22,11 @@ const CategoriesTable = () => {
     },
   ]);
 
-  // DATA ==========================
 
-  const data = [
-    {
-      id: "1",
-      name: "Categoria N°1",
-      description: "Lorem ipsum dolor sit amet.",
-    },
-    {
-      id: "2",
-      name: "Categoria N°2",
-      description: "Lorem ipsum dolor sit amet.",
-    },
-    {
-      id: "3",
-      name: "Categoria N°3",
-      description: "Lorem ipsum dolor sit amet.",
-    },
-  ];
-
-  const loading = false; // This is just for the data placeholder.
-
-  // DataTable data
-  // const { data, loading } = useFetch(
-  //   process.env.REACT_APP_TESTIMONIALS_ENDPOINT
-  // );
+  //DataTable data
+  const { data, loading } = useFetch(
+    process.env.REACT_APP_CATEGORIES_ENDPOINT
+  );
 
   // Data from last row selected
   const [selectedRowData, setSelectedRowData] = useState({
@@ -115,7 +93,7 @@ const CategoriesTable = () => {
         });
       }
 
-      // refetch();
+      //refetch();
 
       return Swal.fire({
         title: "Categoria eliminada!",
@@ -183,7 +161,7 @@ const CategoriesTable = () => {
           <Col>
             <DataTable
               columns={colDefs}
-              data={loading ? [] : data}
+              data={loading ? [] : data.results}
               detailAction={false}
               title="Listado de Categorias"
             ></DataTable>
