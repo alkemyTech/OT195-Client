@@ -4,6 +4,8 @@ import Loader from "../Loader/Loader";
 import Item from "./Item";
 import { Container, Row, Col } from "react-bootstrap";
 
+import { Link } from "react-router-dom";
+
 import "./News.css";
 
 const News = () => {
@@ -23,14 +25,14 @@ const News = () => {
         className="justify-content-between d-flex news-text mb-3"
       >
         <h1>Últimas novedades</h1>
-        <a href="/" className="news-link">
+        <Link to="/novedades/all" className="news-link">
           Ver todos &gt;
-        </a>
+        </Link>
       </Container>
       <Row>
         {news.map((data, key) => (
           <Col md={3} sm={6} key={key}>
-            <Item image={data.image} text={data.content} link={data.id} />
+            <Item data={data} />
           </Col>
         ))}
       </Row>
