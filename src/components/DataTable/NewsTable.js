@@ -163,8 +163,8 @@ const NewsTable = () => {
     });
   };
 
-   // Method to DELETE Form the server endpoint
-   const deleteRow = (values) => {
+  // Method to DELETE Form the server endpoint
+  const deleteRow = (values) => {
     Swal.fire({
       title: "Confirmar eliminación",
       type: "warning",
@@ -215,9 +215,7 @@ const NewsTable = () => {
         });
       }
       }
-      
     })
-
   };
 
   useEffect(() => {
