@@ -21,7 +21,9 @@ const CardList = (props) => {
       </Row>
       <Row>
         {!loading ? (
-          data.map((el) => <CardComponent cardData={el}></CardComponent>)
+          data.map((el, index) => (
+            <CardComponent cardData={el} key={index}></CardComponent>
+          ))
         ) : (
           <Container className="m-5">
             <Loader></Loader>

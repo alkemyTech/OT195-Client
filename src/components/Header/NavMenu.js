@@ -26,7 +26,7 @@ const NavMenu = (props) => {
 
   return (
     // Placeholder just the string "/home" for now
-    <Navbar.Collapse className="justify-content-end">
+    <Navbar className="justify-content-end">
       <Nav activeKey={location.pathname} className="align-items-center">
         {menu.items.map((item, index) => (
           <NavLink navItem={item} key={index}></NavLink>
@@ -61,8 +61,12 @@ const NavMenu = (props) => {
                   )
             )
           : null}
+        <Navbar.Toggle
+          aria-controls="basic-navbar-nav"
+          className="d-block d-lg-none"
+        ></Navbar.Toggle>
       </Nav>
-    </Navbar.Collapse>
+    </Navbar>
   );
 };
 

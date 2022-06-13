@@ -71,7 +71,7 @@ const HomePage = () => {
   );
 
   return (
-    <Container>
+    <Container fluid="md">
       {!loadingInfo ? (
         <Title
           title={publicInfo.results.welcomeTitle}
