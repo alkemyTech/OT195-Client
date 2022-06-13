@@ -1,0 +1,78 @@
+.link {
+  color: black;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  font-family: var(--primary-font);
+}
+
+.card-container {
+  min-height: 250px;
+  border-radius: 20px;
+  line-height: 22px;
+}
+
+.card-container .btn-card {
+  border-radius: 8px;
+  background-color: #0038ff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.newCard_container {
+  background-color: var(--new-card-background);
+}
+
+.testimonyCard_container {
+  background-color: var(--testimony-card-background);
+  border: 0;
+  font-family: var(--secondary-font) !important;
+}
+
+.news-content p {
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--secondary-font) !important;
+}
+
+.staffCard_container {
+  position: relative;
+  overflow: hidden;
+}
+
+.staffCard_container img {
+  position: absolute;
+  object-fit: contain;
+  z-index: 0;
+}
+
+.staffCard_container p,
+h4 {
+  z-index: 10;
+  position: relative;
+  color: #eee;
+}
+
+.testimonyCard_container h6 {
+  font-family: var(--secondary-font) !important;
+  font-weight: 700 !important;
+}
+
+.testimonyQuote {
+  word-break: break-all;
+}
+
+.testimonyQuote::after,
+.testimonyQuote::before {
+  content: "“";
+}
+
+.cardList_title {
+  font-size: 32px;
+}
+
+.link:hover {
+  color: var(--primary-color);
+}

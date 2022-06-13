@@ -8,7 +8,7 @@ const NavItem = (props) => {
   const { text, route } = navItem;
 
   return (
-    <Nav.Item className="navbar-items">
+    <Nav.Item className="navbar-items d-none d-lg-block">
       <Nav.Link as={NavLink} to={route}>
         {text}
       </Nav.Link>
