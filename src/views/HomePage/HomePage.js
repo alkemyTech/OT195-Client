@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import useFetch from "../../hooks/useFetch";
 
 import Loader from "../../components/Loader/Loader";
 import Title from "../../components/Title/Title";
-import Slider from "../../components/Slider/Slider";
-import News from "../../components/News/News";
 import CardList from "../../components/CardList/CardList";
 import StaffCard from "../../components/CardList/StaffCard";
 import { Container } from "react-bootstrap";
@@ -64,21 +62,24 @@ const dataTestimony = [
 ];
 
 const HomePage = () => {
-  const { data: publicInfo, loading } = useFetch(
+  const { data: publicInfo, loading: loadingInfo } = useFetch(
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );
 
-  if (loading) {
-    return <Loader />;
-  }
+  const { data: newsData, loading: loadingNews } = useFetch(
+    process.env.REACT_APP_NEWS_ENDPOINT
+  );
 
   return (
     <Container>
-      <Title
-        title={publicInfo.results.welcomeTitle}
-        text={publicInfo.results.welcomeText}
-      />
-      {/* <Slider /> */}
+      {!loadingInfo ? (
+        <Title
+          title={publicInfo.results.welcomeTitle}
+          text={publicInfo.results.welcomeText}
+        />
+      ) : (
+        <Loader></Loader>
+      )}
       <CardList
         data={data}
         title="Nuestro staff"
@@ -92,7 +93,8 @@ const HomePage = () => {
         CardComponent={TestimonyCard}
       ></CardList>
       <CardList
-        data={dataTestimony}
+        data={newsData.results}
+        loading={loadingNews}
         title="Últimas novedades"
         link="/news"
         CardComponent={NewCard}

@@ -1,37 +1,28 @@
 import { Button, Card, Col, Image, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 
-import imagePlaceholder from "../../images/backoffice/user.png";
-
 const NewCard = (props) => {
-  //   const { data } = props;
-  // const { image, content, id, name } = data;
+  const { cardData } = props;
 
-  const name = "New Name";
-  const description = (
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing proin
-      risus cursus elementum sed massa cras sapien placerat. Diam integer congue
-      id amet proin. Ullamcorper nibh sit vitae ac
-    </p>
-  );
+  const navigate = useNavigate();
 
-  //   const navigate = useNavigate();
-
-  //   const callbackClick = () => {
-  //     return navigate("/novedades/" + id);
-  //   };
+  const callbackClick = () => {
+    return navigate("/novedades/" + cardData.id);
+  };
 
   return (
     <Col className="mb-3" lg={5} sm={12}>
       <Card className="newCard_container card-container">
         <Row className="d-flex mx-2 my-3">
           <Col xs={6} className="my-auto">
-            <Image src={imagePlaceholder} fluid rounded></Image>
+            <Image src={cardData?.image} fluid rounded></Image>
           </Col>
           <Col xs={6} className="news-content">
-            <p>{description}</p>
-            <Button className="btn-card w-100">Ver novedad</Button>
+            <p>{cardData?.content}</p>
+            <Button className="btn-card w-100" onClick={callbackClick}>
+              Ver novedad
+            </Button>
           </Col>
         </Row>
       </Card>

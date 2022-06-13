@@ -1,11 +1,11 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import StaffCard from "./StaffCard";
 
 import "./CardList.css";
+import Loader from "../Loader/Loader";
 
 const CardList = (props) => {
-  const { title, data, CardComponent, link } = props;
+  const { title, data, CardComponent, loading, link } = props;
 
   return (
     <Container className="my-4" fluid>
@@ -20,9 +20,13 @@ const CardList = (props) => {
         </Col>
       </Row>
       <Row>
-        {data.map((el) => (
-          <CardComponent cardData={el}></CardComponent>
-        ))}
+        {!loading ? (
+          data.map((el) => <CardComponent cardData={el}></CardComponent>)
+        ) : (
+          <Container className="m-5">
+            <Loader></Loader>
+          </Container>
+        )}
       </Row>
     </Container>
   );
