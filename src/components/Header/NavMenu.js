@@ -28,18 +28,16 @@ const NavMenu = (props) => {
     // Placeholder just the string "/home" for now
     <Navbar.Collapse className="justify-content-end">
       <Nav activeKey={location.pathname} className="align-items-center">
-        {menu?.items
-          ? menu.items.map((item, index) => (
-              <NavLink navItem={item} key={index}></NavLink>
-            ))
-          : null}
+        {menu.items.map((item, index) => (
+          <NavLink navItem={item} key={index}></NavLink>
+        ))}
         {menu?.items
           ? menu.buttons.map((item, index) =>
               user.loading === "succeded"
                 ? item.text !== "Log In" &&
                   item.text !== "Registrate" && (
                     <NavButton
-                      styles={item.style}
+                      styles={item.style + " px-3 py-2 mx-1"}
                       callbackClick={() =>
                         item.text === "Cerrar Sesión"
                           ? dispatch(logOut())
@@ -54,7 +52,7 @@ const NavMenu = (props) => {
                   item.text !== "Cerrar Sesión" &&
                   item.text !== "Mi Perfil" && (
                     <NavButton
-                      styles={item.style}
+                      styles={item.style + " px-3 py-2 mx-1"}
                       callbackClick={() => buttonHandleClick(item.route)}
                       key={index}
                     >

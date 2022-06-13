@@ -1,27 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-:root{
-  --primary-font: 'Poppins', sans-serif; 
-  --secondary-font: 'Mulish', sans-serif;
-  --secondary-font-2: 'Roboto', sans-serif;
-  --text-1: #000; 
-  --primary-color: #FF0000;
-  --background-color: #FFF;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--primary-font);
+  letter-spacing: -0.015em;
+  font-weight: 600 !important;
+}
+
+:root {
+  --primary-font: "Poppins", sans-serif;
+  --secondary-font: "Mulish", sans-serif;
+  --secondary-font-2: "Roboto", sans-serif;
+  --text-1: #000;
+  --primary-color: #ff0000;
+  --background-color: #fff;
   --footer-color: #b6b6b6;
+  --testimony-card-background: #fdffa4;
+  --new-card-background: #7e9afd;
 }
