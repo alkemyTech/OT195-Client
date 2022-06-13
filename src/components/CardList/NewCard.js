@@ -13,12 +13,15 @@ const NewCard = (props) => {
 
   return (
     <Col className="mb-3" lg={5} sm={12}>
-      <Card className="newCard_container card-container">
-        <Row className="d-flex mx-2 my-3">
+      <Card className="newCard_container card-container h-100">
+        <Row className="d-flex mx-2 my-3 h-100">
           <Col xs={6} className="my-auto">
             <Image src={cardData?.image} fluid rounded></Image>
           </Col>
-          <Col xs={6} className="news-content">
+          <Col
+            xs={6}
+            className="news-content d-flex flex-column justify-content-between"
+          >
             <p>{cardData?.content}</p>
             <Button className="btn-card w-100" onClick={callbackClick}>
               Ver novedad
