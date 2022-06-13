@@ -11,18 +11,3 @@
     font-weight: 700;
     margin-top: 60px;
 }
-
-.buttonContainer{
-    width: 56vw;
-}
-
-.buttonContainer button{
-    border: none;
-    border-radius: 20px;
-    background-color: red;
-    color: white;
-    padding: 10px 25px;
-    font-weight: bold;
-    font-size: 22px;
-
-}

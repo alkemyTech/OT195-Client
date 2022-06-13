@@ -1,5 +1,3 @@
-
-
 .carouselNew > .carousel-indicators{
     bottom:0px;
     top: 450px;
@@ -27,3 +25,17 @@
     height: 500px
 }
 
+.contentContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-news{
+    width: 20% !important;
+    background-color: var(--primary-color) !important;
+    border-radius: 10px !important;
+    border: none !important;
+    font-size: 1.2vw !important;
+    padding: 1vw 2vw !important;
+    z-index: 100;
+}
