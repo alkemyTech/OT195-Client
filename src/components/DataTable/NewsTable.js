@@ -163,6 +163,61 @@ const NewsTable = () => {
     });
   };
 
+  // Method to DELETE Form the server endpoint
+  const deleteRow = (values) => {
+    Swal.fire({
+      title: "Confirmar eliminación",
+      type: "warning",
+      text: "¿Estás seguro que deseas eliminar la selección?",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      reverseButtons: true,
+    }).then(async(result)=>{
+      if(result.value){
+      console.log(result)
+        try {
+        const response = await fetch(
+          process.env.REACT_APP_NEWS_ENDPOINT + "delete/" + values.id,
+          {
+            method: "DELETE",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "X-Api-Key": window.localStorage.getItem("token"),
+            },
+          }
+        );
+  
+        const data = await response.json();
+  
+        if (!data.ok) {
+          return Swal.fire({
+            title: "Error!",
+            text: "Hubo un error al eliminar la entrada.",
+            type: "error",
+            confirmButtonText: "Continuar",
+          });
+        }
+  
+        refetch();
+  
+        return Swal.fire({
+          title: "Entrada eliminada!",
+          type: "success",
+          confirmButtonText: "Continuar",
+        });
+      } catch (err) {
+        return Swal.fire({
+          title: "Error!",
+          text: "Hubo un error al eliminar la entrada.",
+          type: "error",
+          confirmButtonText: "Continuar",
+        });
+      }
+      }
+    })
+  };
+
   useEffect(() => {
     // Hide every form whenever the user closes the modal window
     if (!modalOpen) {
@@ -200,6 +255,7 @@ const NewsTable = () => {
           setSelectedRowData,
         },
         actions: {
+          deleteRow,
           showAdd,
           showEdit,
           setShowEdit,
@@ -216,6 +272,8 @@ const NewsTable = () => {
               columns={colDefs}
               data={loading ? [] : data.results}
               title="Listado de Novedades"
+              deleteAction
+              editAction
             ></DataTable>
             <FormModal name="Entrada">
               {showAdd ? <NewsForm fetchMethod={postForm}></NewsForm> : null}

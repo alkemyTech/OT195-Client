@@ -1,14 +1,33 @@
 .title-box {
-    padding: 0 4rem;
+  padding: 0 4rem;
 }
 
 .btn-title {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin: 0;
-    border-radius: 10px !important;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 0;
+  border-radius: 20px !important;
 }
 
-.img-title {
+.welcomeContainer h1 {
+  font-weight: 600;
+  font-size: 48px;
+}
+
+.welcomeContainer p {
+  font-family: var(--secondary-font);
+  font-size: 1.3em;
+  letter-spacing: -0.015em;
+}
+
+.welcomeImage {
+  max-height: 500px;
+  border-radius: 20px;
+  object-fit: cover;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* .img-title {
     width: 40vw;
     height: 30vw;
     min-width: 20rem;
@@ -80,4 +99,4 @@
     .text-title p {
         font-size: 1rem;
     }
-}
+} */

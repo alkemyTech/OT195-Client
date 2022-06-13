@@ -15,7 +15,7 @@ const TextField = ({
 }) => {
   const [field, meta] = useField(props);
   return (
-    <Form.Group className="mb-3" as={Row}>
+    <Form.Group className="mb-3 fieldContainer" as={Row}>
       <Col sm="2" className="fieldLabel">
         <Form.Label>{label}</Form.Label>
       </Col>

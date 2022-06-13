@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Container } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 
 import Button from "../Button/";
 
@@ -8,12 +8,18 @@ const Title = (props) => {
   const { title, text } = props;
 
   return (
-    <Container className="text-title justify-content-center flex-column d-flex">
-      <h1 className="mb-4">{title}</h1>
-      <p className="mb-4">{text}</p>
-      <div>
-        <Button styles="primary btn-title">Contactanos</Button>
-      </div>
+    <Container fluid className="p-0">
+      <Row>
+        <Col>
+          <h1>{title}</h1>
+          <p>{text}</p>
+          <div>
+            <Button styles="primary btn-title btn-lg py-3 px-5">
+              Contactanos
+            </Button>
+          </div>
+        </Col>
+      </Row>
     </Container>
   );
 };

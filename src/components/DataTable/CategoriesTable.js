@@ -3,8 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { DataTableContext } from "../../contexts/DataTableContext";
 import DataTable from "./DataTable";
 import Swal from "sweetalert2";
-// import useFetch from "../../hooks/useFetch";
-// import FormModal from "../Forms/FormModal";
+import useFetch from "../../hooks/useFetch";
 
 const CategoriesTable = () => {
   const [colDefs] = useState([
@@ -23,32 +22,11 @@ const CategoriesTable = () => {
     },
   ]);
 
-  // DATA ==========================
 
-  const data = [
-    {
-      id: "1",
-      name: "Categoria N°1",
-      description: "Lorem ipsum dolor sit amet.",
-    },
-    {
-      id: "2",
-      name: "Categoria N°2",
-      description: "Lorem ipsum dolor sit amet.",
-    },
-    {
-      id: "3",
-      name: "Categoria N°3",
-      description: "Lorem ipsum dolor sit amet.",
-    },
-  ];
-
-  const loading = false; // This is just for the data placeholder.
-
-  // DataTable data
-  // const { data, loading } = useFetch(
-  //   process.env.REACT_APP_TESTIMONIALS_ENDPOINT
-  // );
+  //DataTable data
+  const { data, loading, refetch } = useFetch(
+    process.env.REACT_APP_CATEGORIES_ENDPOINT
+  );
 
   // Data from last row selected
   const [selectedRowData, setSelectedRowData] = useState({
@@ -79,34 +57,48 @@ const CategoriesTable = () => {
   // const patchForm = (values) => {};
 
   // Method to DELETE Form the server endpoint
-  const deleteRow = async (values) => {
-    const swalResult = await Swal.fire({
+  const deleteRow = (values) => {
+    Swal.fire({
       title: "Confirmar eliminación",
       type: "warning",
       text: "¿Estás seguro que deseas eliminar la selección?",
       showCancelButton: true,
       cancelButtonText: "Cancelar",
       reverseButtons: true,
-    });
-
-    if (!swalResult) return;
-
-    try {
-      const response = await fetch(
-        process.env.REACT_APP_CATEGORIES_ENDPOINT + values.id,
-        {
-          method: "DELETE",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            "X-Api-Key": window.localStorage.getItem("token"),
-          },
+    }).then(async(result)=>{
+      if(result.value){
+        try {
+        const response = await fetch(
+          process.env.REACT_APP_CATEGORIES_ENDPOINT + "/delete/" + values.id,
+          {
+            method: "DELETE",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+              "X-Api-Key": window.localStorage.getItem("token"),
+            },
+          }
+        );
+  
+        const data = await response.json();
+  
+        if (!data.ok) {
+          return Swal.fire({
+            title: "Error!",
+            text: "Hubo un error al eliminar la categoria.",
+            type: "error",
+            confirmButtonText: "Continuar",
+          });
         }
-      );
-
-      const data = await response.json();
-
-      if (!data.ok) {
+  
+        refetch();
+  
+        return Swal.fire({
+          title: "Categoria eliminada!",
+          type: "success",
+          confirmButtonText: "Continuar",
+        });
+      } catch (err) {
         return Swal.fire({
           title: "Error!",
           text: "Hubo un error al eliminar la categoria.",
@@ -114,22 +106,8 @@ const CategoriesTable = () => {
           confirmButtonText: "Continuar",
         });
       }
-
-      // refetch();
-
-      return Swal.fire({
-        title: "Categoria eliminada!",
-        type: "success",
-        confirmButtonText: "Continuar",
-      });
-    } catch (err) {
-      return Swal.fire({
-        title: "Error!",
-        text: "Hubo un error al crear la categoria.",
-        type: "error",
-        confirmButtonText: "Continuar",
-      });
-    }
+      }
+    })
   };
 
   useEffect(() => {
@@ -183,8 +161,9 @@ const CategoriesTable = () => {
           <Col>
             <DataTable
               columns={colDefs}
-              data={loading ? [] : data}
+              data={loading ? [] : data.results}
               detailAction={false}
+              deleteAction
               title="Listado de Categorias"
             ></DataTable>
           </Col>

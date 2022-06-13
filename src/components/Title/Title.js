@@ -1,26 +1,36 @@
-import React from 'react';
+import React from "react";
 
-import { Row, Col } from 'react-bootstrap'
-import Text from './Text'
-import Image from './Image'
+import { Row, Col, Container, Image } from "react-bootstrap";
+import Text from "./Text";
+import { AdminContext } from "../../contexts/adminContext";
+import { useContext } from "react";
 
-
-import './Title.css'
+import "./Title.css";
 
 const Title = (props) => {
-    
-    const {title,text} = props;
-    
-    return (
-        <Row className='title-box'>
-            <Col className='px-1 py-5 d-flex'>
-                <Text title={title} text={text} />
-            </Col>
-            <Col className='px-1 py-5 d-flex'>
-                <Image/>
-            </Col>
-        </Row>
-    )
-}
+  const { title, text } = props;
+  const { welcomeData } = useContext(AdminContext);
+  return (
+    <Container className="my-5 welcomeContainer" fluid>
+      <Row>
+        <Col className="my-lg-auto" xs={12} lg={6}>
+          <Text title={title} text={text} />
+        </Col>
+        <Col
+          xs={12}
+          lg={6}
+          md={4}
+          className="d-none d-lg-flex justify-content-end"
+        >
+          <Image
+            className="welcomeImage"
+            src={welcomeData.image}
+            alt="SomosMasWelcome"
+          ></Image>
+        </Col>
+      </Row>
+    </Container>
+  );
+};
 
 export default Title;
