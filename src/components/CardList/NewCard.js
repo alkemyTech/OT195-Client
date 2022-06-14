@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 const NewCard = (props) => {
   const { cardData } = props;
 
+  console.log(cardData)
+
   const navigate = useNavigate();
 
   const callbackClick = () => {
-    return navigate("/novedades/" + cardData.id);
+    return navigate("/news/" + cardData.id);
   };
 
   return (
