@@ -50,11 +50,11 @@
 
 @media only screen and (min-width: 1000px) {
     .carouselItemNew > img {
-        height: 45vw;
+        height: 35vw;
     }
     
     .carouselNew > a{
-        height: 45vw;
+        height: 35vw;
     }
 
     .carouselItemNew > .carousel-caption .content-container {
