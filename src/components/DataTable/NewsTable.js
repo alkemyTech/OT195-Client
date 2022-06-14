@@ -81,7 +81,7 @@ const NewsTable = () => {
         body: JSON.stringify(values),
       });
 
-      const data = await response.json();
+      const { results: data } = await response.json();
 
       if (!data.ok) {
         return Swal.fire({
@@ -133,7 +133,7 @@ const NewsTable = () => {
             }
           );
 
-          const data = await response.json();
+          const { results: data } = await response.json();
 
           if (!data.ok) {
             return Swal.fire({
@@ -172,25 +172,41 @@ const NewsTable = () => {
       showCancelButton: true,
       cancelButtonText: "Cancelar",
       reverseButtons: true,
-    }).then(async(result)=>{
-      if(result.value){
-      console.log(result)
+    }).then(async (result) => {
+      if (result.value) {
+        console.log(result);
         try {
-        const response = await fetch(
-          process.env.REACT_APP_NEWS_ENDPOINT + "delete/" + values.id,
-          {
-            method: "DELETE",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json",
-              "X-Api-Key": window.localStorage.getItem("token"),
-            },
+          const response = await fetch(
+            process.env.REACT_APP_NEWS_ENDPOINT + "delete/" + values.id,
+            {
+              method: "DELETE",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "X-Api-Key": window.localStorage.getItem("token"),
+              },
+            }
+          );
+
+          const { results: data } = await response.json();
+
+          if (!data.ok) {
+            return Swal.fire({
+              title: "Error!",
+              text: "Hubo un error al eliminar la entrada.",
+              type: "error",
+              confirmButtonText: "Continuar",
+            });
           }
-        );
-  
-        const data = await response.json();
-  
-        if (!data.ok) {
+
+          refetch();
+
+          return Swal.fire({
+            title: "Entrada eliminada!",
+            type: "success",
+            confirmButtonText: "Continuar",
+          });
+        } catch (err) {
           return Swal.fire({
             title: "Error!",
             text: "Hubo un error al eliminar la entrada.",
@@ -198,24 +214,8 @@ const NewsTable = () => {
             confirmButtonText: "Continuar",
           });
         }
-  
-        refetch();
-  
-        return Swal.fire({
-          title: "Entrada eliminada!",
-          type: "success",
-          confirmButtonText: "Continuar",
-        });
-      } catch (err) {
-        return Swal.fire({
-          title: "Error!",
-          text: "Hubo un error al eliminar la entrada.",
-          type: "error",
-          confirmButtonText: "Continuar",
-        });
       }
-      }
-    })
+    });
   };
 
   useEffect(() => {
@@ -230,7 +230,7 @@ const NewsTable = () => {
   const CustomToolbar = () => {
     return (
       <ButtonComponent
-        styles="primary"
+        styles="primary mx-3"
         callbackClick={() => {
           setModalOpen(true);
           setSelectedRowData([]);
@@ -274,6 +274,7 @@ const NewsTable = () => {
               title="Listado de Novedades"
               deleteAction
               editAction
+              detailAction
             ></DataTable>
             <FormModal name="Entrada">
               {showAdd ? <NewsForm fetchMethod={postForm}></NewsForm> : null}

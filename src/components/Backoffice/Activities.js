@@ -4,18 +4,9 @@ import ActivitiesTable from "../DataTable/ActivitiesTable";
 
 const Activities = () => {
   return (
-    <Container fluid className="newsContainer">
+    <Container fluid>
       <Container className="my-5">
-        <Row className="usersTitle">
-          <Col>
-            <h2>Listado de Actividades</h2>
-          </Col>
-        </Row>
-        <Row>
-          <Col>
-            <ActivitiesTable></ActivitiesTable>
-          </Col>
-        </Row>
+        <ActivitiesTable></ActivitiesTable>
       </Container>
     </Container>
   );
