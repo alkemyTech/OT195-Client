@@ -34,3 +34,53 @@
 .textContactContainer{
     width:40%
 }
+
+.contact-textfield{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+    width: 100%;
+}
+
+.contact-textfield input{
+        width: 250px;
+    }
+
+@media screen and (max-width:800px) {
+    .row_contact{
+        flex-direction: column;
+    }
+
+    .textContactContainer{
+        width:90%;
+        margin-top: 60px;
+    }
+
+    .inputs{
+        width: 90%;
+        margin: auto;
+    }
+
+    .contact-textfield{
+        text-align: center;
+        margin: 30px 0px;
+    }
+
+    .contact-textfield input{
+        width: 100%;
+        text-align: center;
+    }
+
+    .textarea-field {
+        text-align: center;
+        width: auto;
+        margin: auto;
+    }
+
+    .button_contact {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin: 30px 0 ;
+    }
+}

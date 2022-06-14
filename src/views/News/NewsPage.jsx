@@ -10,7 +10,7 @@ const NewsPage = () => {
   const {id} = useParams();
 
   const { data: newsInfo, loading } = useFetch(
-    `${process.env.REACT_APP_NEWS_ENDPOINT}${id === "all" ? "" : id}`
+    `${process.env.REACT_APP_NEWS_ENDPOINT}${id === undefined ? "" : id}`
   );
 
   const navigate = useNavigate()
