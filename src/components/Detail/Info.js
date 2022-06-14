@@ -1,27 +1,29 @@
-import React from 'react'
-import { Row } from 'react-bootstrap';
-
+import React from "react";
 import { useNavigate } from 'react-router-dom'
 
-import Button from '../Button'
+import { Container } from "react-bootstrap";
 
-const Info = (props) => {
+import ButtonComponent from "../Button/";
 
-    const { name, content } = props;
+const Title = (props) => {
+  const { name, content } = props;
 
-    const navigate = useNavigate();
 
-    const callbackClick = () => {
-        navigate('/news');
-    }
+  const navigate = useNavigate();
 
-    return (
-        <Row className='info-container mt-3 mx-auto'>
-            <h2 className='text-center'>{name}</h2>
-            <p>{content}</p>
-            <Button style='btn-news mr-auto' callbackClick={callbackClick} text='Ir al inicio'></Button>
-        </Row>
-    )
-}
+  const callbackClick = () => {
+      navigate('/news');
+  }
 
-export default Info;
+  return (
+    <Container className="text-title justify-content-center flex-column d-flex">
+      <h1 className="mb-4">{name}</h1>
+      <p className="mb-4">{content}</p>
+      <div>
+        <ButtonComponent styles='btn-news mx-auto' callbackClick={callbackClick}>Ver todo</ButtonComponent>
+      </div>
+    </Container>
+  );
+};
+
+export default Title;

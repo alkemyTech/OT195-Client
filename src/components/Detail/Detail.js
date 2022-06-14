@@ -1,16 +1,17 @@
-import React from "react";
-import useFetch from "../../hooks/useFetch";
+import React from 'react';
+import { useParams } from 'react-router-dom';
+
+import useFetch from "../../hooks/useFetch"; 
 import Loader from "../Loader/Loader";
-import { Container, Image, Row } from "react-bootstrap";
-
-import { useParams } from 'react-router-dom'
-
+import { Row, Col } from 'react-bootstrap'
 import Info from './Info'
+import Image from './Image'
 
-import "./Detail.css";
+
+import './Detail.css'
 
 const Detail = () => {
-
+    
     let { id } = useParams();
 
     const { data: newsInfo, loading } = useFetch(
@@ -21,17 +22,17 @@ const Detail = () => {
       return <Loader />;
     }
 
+    
     return (
-      <Container fluid className="mb-5 new-container">
-        <Row className="text-center my-4">
-          <h1 className="title">Novedades</h1>
+        <Row className='title-box'>
+            <Col className='px-1 py-5 d-flex'>
+                <Image/>
+            </Col>
+            <Col className='px-1 py-5 d-flex'>
+                <Info name={newsInfo.results.name} content={newsInfo.results.content} />
+            </Col>
         </Row>
-        <Row className='img-new'>
-          <Image src={'http://localhost:3005/images/' + newsInfo.results.image} alt={'Image ' + newsInfo.results.id}/>
-        </Row>
-        <Info name={newsInfo.results.name} content={newsInfo.results.content} />
-      </Container>
-    );
-  };
-  
+    )
+}
+
 export default Detail;
