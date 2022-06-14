@@ -48,8 +48,9 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="home" element={<HomePage />} />
               <Route path="staff" element={<h1>Staff</h1>} />
-              <Route path="news" element={<NewsPage />} />
-              <Route path="news/:id" element={<Detail />} />
+              <Route path="news" element={<NewsPage />}>
+                <Route path=":id" element={<Detail />} />
+              </Route>
               <Route path="testimonials" element={<h1>Testimonials</h1>} />
               <Route path="contact" element={<ContactForm />} />
               <Route path="contribute" element={<h1>Contribute</h1>} />
@@ -58,9 +59,6 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="actividades" element={<ActivitiesLayout />}>
                 <Route path=":id" element={<Activity />} />
-              </Route>
-              <Route path="novedades" element={<NewsPage />}>
-                <Route path=":id" element={<NewsPage />} />
               </Route>
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
