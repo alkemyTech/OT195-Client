@@ -60,9 +60,6 @@ function App() {
               <Route path="actividades" element={<ActivitiesLayout />}>
                 <Route path=":id" element={<Activity />} />
               </Route>
-              <Route path="novedades" element={<NewsPage />}>
-                <Route path=":id" element={<NewsPage />} />
-              </Route>
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
             <Route path="backoffice" element={<Backofficelayout />}>

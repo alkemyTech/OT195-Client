@@ -197,6 +197,8 @@ const UsersTable = () => {
               columns={colDefs}
               data={loading ? [] : data.results}
               title="Listado de Usuarios"
+              editAction
+              deleteAction
             ></DataTable>
             <FormModal name="Usuario">
               {/* {showAdd ? (
