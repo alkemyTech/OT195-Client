@@ -1,5 +1,6 @@
 /* dependencies */
 import React from "react";
+import { useSelector } from "react-redux";
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import "./App.css";
@@ -36,7 +37,10 @@ import ActivitiesLayout from "./views/Activities/ActivitiesLayout";
 import Activity from "./views/Activities/Activity";
 import ContactsList from "./components/Backoffice/ContactsList";
 
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+
 function App() {
+  const user = useSelector(({ user }) => user.entity);
   const location = useLocation();
 
   return (
@@ -48,30 +52,41 @@ function App() {
               <Route index element={<HomePage />} />
               <Route path="home" element={<HomePage />} />
               <Route path="staff" element={<h1>Staff</h1>} />
-              <Route path="news" element={<NewsPage />}/>
+              <Route path="news" element={<NewsPage />} />
               <Route path="news/:id" element={<Detail />} />
               <Route path="testimonials" element={<h1>Testimonials</h1>} />
               <Route path="contact" element={<ContactForm />} />
               <Route path="contribute" element={<h1>Contribute</h1>} />
               <Route path="login" element={<LoginView />} />
               <Route path="signup" element={<Register />} />
-              <Route path="profile" element={<Profile />} />
+              <Route
+                path="profile"
+                element={
+                  <ProtectedRoute
+                    isAllowed={!!window.localStorage.getItem("token")}
+                  >
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="actividades" element={<ActivitiesLayout />}>
                 <Route path=":id" element={<Activity />} />
               </Route>
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>
-            <Route path="backoffice" element={<Backofficelayout />}>
-              <Route index element={<Backoffice />} />
-              <Route path="edit-home" element={<HomeForm />} />
-              <Route path="edit-organization" element={<OrgForm />} />
-              <Route path="news" element={<EditNews />} />
-              <Route path="users" element={<Users />} />
-              <Route path="categories" element={<Categories />} />
-              <Route path="testimonials" element={<Testimonials />} />
-              <Route path="activities" element={<Activities />} />
-              <Route path="contacts" element={<ContactsList />} />
-              <Route path="*" element={<h1>404 Not Found</h1>} />
+            <Route element={<ProtectedRoute isAllowed={user.roleId === 1} />}>
+              <Route path="backoffice" element={<Backofficelayout />}>
+                <Route index element={<Backoffice />} />
+                <Route path="edit-home" element={<HomeForm />} />
+                <Route path="edit-organization" element={<OrgForm />} />
+                <Route path="news" element={<EditNews />} />
+                <Route path="users" element={<Users />} />
+                <Route path="categories" element={<Categories />} />
+                <Route path="testimonials" element={<Testimonials />} />
+                <Route path="activities" element={<Activities />} />
+                <Route path="contacts" element={<ContactsList />} />
+                <Route path="*" element={<h1>404 Not Found</h1>} />
+              </Route>
             </Route>
           </Routes>
         </AnimatePresence>
