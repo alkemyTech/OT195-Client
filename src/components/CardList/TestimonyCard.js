@@ -7,8 +7,8 @@ const TestimonyCard = (props) => {
   const { name, description, image } = cardData;
 
   return (
-    <Col className="mb-3" style={{ minWidth: "235px" }}>
-      <Card className="testimonyCard_container card-container">
+    <Col className="mb-3 card-container">
+      <Card className="testimonyCard_container">
         <Row className="mx-2 my-4 ">
           <Col xs={12}>
             <Image
