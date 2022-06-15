@@ -3,9 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 const NewCard = (props) => {
   const { cardData } = props;
-
-  console.log(cardData)
-
   const navigate = useNavigate();
 
   const callbackClick = () => {

@@ -19,24 +19,24 @@
   max-width: 250px;
 }
 
+.newCard_container {
+  background-color: var(--new-card-background);
+  height: 250px !important;
+}
+
+.news {
+  min-width: 450px !important;
+}
+
 @media only screen and (min-width: 1400px) {
   .card-row {
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .card-container {
     min-width: 250px;
   }
-}
-
-.newCard_container {
-  background-color: var(--new-card-background);
-}
-
-.news {
-  max-width: 450px;
-  height: 250px;
 }
 
 .card-container .btn-card {
@@ -49,6 +49,7 @@
   background-color: var(--testimony-card-background);
   border: 0;
   font-family: var(--secondary-font) !important;
+  border-radius: 20px;
 }
 
 .news-content p {
