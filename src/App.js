@@ -15,6 +15,7 @@ import ContactForm from "./components/ContactForm/ContactForm";
 import HomeForm from "./components/HomeForm/HomeForm";
 import OrgForm from "./components/OrgForm/OrgForm";
 import Register from "./components/register/Register";
+import StaffPage from "./components/Staff/StaffPage";
 
 /* Context Providers */
 import { AlertProvider } from "./contexts/alertContext";
@@ -47,7 +48,7 @@ function App() {
             <Route element={<HomePageLayout />}>
               <Route index element={<HomePage />} />
               <Route path="home" element={<HomePage />} />
-              <Route path="staff" element={<h1>Staff</h1>} />
+              <Route path="staff" element={<StaffPage/>} />
               <Route path="news" element={<NewsPage />} />
               <Route path="news/:id" element={<Detail />} />
               <Route path="testimonials" element={<h1>Testimonials</h1>} />
@@ -58,9 +59,6 @@ function App() {
               <Route path="profile" element={<Profile />} />
               <Route path="actividades" element={<ActivitiesLayout />}>
                 <Route path=":id" element={<Activity />} />
-              </Route>
-              <Route path="novedades" element={<NewsPage />}>
-                <Route path=":id" element={<NewsPage />} />
               </Route>
               <Route path="*" element={<h1>404 Not Found</h1>} />
             </Route>

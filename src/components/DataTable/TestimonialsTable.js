@@ -115,7 +115,8 @@ const TestimonialsTable = () => {
             <DataTable
               columns={colDefs}
               data={loading ? [] : data}
-              detailAction={false}
+              editAction
+              deleteAction
               title="Listado de Testimonios"
             ></DataTable>
           </Col>
