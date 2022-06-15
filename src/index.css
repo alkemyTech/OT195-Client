@@ -24,8 +24,13 @@ h4,
 h5,
 h6 {
   font-family: var(--primary-font);
-  
+  letter-spacing: 0.2rem;
   font-weight: 600 !important;
+}
+
+a,
+button {
+  letter-spacing: 0.1rem;
 }
 
 :root {
