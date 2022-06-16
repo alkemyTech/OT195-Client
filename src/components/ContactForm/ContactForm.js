@@ -9,7 +9,7 @@ import * as Yup from "yup";
 
 //Componentes
 import Loader from '../Loader/Loader'
-import TextField from '../LoginForm/TextField'
+import TextField from './TextField'
 import TextContact from './TextContact';
 import TextArea from './TextArea';
 

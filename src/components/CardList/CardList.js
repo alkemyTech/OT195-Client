@@ -19,7 +19,7 @@ const CardList = (props) => {
           </Link>
         </Col>
       </Row>
-      <Row>
+      <Row className="card-row">
         {!loading ? (
           data.map((el, index) => (
             <CardComponent cardData={el} key={index}></CardComponent>
