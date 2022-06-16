@@ -4,18 +4,12 @@ import * as Yup from "yup";
 import RichText from "./RichText";
 import Select from "./Select";
 
+
 import * as Bootstrap from "react-bootstrap";
 import Button from "../Button";
 
-const NewsForm = (props) => {
+const ActivitiesForm = (props) => {
   const { values, fetchMethod } = props;
-
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
 
   return (
     <Formik
@@ -52,4 +46,5 @@ const NewsForm = (props) => {
   );
 };
 
-export default NewsForm;
+
+export default ActivitiesForm;

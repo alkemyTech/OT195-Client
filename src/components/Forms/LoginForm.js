@@ -112,6 +112,7 @@ const LoginForm = () => {
         initialValues={{ email: "", password: "" }}
         onSubmit={(values, { resetForm }) => {
           dispatch(loginDispatch(values, resetForm));
+          navigate("/");
         }}
         validationSchema={Yup.object({
           email: Yup.string()

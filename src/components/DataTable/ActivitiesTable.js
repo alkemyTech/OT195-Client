@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import DataTable from "./DataTable";
 
+
 import ActivitiesForm from "../Forms/ActivitiesForm";
 import ButtonComponent from "../Button";
 import { DataTableContext } from "../../contexts/DataTableContext";
@@ -47,7 +48,6 @@ const ActivitiesTable = () => {
     process.env.REACT_APP_ACTIVITIES_ENDPOINT + selectedRowData.id
   );
 
-  console.log();
 
   // MODAL =========================
   const [modalOpen, setModalOpen] = useState(false);
@@ -123,7 +123,6 @@ const ActivitiesTable = () => {
               body: JSON.stringify(values),
             }
           );
-
           const { results: data } = await response.json();
 
           if (!data.ok) {
@@ -178,9 +177,8 @@ const ActivitiesTable = () => {
               },
             }
           );
-
           const { results: data } = await response.json();
-
+          
           if (!data.ok) {
             return Swal.fire({
               title: "Error!",

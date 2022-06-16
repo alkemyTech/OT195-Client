@@ -1,19 +1,17 @@
 import { Button, Card, Col, Image, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 
 const NewCard = (props) => {
   const { cardData } = props;
-
   const navigate = useNavigate();
 
   const callbackClick = () => {
-    return navigate("/novedades/" + cardData.id);
+    return navigate("/news/" + cardData.id);
   };
 
   return (
-    <Col className="mb-3" lg={5} sm={12}>
-      <Card className="newCard_container card-container h-100">
+    <Col className="mb-3 card-container news">
+      <Card className="newCard_container h-100">
         <Row className="d-flex mx-2 my-3 h-100">
           <Col xs={6} className="my-auto">
             <Image src={cardData?.image} fluid rounded></Image>

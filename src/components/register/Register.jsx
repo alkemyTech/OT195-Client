@@ -18,10 +18,14 @@ export default function Register() {
   return (
     <Container fluid>
       <Row style={{ minHeight: "810px" }}>
-        <Col xxl={6} className="d-flex flex-column justify-content-center">
+        <Col
+          xs={12}
+          sm={6}
+          className="d-flex flex-column justify-content-center"
+        >
           <Container>
-            <Row className="my-5">
-              <Col xxl={7} className="register-wrapper">
+            <Row className="my-3">
+              <Col className="register-wrapper" style={{ margin: "0" }}>
                 <h5>Bienvenido</h5>
                 <h3>Crea tu usuario!</h3>
                 <Formik
@@ -201,8 +205,8 @@ export default function Register() {
             </Row>
           </Container>
         </Col>
-        <Col xxl={6}>
-          <Image className="register-image" src={foto}></Image>
+        <Col xs={12} sm={6} style={{ padding: "0" }}>
+          <Image src={foto} className="register-image"></Image>
         </Col>
       </Row>
     </Container>

@@ -36,6 +36,15 @@ const NewsTable = () => {
     {
       title: "Fecha de Creación",
       field: "createdAt",
+      render: (rowData) => {
+        const date = new Date(rowData.createdAt);
+
+        let year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString().padStart(2, "0");
+        let day = date.getDate().toString().padStart(2, "0");
+
+        return <p>{`${day}/${month}/${year}`}</p>;
+      },
     },
   ]);
 
@@ -189,6 +198,7 @@ const NewsTable = () => {
           );
 
           const { results: data } = await response.json();
+          const data = await response.json();
 
           if (!data.ok) {
             return Swal.fire({
@@ -230,7 +240,7 @@ const NewsTable = () => {
   const CustomToolbar = () => {
     return (
       <ButtonComponent
-        styles="primary mx-3"
+        styles="primary mx-4"
         callbackClick={() => {
           setModalOpen(true);
           setSelectedRowData([]);
