@@ -90,7 +90,7 @@ const NewsTable = () => {
         body: JSON.stringify(values),
       });
 
-      const data = await response.json();
+      const { results: data } = await response.json();
 
       if (!data.ok) {
         return Swal.fire({
@@ -142,7 +142,7 @@ const NewsTable = () => {
             }
           );
 
-          const data = await response.json();
+          const { results: data } = await response.json();
 
           if (!data.ok) {
             return Swal.fire({
@@ -197,6 +197,7 @@ const NewsTable = () => {
             }
           );
 
+          const { results: data } = await response.json();
           const data = await response.json();
 
           if (!data.ok) {

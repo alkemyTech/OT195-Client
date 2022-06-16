@@ -2,6 +2,8 @@ import { Formik, Form } from "formik";
 import TextField from "./TextField";
 import * as Yup from "yup";
 import RichText from "./RichText";
+import Select from "./Select";
+
 
 import * as Bootstrap from "react-bootstrap";
 import Button from "../Button";
@@ -14,6 +16,7 @@ const ActivitiesForm = (props) => {
       initialValues={{
         name: values?.name || "",
         content: values?.content || "",
+        image: values?.image || "",
       }}
       validationSchema={Yup.object({
         name: Yup.string().required("El nombre es requerido."),
@@ -27,7 +30,13 @@ const ActivitiesForm = (props) => {
       onSubmit={(values) => fetchMethod(values)}
     >
       <Bootstrap.Form as={Form}>
-        <TextField name="name" type="text" label="Nombre"></TextField>
+        <TextField name="name" type="text" label="Titulo"></TextField>
+        <TextField
+          name="image"
+          type="file"
+          label="Imagen"
+          accept="image/png, image/jpeg, image/jpg"
+        ></TextField>
         <RichText name="content" label="Contenido"></RichText>
         <Button type="submit" styles="primary">
           Guardar
@@ -36,5 +45,6 @@ const ActivitiesForm = (props) => {
     </Formik>
   );
 };
+
 
 export default ActivitiesForm;

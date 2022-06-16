@@ -4,12 +4,13 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import DataTable from "./DataTable";
 
+
+import ActivitiesForm from "../Forms/ActivitiesForm";
 import ButtonComponent from "../Button";
 import { DataTableContext } from "../../contexts/DataTableContext";
 import FormModal from "../Forms/FormModal";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../Loader/Loader";
-import ActivitiesForm from "../Forms/ActivitiesForm";
 
 const ActivitiesTable = () => {
   const navigate = useNavigate();
@@ -26,13 +27,6 @@ const ActivitiesTable = () => {
       title: "Nombre",
       field: "name",
     },
-    {
-      title: "Contenido",
-      field: "content",
-      render: (rowData) => (
-        <div dangerouslySetInnerHTML={{ __html: rowData.content }} />
-      ),
-    },
   ]);
 
   // DATA ===================================
@@ -40,54 +34,20 @@ const ActivitiesTable = () => {
   const [selectedRowData, setSelectedRowData] = useState({
     id: "",
     name: "",
+    image: "",
     content: "",
   });
 
   // DataTable data
-  // const { data, loading, refetch } = useFetch(
-  //   process.env.REACT_APP_ACTIVITIES_ENDPOINT
-  // );
-
-  const data = {
-    results: [
-      {
-        id: "1",
-        name: "Apoyo Escolar para el nivel Primario",
-        content:
-          "<p>El espacio de apoyo escolar es el coraz&oacute;n del &aacute;rea educativa. Se realizan los talleres de lunes a jueves de 10 a 12 horas y de 14 a 16 horas en el contraturno. Los s&aacute;bados tambi&eacute;n se realiza el taller para ni&ntilde;os y ni&ntilde;as que asisten a la escuela doble turno. Tenemos un espacio especial para los de 1er grado 2 veces por semana ya que ellos necesitan atenci&oacute;n especial! Actualmente se encuentran inscriptos a este programa 150 ni&ntilde;os y ni&ntilde;as de 6 a 15 a&ntilde;os. Este taller est&aacute; pensado para ayudar a los alumnos con el material que traen de la escuela, tambi&eacute;n tenemos una docente que les da clases de lengua y matem&aacute;tica con una planificaci&oacute;n propia que armamos en Manos para nivelar a los ni&ntilde;os y que vayan con m&aacute;s herramientas a la escuela.</p>",
-      },
-      {
-        id: "2",
-        name: "Apoyo Escolar para el nivel Primario",
-        content:
-          "<p>El espacio de apoyo escolar es el coraz&oacute;n del &aacute;rea educativa. Se realizan los talleres de lunes a jueves de 10 a 12 horas y de 14 a 16 horas en el contraturno. Los s&aacute;bados tambi&eacute;n se realiza el taller para ni&ntilde;os y ni&ntilde;as que asisten a la escuela doble turno. Tenemos un espacio especial para los de 1er grado 2 veces por semana ya que ellos necesitan atenci&oacute;n especial! Actualmente se encuentran inscriptos a este programa 150 ni&ntilde;os y ni&ntilde;as de 6 a 15 a&ntilde;os. Este taller est&aacute; pensado para ayudar a los alumnos con el material que traen de la escuela, tambi&eacute;n tenemos una docente que les da clases de lengua y matem&aacute;tica con una planificaci&oacute;n propia que armamos en Manos para nivelar a los ni&ntilde;os y que vayan con m&aacute;s herramientas a la escuela.</p>",
-      },
-      {
-        id: "3",
-        name: "Apoyo Escolar para el nivel Primario",
-        content:
-          "<p>El espacio de apoyo escolar es el coraz&oacute;n del &aacute;rea educativa. Se realizan los talleres de lunes a jueves de 10 a 12 horas y de 14 a 16 horas en el contraturno. Los s&aacute;bados tambi&eacute;n se realiza el taller para ni&ntilde;os y ni&ntilde;as que asisten a la escuela doble turno. Tenemos un espacio especial para los de 1er grado 2 veces por semana ya que ellos necesitan atenci&oacute;n especial! Actualmente se encuentran inscriptos a este programa 150 ni&ntilde;os y ni&ntilde;as de 6 a 15 a&ntilde;os. Este taller est&aacute; pensado para ayudar a los alumnos con el material que traen de la escuela, tambi&eacute;n tenemos una docente que les da clases de lengua y matem&aacute;tica con una planificaci&oacute;n propia que armamos en Manos para nivelar a los ni&ntilde;os y que vayan con m&aacute;s herramientas a la escuela.</p>",
-      },
-    ],
-  };
-
-  const detailsData = {
-    results: {
-      id: "1",
-      name: "Apoyo Escolar para el nivel Primario",
-      content:
-        "<p>El espacio de apoyo escolar es el coraz&oacute;n del &aacute;rea educativa. Se realizan los talleres de lunes a jueves de 10 a 12 horas y de 14 a 16 horas en el contraturno. Los s&aacute;bados tambi&eacute;n se realiza el taller para ni&ntilde;os y ni&ntilde;as que asisten a la escuela doble turno. Tenemos un espacio especial para los de 1er grado 2 veces por semana ya que ellos necesitan atenci&oacute;n especial! Actualmente se encuentran inscriptos a este programa 150 ni&ntilde;os y ni&ntilde;as de 6 a 15 a&ntilde;os. Este taller est&aacute; pensado para ayudar a los alumnos con el material que traen de la escuela, tambi&eacute;n tenemos una docente que les da clases de lengua y matem&aacute;tica con una planificaci&oacute;n propia que armamos en Manos para nivelar a los ni&ntilde;os y que vayan con m&aacute;s herramientas a la escuela.</p>",
-    },
-  };
-
-  const loading = false;
-  const refetch = () => {};
-  const detailsLoading = false;
+  const { data, loading, refetch } = useFetch(
+    process.env.REACT_APP_ACTIVITIES_ENDPOINT
+  );
 
   // Data details from row selected on edit
-  // const { data: detailsData, loading: detailsLoading } = useFetch(
-  //   process.env.REACT_APP_ACTIVITIES_ENDPOINT + selectedRowData.id
-  // );
+  const { data: detailsData, loading: detailsLoading } = useFetch(
+    process.env.REACT_APP_ACTIVITIES_ENDPOINT + selectedRowData.id
+  );
+
 
   // MODAL =========================
   const [modalOpen, setModalOpen] = useState(false);
@@ -112,7 +72,7 @@ const ActivitiesTable = () => {
         body: JSON.stringify(values),
       });
 
-      const data = await response.json();
+      const { results: data } = await response.json();
 
       if (!data.ok) {
         return Swal.fire({
@@ -152,7 +112,7 @@ const ActivitiesTable = () => {
       if (result) {
         try {
           const response = await fetch(
-            process.env.RREACT_APP_ACTIVITIES_ENDPOINT + selectedRowData.id,
+            process.env.REACT_APP_ACTIVITIES_ENDPOINT + selectedRowData.id,
             {
               method: "PUT",
               headers: {
@@ -163,8 +123,7 @@ const ActivitiesTable = () => {
               body: JSON.stringify(values),
             }
           );
-
-          const data = await response.json();
+          const { results: data } = await response.json();
 
           if (!data.ok) {
             return Swal.fire({
@@ -178,7 +137,7 @@ const ActivitiesTable = () => {
           refetch();
 
           return Swal.fire({
-            title: "Entrada editada!",
+            title: "Actividad editada!",
             type: "success",
             confirmButtonText: "Continuar",
           });
@@ -208,7 +167,7 @@ const ActivitiesTable = () => {
         console.log(result);
         try {
           const response = await fetch(
-            process.env.REACT_APP_NEWS_ENDPOINT + "delete/" + values.id,
+            process.env.REACT_APP_ACTIVITIES_ENDPOINT + "delete/" + values.id,
             {
               method: "DELETE",
               headers: {
@@ -218,13 +177,12 @@ const ActivitiesTable = () => {
               },
             }
           );
-
-          const data = await response.json();
-
+          const { results: data } = await response.json();
+          
           if (!data.ok) {
             return Swal.fire({
               title: "Error!",
-              text: "Hubo un error al eliminar la entrada.",
+              text: "Hubo un error al eliminar la actividad.",
               type: "error",
               confirmButtonText: "Continuar",
             });
@@ -233,14 +191,14 @@ const ActivitiesTable = () => {
           refetch();
 
           return Swal.fire({
-            title: "Entrada eliminada!",
+            title: "Actividad eliminada!",
             type: "success",
             confirmButtonText: "Continuar",
           });
         } catch (err) {
           return Swal.fire({
             title: "Error!",
-            text: "Hubo un error al eliminar la entrada.",
+            text: "Hubo un error al eliminar la actividad.",
             type: "error",
             confirmButtonText: "Continuar",
           });
@@ -261,7 +219,7 @@ const ActivitiesTable = () => {
   const CustomToolbar = () => {
     return (
       <ButtonComponent
-        styles="primary mx-4"
+        styles="primary mx-3"
         callbackClick={() => {
           setModalOpen(true);
           setSelectedRowData([]);
@@ -291,7 +249,7 @@ const ActivitiesTable = () => {
           showEdit,
           setShowEdit,
           goToDetails: (row) => {
-            navigate("/news/" + row.id);
+            navigate("/actividades/" + row.id);
           },
         },
       }}
@@ -302,9 +260,10 @@ const ActivitiesTable = () => {
             <DataTable
               columns={colDefs}
               data={loading ? [] : data.results}
-              title="Listado de Actividades"
+              title="Listado de actividades"
               deleteAction
               editAction
+              detailAction
             ></DataTable>
             <FormModal name="Actividad">
               {showAdd ? (

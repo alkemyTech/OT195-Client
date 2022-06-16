@@ -117,7 +117,7 @@ const UsersTable = () => {
             }
           );
 
-          const data = await response.json();
+          const { results: data } = await response.json();
 
           if (!data.ok) {
             return Swal.fire({
