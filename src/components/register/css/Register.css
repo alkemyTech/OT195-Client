@@ -7,7 +7,7 @@
 }
 
 .register-wrapper  form{
-    margin: 25px 0;
+    margin-top: 25px;
     width: 100% !important;
 }
 
@@ -86,7 +86,7 @@
     cursor: pointer;
     color: white;
     font-size: 24px;
-    margin: 20px 0;
+    margin-top: 20px;
     /* font-family: 'Poppins'; */
     /* font-style: normal; */
     }

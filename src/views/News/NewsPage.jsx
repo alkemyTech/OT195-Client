@@ -4,6 +4,7 @@ import NewsSlider from "../../components/Slider/NewsSlider";
 import Styles from "./newsPage.module.css";
 import useFetch from "../../hooks/useFetch";
 
+
 const NewsPage = () => {
 
   let { data: newsInfo, loading } = useFetch(

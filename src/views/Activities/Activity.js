@@ -2,7 +2,6 @@ import React from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import imagen from "../../images/Foto3.jpg";
 
 const Activity = () => {
   const { id } = useParams();
@@ -32,11 +31,12 @@ const Activity = () => {
   return (
     <Container>
       <Row className="my-2">
-        <Col className="text-center">
+        <Col className="activity-image-container">
           <Image
             src={data?.results.image}
             alt={data?.results.name}
-            style={{ maxWidth: "100%", height: "580px " }}
+            fluid
+            className="h-100"
           ></Image>
         </Col>
       </Row>

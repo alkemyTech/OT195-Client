@@ -10,29 +10,6 @@ import { Container } from "react-bootstrap";
 import TestimonyCard from "../../components/CardList/TestimonyCard";
 import NewCard from "../../components/CardList/NewCard";
 
-const data = [
-  {
-    name: "Julian Fernandez",
-    description: "Ceo / CoFunder",
-  },
-  {
-    name: "Julian Fernandez",
-    description: "Ceo / CoFunder",
-  },
-  {
-    name: "Julian Fernandez",
-    description: "Ceo / CoFunder",
-  },
-  {
-    name: "Julian Fernandez",
-    description: "Ceo / CoFunder",
-  },
-  {
-    name: "Julian Fernandez",
-    description: "Ceo / CoFunder",
-  },
-];
-
 const dataTestimony = [
   {
     name: "Nombre y Apellido",
@@ -66,6 +43,10 @@ const HomePage = () => {
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );
 
+  const { data: staffInfo, loading: loadingStaff } = useFetch(
+    process.env.REACT_APP_MEMBERS_ENDPOINT
+  );
+
   const { data: newsData, loading: loadingNews } = useFetch(
     process.env.REACT_APP_NEWS_ENDPOINT
   );
@@ -81,7 +62,8 @@ const HomePage = () => {
         <Loader></Loader>
       )}
       <CardList
-        data={data}
+        data={staffInfo.results}
+        loading={loadingStaff}
         title="Nuestro staff"
         link="/staff"
         CardComponent={StaffCard}

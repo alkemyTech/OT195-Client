@@ -11,7 +11,6 @@ const Header = () => {
   );
 
   if (loading){ return <p>Loading</p>}else{
-    console.log(publicInfo)
     return (
       <Container fluid className="navbar-container d-flex flex-column">
         <Navbar className="my-auto">
@@ -25,7 +24,7 @@ const Header = () => {
         </Navbar>
       </Container>
     );
-  };
+  }
   
   
 };
