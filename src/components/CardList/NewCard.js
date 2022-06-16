@@ -1,6 +1,5 @@
 import { Button, Card, Col, Image, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 
 const NewCard = (props) => {
   const { cardData } = props;

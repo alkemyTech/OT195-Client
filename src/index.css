@@ -24,7 +24,7 @@ h5,
 h6 {
   font-family: var(--primary-font);
   letter-spacing: -0.015em;
-  font-weight: 600 !important;
+  font-weight: 600;
 }
 
 :root {
