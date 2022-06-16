@@ -1,25 +1,54 @@
 .activity-container h2 {
-    font-family: var(--primary-font);
-    font-weight: 600;
-    font-size: 48px;
-    line-height: 72px;
+  font-family: var(--primary-font);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 72px;
 }
 
 .activity-container h3 {
-    font-family: var(--secondary-font);
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 50px;
+  font-family: var(--secondary-font);
+  font-weight: 700;
+  line-height: 50px;
 }
 
-.activity-content{
-    font-family: var(--secondary-font);
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 25px;
-    letter-spacing: -0.015em;
+.activity-content {
+  font-family: var(--secondary-font);
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: -0.015em;
 }
+
+.activity-image-container {
+  min-height: 200px;
+  max-height: 600px;
+}
+
+.activity-image-container img {
+  width: 100% !important;
+  object-fit: cover;
+}
+
+@media only screen and (min-width: 768px) {
+  .activity-content {
+    font-size: 1.15em;
+    line-height: 35px;
+  }
+
+  .activity-container h2 {
+    font-size: 48px;
+  }
+
+  .activity-container h3 {
+    font-size: 32px;
+  }
+}
+
+/* @media only screen and (min-width: 992px) {
+  .activity-container h3 {
+    font-size: 35px;
+  }
+} */
 
 .activity-content li {
-    margin: 0.5em 0;
+  margin: 0.5em 0;
 }
