@@ -3,9 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 const NewCard = (props) => {
   const { cardData } = props;
-
-  console.log(cardData)
-
   const navigate = useNavigate();
 
   const callbackClick = () => {
@@ -13,8 +10,8 @@ const NewCard = (props) => {
   };
 
   return (
-    <Col className="mb-3" lg={5} sm={12}>
-      <Card className="newCard_container card-container h-100">
+    <Col className="mb-3 card-container news">
+      <Card className="newCard_container h-100">
         <Row className="d-flex mx-2 my-3 h-100">
           <Col xs={6} className="my-auto">
             <Image src={cardData?.image} fluid rounded></Image>
