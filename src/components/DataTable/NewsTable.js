@@ -58,23 +58,24 @@ const NewsTable = () => {
   });
 
   // DataTable data
-  const { data, loading, refetch } = useFetch(
+  const { data, loading, refetch } = useFetch( // con esto trae todas las news , data: va ser la info , loading si esta en false va ser un array vacio , refecth para que se actualice data
     process.env.REACT_APP_NEWS_ENDPOINT
   );
+
 
   // Data details from row selected on edit
   const { data: detailsData, loading: detailsLoading } = useFetch(
     process.env.REACT_APP_NEWS_ENDPOINT + selectedRowData.id
   );
-
+  
   // MODAL =========================
   const [modalOpen, setModalOpen] = useState(false);
 
   // FORMS ============================
-  // Display "POST" Form
+  // Display "PUT" Form
   const [showEdit, setShowEdit] = useState(false);
 
-  // Display "PUT/PATCH" Form
+  // Display "POST" Form
   const [showAdd, setShowAdd] = useState(false);
 
   // Method to POST Form to the server endpoint
@@ -130,7 +131,7 @@ const NewsTable = () => {
       if (result) {
         try {
           const response = await fetch(
-            process.env.REACT_APP_NEWS_ENDPOINT + selectedRowData.id,
+            process.env.REACT_APP_NEWS_ENDPOINT+"/modify/" + selectedRowData.id,
             {
               method: "PUT",
               headers: {
