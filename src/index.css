@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Englebert:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
@@ -23,18 +24,23 @@ h4,
 h5,
 h6 {
   font-family: var(--primary-font);
-  letter-spacing: -0.015em;
-  font-weight: 600;
+  letter-spacing: 0.2rem;
+  font-weight: 600 !important;
+}
+
+a,
+button {
+  letter-spacing: 0.1rem;
 }
 
 :root {
-  --primary-font: "Poppins", sans-serif;
+  --primary-font: "Englebert", sans-serif;
   --secondary-font: "Mulish", sans-serif;
   --secondary-font-2: "Roboto", sans-serif;
   --text-1: #000;
-  --primary-color: #ff0000;
+  --primary-color: #DB5752;
   --background-color: #fff;
   --footer-color: #b6b6b6;
-  --testimony-card-background: #fdffa4;
-  --new-card-background: #7e9afd;
+  --testimony-card-background: #FAFA88;
+  --new-card-background: #9AC9FB;
 }
