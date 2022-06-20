@@ -10,21 +10,23 @@ const Header = () => {
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );
 
-  if (loading) return <p>Loading</p>;
-
-  return (
-    <Container fluid className="navbar-container d-flex flex-column">
-      <Navbar className="my-auto">
-        <Container fluid>
-          <NavBrand
-            image={publicInfo?.results.image}
-            name={publicInfo?.results.name}
-          ></NavBrand>
-          <NavMenu menu={publicInfo?.results.nav}></NavMenu>
-        </Container>
-      </Navbar>
-    </Container>
-  );
+  if (loading){ return <p>Loading</p>}else{
+    return (
+      <Container fluid className="navbar-container d-flex flex-column">
+        <Navbar className="my-auto">
+          <Container fluid>
+            <NavBrand
+              image={publicInfo?.results.image}
+              name={publicInfo?.results.name}
+            ></NavBrand>
+            <NavMenu menu={publicInfo?.results.nav}></NavMenu>
+          </Container>
+        </Navbar>
+      </Container>
+    );
+  }
+  
+  
 };
 
 export default Header;

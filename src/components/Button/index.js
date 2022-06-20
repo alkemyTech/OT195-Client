@@ -9,7 +9,7 @@ const ButtonComponent = (props) => {
 
   return (
     <Button
-      className={`navbar-button ${styles}`}
+      className={`custom-button ${styles}`}
       {...args}
       onClick={callbackClick}
     >

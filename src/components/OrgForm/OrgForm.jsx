@@ -12,7 +12,7 @@ import organization from "../../images/backoffice/organization.png";
 import EditContainer from './EditContainer';
 
 const OrgForm = () => {
-    const { data: publicInfo, loading } = useFetch('http://127.0.0.1:3001/organizations/1/public');
+    const { data: publicInfo, loading } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
 
     const {setOrganizationData} = useContext(AdminContext)
     const navigate = useNavigate()
@@ -23,6 +23,7 @@ const OrgForm = () => {
     }
     useEffect(()=>{
         setOrganizationData(publicInfo)
+        console.log(publicInfo)
     },[publicInfo,loading, setOrganizationData])
 
     if(loading){

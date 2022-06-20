@@ -14,25 +14,26 @@ import { Link } from "react-router-dom";
 
 const LoginView = () => {
   return (
-    <Container fluid>
-      <Row>
-        <Col className="d-flex align-items-center">
+    <Container fluid className="loginView-container">
+      <Row className="loginView-container">
+        <Col className="d-flex align-items-center mt-3 mb-3">
           <Container>
             <Row>
-              <Col xxl={7} className="m-auto">
+              <Col xs={12} sm={7} className="m-auto">
                 <h3 className="loginForm__welcome">Bienvenido</h3>
                 <h2 className="loginForm__title mb-3">
                   Inicia sesión en tu cuenta!
                 </h2>
               </Col>
               <Col
-                xxl={7}
+                xs={12}
+                sm={7}
                 className="m-auto loginForm__container"
                 style={{ padding: "0" }}
               >
                 <LoginForm></LoginForm>
               </Col>
-              <Col xxl={7} className="registerText m-auto  mt-5">
+              <Col xs={12} sm={7} className="registerText m-auto mt-3">
                 <p>
                   No tienes una cuenta? <Link to="/signup">Registrate</Link>
                 </p>
@@ -40,7 +41,12 @@ const LoginView = () => {
             </Row>
           </Container>
         </Col>
-        <Col className="d-flex justify-content-end" style={{ padding: "0" }}>
+        <Col
+          xs={12}
+          sm={5}
+          className="d-flex justify-content-end"
+          style={{ padding: "0" }}
+        >
           <Image className="img_manos" src={img_manos}></Image>
         </Col>
       </Row>
