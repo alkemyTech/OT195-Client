@@ -85,7 +85,7 @@ const Backoffice = () => {
 
   return (
     <Container fluid className="bo-container d-flex">
-      <Container className="bo-container__options">
+      <Container className="bo-container__options m-md-auto">
         <Row className="justify-content-center">
           {dataPlaceholder.map(
             (el) =>

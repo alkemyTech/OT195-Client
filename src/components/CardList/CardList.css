@@ -24,8 +24,10 @@
   height: 250px !important;
 }
 
-.news {
-  min-width: 450px !important;
+@media only screen and (min-width: 768px) {
+  .news {
+    min-width: 450px !important;
+  }
 }
 
 @media only screen and (min-width: 1400px) {
