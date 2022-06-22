@@ -1,5 +1,4 @@
 import { Card, Col, Image, Row } from "react-bootstrap";
-import imagePlaceholder from "../../images/backoffice/user.png";
 
 const TestimonyCard = (props) => {
   const { cardData } = props;
@@ -14,7 +13,7 @@ const TestimonyCard = (props) => {
             <Image
               roundedCircle
               style={{ width: "75px" }}
-              src={imagePlaceholder}
+              src={image}
               alt="user"
               className="mb-2"
             ></Image>

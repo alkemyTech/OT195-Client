@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Navbar, Container } from "react-bootstrap";
 
 import NavBrand from "./NavBrand";
@@ -16,6 +16,10 @@ const Header = () => {
   );
 
   const [expandOcanvas, setExpandOcanvas] = useState(false);
+
+  useEffect(() => {
+    console.log("Rendered");
+  }, []);
 
   if (loading) {
     return <p>Loading</p>;

@@ -19,7 +19,7 @@ const SelectedCard = ({member}) => {
               >¡Quiero ser parte!</Button>
           </div>
 
-          <img src={member.image}/>
+          <img src={member.image} alt={member.name}/>
       </article>
 
     </>

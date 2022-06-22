@@ -1,5 +1,4 @@
 import React from "react";
-import { Formik } from "formik";
 
 import {Container, Row, Col, Image} from 'react-bootstrap'
 import style from "./css/Profile.module.css"

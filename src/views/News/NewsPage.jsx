@@ -18,7 +18,7 @@ const NewsPage = () => {
   return (
     <main className={Styles.main}>
       <h1 className={Styles.title}>Novedades</h1>
-      <NewsSlider newsData={newsInfo.results}/>
+      {/* <NewsSlider newsData={newsInfo.results}/> */}
     </main>
   );
 };

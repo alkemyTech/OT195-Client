@@ -2,8 +2,6 @@ import { Formik, Form } from "formik";
 import TextField from "./TextField";
 import * as Yup from "yup";
 import RichText from "./RichText";
-import Select from "./Select";
-
 
 import * as Bootstrap from "react-bootstrap";
 import Button from "../Button";
@@ -45,6 +43,5 @@ const ActivitiesForm = (props) => {
     </Formik>
   );
 };
-
 
 export default ActivitiesForm;
