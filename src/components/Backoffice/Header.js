@@ -4,6 +4,8 @@ import useFetch from "../../hooks/useFetch";
 const Header = () => {
   const { data, loading } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
 
+  console.log(data);
+
   if (loading) return <p>Loading</p>;
 
   return (
