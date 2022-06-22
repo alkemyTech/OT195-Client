@@ -13,11 +13,12 @@ const NewCard = (props) => {
     <Col className="mb-3 card-container news">
       <Card className="newCard_container h-100">
         <Row className="d-flex mx-2 my-3 h-100">
-          <Col xs={6} className="my-auto">
+          <Col md={6} xs={12} className="my-auto">
             <Image src={cardData?.image} fluid rounded></Image>
           </Col>
           <Col
-            xs={6}
+            md={6}
+            xs={12}
             className="news-content d-flex flex-column justify-content-between"
           >
             <p>{cardData?.content}</p>

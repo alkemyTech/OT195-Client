@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logOut } from "../../features/actions/loginActions";
 
-import NavLink from "./NavLink";
-
-import { Nav, Navbar } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
 import NavButton from "../Button";
-import { useState } from "react";
+import NavbarItem from "./NavMenuItem";
+
+import { useLocation, useNavigate } from "react-router-dom";
+import { Nav } from "react-bootstrap";
 
 const NavMenu = (props) => {
-  const { menu } = props;
+  const { menu, menuStyle = "", itemStyles = "", buttonStyles = "" } = props;
 
   const user = useSelector(({ user }) => user);
   const dispatch = useDispatch();
@@ -53,64 +52,62 @@ const NavMenu = (props) => {
     );
   }, [menu.buttons]);
 
+  console.log(location.pathname);
+
   return (
-    // Placeholder just the string "/home" for now
-    <Navbar className="justify-content-end">
-      <Nav activeKey={location.pathname} className="align-items-center">
-        {menu.items.map((item, index) => (
-          <NavLink navItem={item} key={index}></NavLink>
-        ))}
+    <Nav activeKey={location.pathname} className={menuStyle}>
+      {/* Render items from the navbar*/}
+      {menu.items.map((item, index) => (
+        <NavbarItem item={item} key={index} styles={itemStyles}></NavbarItem>
+      ))}
 
-        {user.entity.roleId === ""
-          ? unloggedButtons.map((button) => (
-              <NavButton
-                key={button.text}
-                styles={`d-none d-lg-block px-3 py-2 mx-1 ${button.style}`}
-                callbackClick={() => buttonHandleClick(button.route)}
-              >
-                {button.text}
-              </NavButton>
-            ))
-          : null}
+      {/* Render buttons for the unlogged user*/}
+      {user.entity.roleId === ""
+        ? unloggedButtons.map((button) => (
+            <NavButton
+              key={button.text}
+              styles={`${button.style} ${buttonStyles}`}
+              callbackClick={() => buttonHandleClick(button.route)}
+            >
+              {button.text}
+            </NavButton>
+          ))
+        : null}
 
-        {user.entity.roleId === 1
-          ? adminUserButtons.map((button) => (
-              <NavButton
-                key={button.text}
-                styles={`d-none d-lg-block px-3 py-2 mx-1 ${button.style}`}
-                callbackClick={() =>
-                  button.text === "Cerrar Sesión"
-                    ? dispatch(logOut())
-                    : buttonHandleClick(button.route)
-                }
-              >
-                {button.text}
-              </NavButton>
-            ))
-          : null}
+      {/* Render buttons for the admin user*/}
+      {user.entity.roleId === 1
+        ? adminUserButtons.map((button) => (
+            <NavButton
+              key={button.text}
+              styles={`d-none d-lg-block px-3 py-2 mx-1 ${button.style}`}
+              callbackClick={() =>
+                button.text === "Cerrar Sesión"
+                  ? dispatch(logOut())
+                  : buttonHandleClick(button.route)
+              }
+            >
+              {button.text}
+            </NavButton>
+          ))
+        : null}
 
-        {user.entity.roleId === 2
-          ? defaultUserButtons.map((button) => (
-              <NavButton
-                key={button.text}
-                styles={`d-none d-lg-block px-3 py-2 mx-1 ${button.style}`}
-                callbackClick={() =>
-                  button.text === "Cerrar Sesión"
-                    ? dispatch(logOut())
-                    : buttonHandleClick(button.route)
-                }
-              >
-                {button.text}
-              </NavButton>
-            ))
-          : null}
-
-        <Navbar.Toggle
-          aria-controls="basic-navbar-nav"
-          className="d-block d-lg-none"
-        ></Navbar.Toggle>
-      </Nav>
-    </Navbar>
+      {/* Render buttons for the default user*/}
+      {user.entity.roleId === 2
+        ? defaultUserButtons.map((button) => (
+            <NavButton
+              key={button.text}
+              styles={`d-none d-lg-block px-3 py-2 mx-1 ${button.style}`}
+              callbackClick={() =>
+                button.text === "Cerrar Sesión"
+                  ? dispatch(logOut())
+                  : buttonHandleClick(button.route)
+              }
+            >
+              {button.text}
+            </NavButton>
+          ))
+        : null}
+    </Nav>
   );
 };
 
