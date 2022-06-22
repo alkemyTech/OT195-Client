@@ -52,8 +52,6 @@ const NavMenu = (props) => {
     );
   }, [menu.buttons]);
 
-  console.log(location.pathname);
-
   return (
     <Nav activeKey={location.pathname} className={menuStyle}>
       {/* Render items from the navbar*/}
@@ -79,7 +77,7 @@ const NavMenu = (props) => {
         ? adminUserButtons.map((button) => (
             <NavButton
               key={button.text}
-              styles={`d-none d-lg-block px-3 py-2 mx-1 ${button.style}`}
+              styles={`${buttonStyles} ${button.style}`}
               callbackClick={() =>
                 button.text === "Cerrar Sesión"
                   ? dispatch(logOut())
@@ -96,7 +94,7 @@ const NavMenu = (props) => {
         ? defaultUserButtons.map((button) => (
             <NavButton
               key={button.text}
-              styles={`d-none d-lg-block px-3 py-2 mx-1 ${button.style}`}
+              styles={`${buttonStyles} ${button.style}`}
               callbackClick={() =>
                 button.text === "Cerrar Sesión"
                   ? dispatch(logOut())

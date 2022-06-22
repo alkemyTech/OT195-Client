@@ -8,11 +8,14 @@ import NavbarOffcanvas from "../Offcanvas/Offcanvas";
 import useFetch from "../../hooks/useFetch";
 
 import "./Header.css";
+import { useState } from "react";
 
 const Header = () => {
   const { data: publicInfo, loading } = useFetch(
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );
+
+  const [expandOcanvas, setExpandOcanvas] = useState(false);
 
   if (loading) {
     return <p>Loading</p>;
@@ -34,13 +37,15 @@ const Header = () => {
               ></NavMenu>
               <NavbarOffcanvas
                 title="Menu de navegación"
-                navMenu={
-                  <NavMenu
-                    menu={publicInfo?.results.nav}
-                    buttonStyles="my-2"
-                  ></NavMenu>
-                }
-              />
+                toggleStyle="d-block d-lg-none"
+                expand={expandOcanvas}
+                setExpand={setExpandOcanvas}
+              >
+                <NavMenu
+                  menu={publicInfo?.results.nav}
+                  buttonStyles="my-2"
+                ></NavMenu>
+              </NavbarOffcanvas>
             </Navbar>
           </Container>
         </Navbar>

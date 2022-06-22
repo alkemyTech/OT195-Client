@@ -1,10 +1,12 @@
 import { Container, Navbar } from "react-bootstrap";
+import NavbarOffcanvas from "../Offcanvas/Offcanvas";
 import useFetch from "../../hooks/useFetch";
+import { useState } from "react";
+import NavMenu from "../Header/NavMenu";
 
 const Header = () => {
   const { data, loading } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
-
-  console.log(data);
+  const [expandOcanvas, setExpandOcanvas] = useState(false);
 
   if (loading) return <p>Loading</p>;
 
@@ -14,10 +16,15 @@ const Header = () => {
       className="bo-header d-flex flex-column justify-content-center"
     >
       <Navbar className="justify-content-between">
-        <Navbar.Toggle
-          style={{ display: "block" }}
-          aria-controls="basic-navbar-nav"
-        ></Navbar.Toggle>
+        <NavbarOffcanvas
+          title="Menu principal"
+          toggleStyle="d-block"
+          placement="start"
+          expand={expandOcanvas}
+          setExpand={setExpandOcanvas}
+        >
+          <NavMenu menu={data?.results.nav} buttonStyles="my-2"></NavMenu>
+        </NavbarOffcanvas>
         <Navbar.Brand>
           <img
             alt=""
