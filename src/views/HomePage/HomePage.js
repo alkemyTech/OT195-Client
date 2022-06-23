@@ -10,33 +10,33 @@ import { Container } from "react-bootstrap";
 import TestimonyCard from "../../components/CardList/TestimonyCard";
 import NewCard from "../../components/CardList/NewCard";
 
-const dataTestimony = [
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-];
+// const dataTestimony = [
+//   {
+//     name: "Nombre y Apellido",
+//     description:
+//       "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
+//   },
+//   {
+//     name: "Nombre y Apellido",
+//     description:
+//       "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
+//   },
+//   {
+//     name: "Nombre y Apellido",
+//     description:
+//       "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
+//   },
+//   {
+//     name: "Nombre y Apellido",
+//     description:
+//       "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
+//   },
+//   {
+//     name: "Nombre y Apellido",
+//     description:
+//       "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
+//   },
+// ];
 
 const HomePage = () => {
   const { data: publicInfo, loading: loadingInfo } = useFetch(
@@ -50,6 +50,8 @@ const HomePage = () => {
   const { data: newsData, loading: loadingNews } = useFetch(
     process.env.REACT_APP_NEWS_ENDPOINT
   );
+
+  const{data:testimonials, loading: loadingTestimonials } = useFetch(process.env.REACT_APP_TESTIMONIALS_ENDPOINT)
 
   return (
     <Container fluid="md">
@@ -69,9 +71,10 @@ const HomePage = () => {
         CardComponent={StaffCard}
       ></CardList>
       <CardList
-        data={dataTestimony}
+        data={testimonials.results}
+        loading = {loadingTestimonials}
         title="Testimonios"
-        link="/testimonials"
+        link="/testimonies"
         CardComponent={TestimonyCard}
       ></CardList>
       <CardList

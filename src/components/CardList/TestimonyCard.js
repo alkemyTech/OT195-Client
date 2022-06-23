@@ -3,8 +3,9 @@ import imagePlaceholder from "../../images/backoffice/user.png";
 
 const TestimonyCard = (props) => {
   const { cardData } = props;
+  console.log(cardData)
 
-  const { name, description, image } = cardData;
+  const { name, content, image } = cardData;
 
   return (
     <Col className="mb-3 card-container">
@@ -14,7 +15,7 @@ const TestimonyCard = (props) => {
             <Image
               roundedCircle
               style={{ width: "75px" }}
-              src={imagePlaceholder}
+              src={image ? image : imagePlaceholder}
               alt="user"
               className="mb-2"
             ></Image>
@@ -23,7 +24,7 @@ const TestimonyCard = (props) => {
             <h6 className="m-0">{name}</h6>
           </Col>
           <Col xs={12}>
-            <p className="m-0 testimonyQuote">{description}</p>
+            <p className="m-0 testimonyQuote">{content.replace(/<[^>]*>?/g, '')}</p>
           </Col>
         </Row>
       </Card>

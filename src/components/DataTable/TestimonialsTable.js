@@ -45,7 +45,7 @@ const TestimonialsTable = () => {
     // traigo todos los testimonios
     process.env.REACT_APP_TESTIMONIALS_ENDPOINT // la ruta se encuentra .env
   );
-  // console.log(data)
+  console.log(data)
 
   // Data from last row selected
   const [selectedRowData, setSelectedRowData] = useState({
@@ -211,11 +211,11 @@ const TestimonialsTable = () => {
               columns={colDefs}
               data={loading ? [] : data.results}
               detailAction={false} // si esta en false saco la accion de ver detalle en el front
+              editAction={true}
+              deleteAction={true}
               title="Listado de Testimonios"
             ></DataTable>
-            <FormModal name="Testimonio">
-              {" "}
-              {/*es el nombre que va tener */}
+            <FormModal name="Testimonio">{" "} {/*es el nombre que va tener */}
               {showAdd ? (
                 <TestimonieForm fetchMethod={postForm}></TestimonieForm>
               ) : null}
