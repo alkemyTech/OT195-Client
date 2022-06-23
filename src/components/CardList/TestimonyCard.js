@@ -3,16 +3,18 @@ import { Card, Col, Image, Row } from "react-bootstrap";
 const TestimonyCard = (props) => {
   const { cardData } = props;
 
-  const { name, description, image } = cardData;
+  const { name, content, image } = cardData;
 
   return (
-    <Col className="mb-3 card-container">
+    <Col className="mb-lg-3 mb-xl-0 card-container">
       <Card className="testimonyCard_container">
-        <Row className="mx-2 my-4 ">
+        <Row className="mx-2 my-3 ">
           <Col xs={12}>
             <Image
               roundedCircle
-              style={{ width: "75px" }}
+              width="75"
+              height="75"
+              style={{ objectFit: "cover" }}
               src={image}
               alt="user"
               className="mb-2"
@@ -21,8 +23,12 @@ const TestimonyCard = (props) => {
           <Col xs={12} className="mb-2">
             <h6 className="m-0">{name}</h6>
           </Col>
-          <Col xs={12}>
-            <p className="m-0 testimonyQuote">{description}</p>
+          <Col
+            xs={12}
+            dangerouslySetInnerHTML={{ __html: content }}
+            className="testimonyQuote"
+          >
+            {/* <p className="m-0 testimonyQuote">{content}</p> */}
           </Col>
         </Row>
       </Card>

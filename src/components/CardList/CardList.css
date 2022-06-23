@@ -52,6 +52,8 @@
   border: 0;
   font-family: var(--secondary-font) !important;
   border-radius: 20px;
+  min-height: 250px !important;
+  max-height: 250px !important;
 }
 
 .news-content p {
@@ -92,10 +94,16 @@ h4 {
 
 .testimonyQuote {
   word-break: break-all;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
 }
 
-.testimonyQuote::after,
-.testimonyQuote::before {
+.testimonyQuote p {
+  margin: 0 !important;
+}
+
+.testimonyQuote p::after,
+.testimonyQuote p::before {
   content: "“";
 }
 

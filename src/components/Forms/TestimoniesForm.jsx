@@ -10,13 +10,6 @@ import ImageInput from "./ImageInput";
 export default function TestimonyForm(props) {
   const { values, fetchMethod } = props;
 
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
-
   return (
     <Formik
       initialValues={{
@@ -27,11 +20,6 @@ export default function TestimonyForm(props) {
       validationSchema={Yup.object({
         name: Yup.string().required("El nombre es requerido."),
         content: Yup.string().required("El contenido es requerido"),
-        image: Yup.mixed().test(
-          "fileFormat",
-          "Formato no válido",
-          (value) => value && SUPPORTED_FORMATS.includes(value.type)
-        ),
       })}
       onSubmit={(values) => fetchMethod(values)}
     >

@@ -4,7 +4,6 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import DataTable from "./DataTable";
 
-
 import ActivitiesForm from "../Forms/ActivitiesForm";
 import ButtonComponent from "../Button";
 import { DataTableContext } from "../../contexts/DataTableContext";
@@ -48,7 +47,6 @@ const ActivitiesTable = () => {
     process.env.REACT_APP_ACTIVITIES_ENDPOINT + selectedRowData.id
   );
 
-
   // MODAL =========================
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -62,6 +60,8 @@ const ActivitiesTable = () => {
   // Method to POST Form to the server endpoint
   const postForm = async (values) => {
     try {
+      const { image, ...formValues } = values;
+
       const response = await fetch(process.env.REACT_APP_ACTIVITIES_ENDPOINT, {
         method: "POST",
         headers: {
@@ -69,12 +69,13 @@ const ActivitiesTable = () => {
           "Content-Type": "application/json",
           "X-Api-Key": window.localStorage.getItem("token"),
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(formValues),
       });
 
-      const { results: data } = await response.json();
+      const data = await response.json();
 
       if (!data.ok) {
+        setModalOpen(false);
         return Swal.fire({
           title: "Error!",
           text: "Hubo un error al crear la actividad.",
@@ -83,14 +84,45 @@ const ActivitiesTable = () => {
         });
       }
 
-      refetch();
+      // 2. Get the Id from the new created entity
+      const { id } = data.results;
 
+      // 3. Create a FormData and append the image from the form
+      const imageRequest = new FormData();
+      imageRequest.append("image", image);
+
+      // 4. Request to the upload endpoint from the server to modify the image ========== Second fetch
+      const imageResponse = await fetch(
+        process.env.REACT_APP_UPLOADS_ENDPOINT + "activities/" + id,
+        {
+          method: "PUT",
+          headers: {
+            "X-Api-Key": window.localStorage.getItem("token"),
+          },
+          body: imageRequest,
+        }
+      );
+
+      if (imageResponse.status === "500" || imageResponse.status === "400") {
+        return Swal.fire({
+          title: "Error!",
+          text: "Hubo un error al subir la imagen!",
+          type: "error",
+          confirmButtonText: "Continuar",
+        });
+      }
+
+      refetch();
+      setModalOpen(false);
       return Swal.fire({
         title: "Actividad creada!",
         type: "success",
         confirmButtonText: "Continuar",
       });
     } catch (err) {
+      console.log(err);
+      setModalOpen(false);
+
       return Swal.fire({
         title: "Error!",
         text: "Hubo un error al crear la actividad.",
@@ -111,6 +143,8 @@ const ActivitiesTable = () => {
     }).then(async (result) => {
       if (result) {
         try {
+          const { image, ...formValues } = values;
+
           const response = await fetch(
             process.env.REACT_APP_ACTIVITIES_ENDPOINT + selectedRowData.id,
             {
@@ -120,12 +154,14 @@ const ActivitiesTable = () => {
                 "Content-Type": "application/json",
                 "X-Api-Key": window.localStorage.getItem("token"),
               },
-              body: JSON.stringify(values),
+              body: JSON.stringify(formValues),
             }
           );
-          const { results: data } = await response.json();
+
+          const data = await response.json();
 
           if (!data.ok) {
+            setModalOpen(false);
             return Swal.fire({
               title: "Error!",
               text: "Hubo un error al editar la actividad.",
@@ -134,7 +170,38 @@ const ActivitiesTable = () => {
             });
           }
 
+          // 2. Create a FormData and append the image from the form
+          const imageRequest = new FormData();
+          imageRequest.append("image", image);
+
+          // 3. Request to the upload endpoint from the server to modify the image ========== Second fetch
+          const imageResponse = await fetch(
+            process.env.REACT_APP_UPLOADS_ENDPOINT +
+              "activities/" +
+              selectedRowData.id,
+            {
+              method: "PUT",
+              headers: {
+                "X-Api-Key": window.localStorage.getItem("token"),
+              },
+              body: imageRequest,
+            }
+          );
+
+          if (
+            imageResponse.status === "500" ||
+            imageResponse.status === "400"
+          ) {
+            return Swal.fire({
+              title: "Error!",
+              text: "Hubo un error al subir la imagen!",
+              type: "error",
+              confirmButtonText: "Continuar",
+            });
+          }
+
           refetch();
+          setModalOpen(false);
 
           return Swal.fire({
             title: "Actividad editada!",
@@ -142,6 +209,9 @@ const ActivitiesTable = () => {
             confirmButtonText: "Continuar",
           });
         } catch (err) {
+          console.log(err);
+
+          setModalOpen(false);
           return Swal.fire({
             title: "Error!",
             text: "Hubo un error al editar la actividad.",
@@ -178,7 +248,7 @@ const ActivitiesTable = () => {
             }
           );
           const { results: data } = await response.json();
-          
+
           if (!data.ok) {
             return Swal.fire({
               title: "Error!",
@@ -261,7 +331,6 @@ const ActivitiesTable = () => {
               columns={colDefs}
               data={loading ? [] : data.results}
               title="Listado de actividades"
-              deleteAction
               editAction
               detailAction
             ></DataTable>

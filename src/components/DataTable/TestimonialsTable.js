@@ -133,7 +133,7 @@ const TestimonialsTable = () => {
         }
       );
 
-      if (imageResponse.status === "200") {
+      if (imageResponse.status === "500" || imageResponse.status === "400") {
         return Swal.fire({
           title: "Error!",
           text: "Hubo un error al subir la imagen!",
@@ -215,7 +215,10 @@ const TestimonialsTable = () => {
             }
           );
 
-          if (imageResponse.status === "200") {
+          if (
+            imageResponse.status === "500" ||
+            imageResponse.status === "400"
+          ) {
             return Swal.fire({
               title: "Error!",
               text: "Hubo un error al subir la imagen!",

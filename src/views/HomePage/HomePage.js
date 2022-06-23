@@ -36,6 +36,11 @@ const dataTestimony = [
     description:
       "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
   },
+  {
+    name: "Nombre y Apellido",
+    description:
+      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
+  },
 ];
 
 const HomePage = () => {
@@ -49,6 +54,10 @@ const HomePage = () => {
 
   const { data: newsData, loading: loadingNews } = useFetch(
     process.env.REACT_APP_NEWS_ENDPOINT
+  );
+
+  const { data: testimonialsData, loading: testimonialsLoading } = useFetch(
+    process.env.REACT_APP_TESTIMONIALS_ENDPOINT
   );
 
   return (
@@ -69,7 +78,8 @@ const HomePage = () => {
         CardComponent={StaffCard}
       ></CardList>
       <CardList
-        data={dataTestimony}
+        data={testimonialsData.results?.slice(0, 5)}
+        loading={testimonialsLoading}
         title="Testimonios"
         link="/testimonials"
         CardComponent={TestimonyCard}
