@@ -39,6 +39,7 @@ import Activity from "./views/Activities/Activity";
 import ContactsList from "./components/Backoffice/ContactsList";
 
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import TestimoniesPage from "./views/Testimonies/TestimoniesPage";
 
 function App() {
   const user = useSelector(({ user }) => user.entity);
@@ -55,7 +56,7 @@ function App() {
               <Route path="staff" element={<StaffPage/>} />
               <Route path="news" element={<NewsPage />} />
               <Route path="news/:id" element={<Detail />} />
-              <Route path="testimonials" element={<h1>Testimonials</h1>} />
+              <Route path="testimonials" element={<TestimoniesPage/>} />
               <Route path="contact" element={<ContactForm />} />
               <Route path="contribute" element={<h1>Contribute</h1>} />
               <Route path="login" element={<LoginView />} />

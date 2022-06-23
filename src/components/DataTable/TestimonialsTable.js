@@ -57,7 +57,7 @@ const TestimonialsTable = () => {
     // traigo todos los testimonios
     process.env.REACT_APP_TESTIMONIALS_ENDPOINT // la ruta se encuentra .env
   );
-  // console.log(data)
+  console.log(data);
 
   // Data from last row selected
   const [selectedRowData, setSelectedRowData] = useState({
