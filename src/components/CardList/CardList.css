@@ -70,14 +70,18 @@
   overflow: hidden;
   height: 250px !important;
   border-radius: 20px;
+  background-color: black;
+  border: none;
 }
 
 .staffCard_container img {
-  position: absolute;
-  object-fit: cover;
   height: 100%;
-  z-index: 0;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  opacity: 0.85;
   top: 0;
+  left: 0;
 }
 
 .staffCard_container p,

@@ -10,39 +10,6 @@ import { Container } from "react-bootstrap";
 import TestimonyCard from "../../components/CardList/TestimonyCard";
 import NewCard from "../../components/CardList/NewCard";
 
-const dataTestimony = [
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-];
-
 const HomePage = () => {
   const { data: publicInfo, loading: loadingInfo } = useFetch(
     process.env.REACT_APP_PUBLIC_ENDPOINT
@@ -71,7 +38,7 @@ const HomePage = () => {
         <Loader></Loader>
       )}
       <CardList
-        data={staffInfo.results}
+        data={staffInfo.results?.slice(0, 5)}
         loading={loadingStaff}
         title="Nuestro staff"
         link="/staff"
