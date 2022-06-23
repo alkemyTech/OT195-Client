@@ -6,7 +6,7 @@ const TestimonyCard = (props) => {
   const { name, content, image } = cardData;
 
   return (
-    <Col className="mb-lg-3 mb-xl-0 card-container">
+    <Col className="mb-3  card-container">
       <Card className="testimonyCard_container">
         <Row className="mx-2 my-3 ">
           <Col xs={12}>

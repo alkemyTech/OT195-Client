@@ -18,7 +18,10 @@ const NewsSlider = ({ newsData }) => {
           <Carousel.Caption>
             <div className="content-container">
               <h2 className="newTitle mb-2">{item.name}</h2>
-              <p className="newContent mb-5">{item.content}</p>
+              <div
+                className="newContent mb-5"
+                dangerouslySetInnerHTML={{ __html: item.content }}
+              ></div>
               <ButtonComponent
                 className="btn-news"
                 callbackClick={() => navigate("/news/" + item.id)}
