@@ -3,6 +3,7 @@ import TextField from "../Forms/TextField";
 import * as Yup from "yup";
 import RichText from "../Forms/RichText";
 import Select from "../Forms/Select";
+import ImageInput from "./ImageInput";
 
 import * as Bootstrap from "react-bootstrap";
 import Button from "../Button";
@@ -10,28 +11,16 @@ import Button from "../Button";
 const NewsForm = (props) => {
   const { values, fetchMethod } = props;
 
-  const SUPPORTED_FORMATS = [
-    "image/jpg",
-    "image/jpeg",
-    "image/gif",
-    "image/png",
-  ];
-
   return (
     <Formik
       initialValues={{
         name: values?.name || "",
-        image: "",
+        image: values?.image || null,
         content: values?.content || "",
         categoryId: "1",
       }}
       validationSchema={Yup.object({
         name: Yup.string().required("El nombre es requerido."),
-        // image: Yup.mixed().test(
-        //   "fileFormat",
-        //   "Formato no válido",
-        //   (value) => value && SUPPORTED_FORMATS.includes(value.type)
-        // ),
         categoryId: Yup.string().required("La categoria es requerida."),
         content: Yup.string().required("El contenido es requerido."),
       })}
@@ -44,12 +33,7 @@ const NewsForm = (props) => {
           <option value="2">Categoria 2</option>
           <option value="3">Categoria 3</option>
         </Select>
-        <TextField
-          name="image"
-          type="file"
-          label="Imagen"
-          accept="image/png, image/jpeg, image/jpg"
-        ></TextField>
+        <ImageInput name="image" label="Imagen"></ImageInput>
         <RichText name="content" label="Contenido"></RichText>
         <Button type="submit" styles="primary">
           Guardar

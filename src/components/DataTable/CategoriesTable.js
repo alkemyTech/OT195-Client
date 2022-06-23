@@ -7,6 +7,7 @@ import useFetch from "../../hooks/useFetch";
 import Loader from "../Loader/Loader";
 import CategoriesForm from "../Forms/CategoriesForm";
 import FormModal from "../Forms/FormModal";
+import ButtonComponent from "../Button";
 
 const CategoriesTable = () => {
   const [colDefs] = useState([
@@ -52,7 +53,7 @@ const CategoriesTable = () => {
   const [showEdit, setShowEdit] = useState(false);
 
   // Display "POST" Form
-  //   const [showAdd, setShowAdd] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
 
   // Method to POST Form to the server endpoint
   // const postForm = async (values) => {};
@@ -174,26 +175,26 @@ const CategoriesTable = () => {
   }, [modalOpen]);
 
   // Custom component on the DataTable header ====================
-  //  const CustomToolbar = () => {
-  //    // Add button
-  //   return (
-  //     <ButtonComponent
-  //       styles="primary"
-  //       callbackClick={() => {
-  //         setModalOpen(true);
-  //         setSelectedRowData([]);
-  //         setShowAdd(true);
-  //       }}
-  //     >
-  //       Nuevo
-  //     </ButtonComponent>
-  //   );
-  // };
+  const CustomToolbar = () => {
+    // Add button
+    return (
+      <ButtonComponent
+        styles="primary mx-4"
+        callbackClick={() => {
+          setModalOpen(true);
+          setSelectedRowData([]);
+          setShowAdd(true);
+        }}
+      >
+        Nuevo
+      </ButtonComponent>
+    );
+  };
 
   return (
     <DataTableContext.Provider
       value={{
-        // CustomToolbar,
+        CustomToolbar,
         modal: {
           modalOpen,
           setModalOpen,
@@ -203,7 +204,7 @@ const CategoriesTable = () => {
           setSelectedRowData,
         },
         actions: {
-          //   showAdd,
+          showAdd,
           showEdit,
           setShowEdit,
           deleteRow,
