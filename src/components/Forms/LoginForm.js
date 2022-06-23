@@ -2,7 +2,6 @@ import * as Bootstrap from "react-bootstrap";
 import { Formik, Form } from "formik";
 import TextField from "../Forms/TextField";
 import Button from "../Button";
-import Select from "./Select";
 
 import * as Yup from "yup";
 

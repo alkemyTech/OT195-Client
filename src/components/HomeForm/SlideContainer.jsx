@@ -13,11 +13,10 @@ const SlideContainer = ({object}) => {
             <div className={Styles.viewContainer}>
                 <h2 className={Styles.outSubTitle}>{`Slide ${object.order}`}</h2>
                 <div className={Styles.slideTextContainer}>
-                    <img src={image} className={Styles.slideImg}/>
+                    <img src={image} alt="slide" className={Styles.slideImg}/>
                     <p className={Styles.slideText}>{text}</p>
                 </div>
             </div>
-            
             <div className={Styles.inputContainer}>
                 
                 <label htmlFor="slideImg" >

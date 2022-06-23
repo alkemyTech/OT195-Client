@@ -4,13 +4,13 @@ import { Col, Container, Row } from "react-bootstrap";
 import Swal from "sweetalert2";
 import DataTable from "./DataTable";
 
-// import  from "../Forms/TestimonieForm"
+// import  from "../Forms/TestimonyForm"
 import ButtonComponent from "../Button";
 import { DataTableContext } from "../../contexts/DataTableContext";
 import FormModal from "../Forms/FormModal";
 import useFetch from "../../hooks/useFetch";
 import Loader from "../Loader/Loader";
-import TestimonieForm from "../Forms/TestimonieForm";
+import TestimonyForm from "../Forms/TestimoniesForm";
 
 const TestimonialsTable = () => {
   const [colDefs] = useState([
@@ -24,8 +24,11 @@ const TestimonialsTable = () => {
       field: "image",
       render: (rowData) => (
         <Image
+          width="150"
+          height="150"
+          rounded
+          style={{ objectFit: "cover" }}
           src={rowData.image}
-          style={{ width: "100%", maxWidth: "150px", display: "block" }}
           alt={rowData.name}
         />
       ),
@@ -33,6 +36,15 @@ const TestimonialsTable = () => {
     {
       title: "Fecha de creacion",
       field: "createdAt",
+      render: (rowData) => {
+        const date = new Date(rowData.createdAt);
+
+        let year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString().padStart(2, "0");
+        let day = date.getDate().toString().padStart(2, "0");
+
+        return <p>{`${day}/${month}/${year}`}</p>;
+      },
     },
   ]);
 
@@ -45,7 +57,7 @@ const TestimonialsTable = () => {
     // traigo todos los testimonios
     process.env.REACT_APP_TESTIMONIALS_ENDPOINT // la ruta se encuentra .env
   );
-  // console.log(data)
+  console.log(data);
 
   // Data from last row selected
   const [selectedRowData, setSelectedRowData] = useState({
@@ -72,11 +84,13 @@ const TestimonialsTable = () => {
 
   // Method to POST Form to the server endpoint
   const postForm = async (values) => {
-    // metodo para el post de testimonio
     try {
-      // console.log(values)
+      // Here I separate the image and the rest of the values from the form
+      const { image, ...formData } = values;
+
+      // 1. Request to create the entity on the database ============== First fetch
       const response = await fetch(
-        `${process.env.REACT_APP_TESTIMONIALS_ENDPOINT}testimonials`,
+        process.env.REACT_APP_TESTIMONIALS_ENDPOINT,
         {
           method: "POST",
           headers: {
@@ -84,19 +98,52 @@ const TestimonialsTable = () => {
             "Content-Type": "application/json",
             "X-Api-Key": window.localStorage.getItem("token"),
           },
-          body: JSON.stringify(values),
+          body: JSON.stringify(formData),
         }
       );
+
       const data = await response.json();
+
+      // If everything is ok, then I continue
       if (!data.ok) {
         return Swal.fire({
           title: "Error!",
-          text: "Hubo un error al crear la entrada.",
+          text: "Hubo un error al crear el testimonio!",
           type: "error",
           confirmButtonText: "Continuar",
         });
       }
-      refetch(); // lo que hace que se haga el cambio y que muestre el nuevo post
+
+      // 2. Get the Id from the new created entity
+      const { id: testimonyId } = data.results;
+
+      // 3. Create a FormData and append the image from the form
+      const imageRequest = new FormData();
+      imageRequest.append("image", image);
+
+      // 4. Request to the upload endpoint from the server to modify the image ========== Second fetch
+      const imageResponse = await fetch(
+        "http://localhost:3005/upload/testimonies/" + testimonyId,
+        {
+          method: "PUT",
+          headers: {
+            "X-Api-Key": window.localStorage.getItem("token"),
+          },
+          body: imageRequest,
+        }
+      );
+
+      if (imageResponse.status === "500" || imageResponse.status === "400") {
+        return Swal.fire({
+          title: "Error!",
+          text: "Hubo un error al subir la imagen!",
+          type: "error",
+          confirmButtonText: "Continuar",
+        });
+      }
+
+      refetch();
+
       return Swal.fire({
         title: "Testimonio creado!",
         type: "success",
@@ -124,8 +171,11 @@ const TestimonialsTable = () => {
     }).then(async (result) => {
       if (result) {
         try {
+          const { image, ...formData } = values;
+
+          // 1. Request to create the entity on the database ============== First fetch
           const response = await fetch(
-            `${process.env.REACT_APP_TESTIMONIALS_ENDPOINT}testimonials/${selectedRowData.id}`,
+            process.env.REACT_APP_TESTIMONIALS_ENDPOINT + selectedRowData.id,
             {
               method: "PUT",
               headers: {
@@ -133,27 +183,65 @@ const TestimonialsTable = () => {
                 "Content-Type": "application/json",
                 "X-Api-Key": window.localStorage.getItem("token"),
               },
-              body: JSON.stringify(values),
+              body: JSON.stringify(formData),
             }
           );
+
           const data = await response.json();
+
+          // If everything is ok, then I continue
           if (!data.ok) {
             return Swal.fire({
               title: "Error!",
-              text: "Hubo un error al editar la entrada.",
+              text: "Hubo un error al editar el testimonio!",
               type: "error",
               confirmButtonText: "Continuar",
             });
           }
+
+          // 2. Create a FormData and append the image from the form
+          const imageRequest = new FormData();
+          imageRequest.append("image", image);
+
+          // 3. Request to the upload endpoint from the server to modify the image ========== Second fetch
+          const imageResponse = await fetch(
+            "http://localhost:3005/upload/testimonies/" + selectedRowData.id,
+            {
+              method: "PUT",
+              headers: {
+                "X-Api-Key": window.localStorage.getItem("token"),
+              },
+              body: imageRequest,
+            }
+          );
+
+          if (
+            imageResponse.status === "500" ||
+            imageResponse.status === "400"
+          ) {
+            return Swal.fire({
+              title: "Error!",
+              text: "Hubo un error al subir la imagen!",
+              type: "error",
+              confirmButtonText: "Continuar",
+            });
+          }
+
           refetch();
 
           return Swal.fire({
-            title: "Entrada editada!",
+            title: "Testimonio editado!",
             type: "success",
             confirmButtonText: "Continuar",
           });
         } catch (error) {
           console.log(error);
+          return Swal.fire({
+            title: "Error!",
+            text: "Hubo un error al editar el testimonio",
+            type: "error",
+            confirmButtonText: "Continuar",
+          });
         }
       }
     });
@@ -172,7 +260,7 @@ const TestimonialsTable = () => {
     // Add button
     return (
       <ButtonComponent
-        styles="primary"
+        styles="primary mx-4"
         callbackClick={() => {
           setModalOpen(true);
           setSelectedRowData([]);
@@ -210,23 +298,22 @@ const TestimonialsTable = () => {
             <DataTable
               columns={colDefs}
               data={loading ? [] : data.results}
-              detailAction={false} // si esta en false saco la accion de ver detalle en el front
+              editAction
               title="Listado de Testimonios"
             ></DataTable>
             <FormModal name="Testimonio">
-              {" "}
               {/*es el nombre que va tener */}
               {showAdd ? (
-                <TestimonieForm fetchMethod={postForm}></TestimonieForm>
+                <TestimonyForm fetchMethod={postForm}></TestimonyForm>
               ) : null}
               {showEdit ? (
                 detailsLoading ? (
                   <Loader></Loader>
                 ) : (
-                  <TestimonieForm
+                  <TestimonyForm
                     values={detailsLoading ? [] : detailsData.result}
                     fetchMethod={patchForm}
-                  ></TestimonieForm>
+                  ></TestimonyForm>
                 )
               ) : null}
             </FormModal>

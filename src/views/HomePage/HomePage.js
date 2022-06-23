@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 import useFetch from "../../hooks/useFetch";
 
@@ -6,37 +7,8 @@ import Loader from "../../components/Loader/Loader";
 import Title from "../../components/Title/Title";
 import CardList from "../../components/CardList/CardList";
 import StaffCard from "../../components/CardList/StaffCard";
-import { Container } from "react-bootstrap";
 import TestimonyCard from "../../components/CardList/TestimonyCard";
 import NewCard from "../../components/CardList/NewCard";
-
-const dataTestimony = [
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-  {
-    name: "Nombre y Apellido",
-    description:
-      "testimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoniotestimoni",
-  },
-];
 
 const HomePage = () => {
   const { data: publicInfo, loading: loadingInfo } = useFetch(
@@ -51,6 +23,10 @@ const HomePage = () => {
     process.env.REACT_APP_NEWS_ENDPOINT
   );
 
+  const { data: testimonialsData, loading: testimonialsLoading } = useFetch(
+    process.env.REACT_APP_TESTIMONIALS_ENDPOINT
+  );
+
   return (
     <Container fluid="md">
       {!loadingInfo ? (
@@ -62,20 +38,21 @@ const HomePage = () => {
         <Loader></Loader>
       )}
       <CardList
-        data={staffInfo.results}
+        data={staffInfo.results?.slice(0, 5)}
         loading={loadingStaff}
         title="Nuestro staff"
         link="/staff"
         CardComponent={StaffCard}
       ></CardList>
       <CardList
-        data={dataTestimony}
+        data={testimonialsData.results?.slice(0, 5)}
+        loading={testimonialsLoading}
         title="Testimonios"
-        link="/testimonials"
+        link="testimonials"
         CardComponent={TestimonyCard}
       ></CardList>
       <CardList
-        data={newsData.results}
+        data={newsData.results?.slice(0, 5)}
         loading={loadingNews}
         title="Últimas novedades"
         link="/news"
