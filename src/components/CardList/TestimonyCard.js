@@ -1,6 +1,8 @@
 import { Card, Col, Image, Row } from "react-bootstrap";
 import imagePlaceholder from "../../images/backoffice/user.png";
 
+
+// TestimonyCard se utiliza en homePage.js , lo utiliza en CardListTestimny.js que cree
 const TestimonyCard = (props) => {
   const { cardData } = props;
   console.log(cardData)
@@ -15,17 +17,18 @@ const TestimonyCard = (props) => {
             <Image
               roundedCircle
               style={{ width: "75px" }}
-              src={image ? image : imagePlaceholder}
+              src={image ? image : imagePlaceholder} // si no hay nada en image va a mostrar una imagen por defecto
               alt="user"
               className="mb-2"
             ></Image>
           </Col>
           <Col xs={12} className="mb-2">
-            <h6 className="m-0">{name}</h6>
+            <h2 className="m-0">{name}</h2>
           </Col>
           <Col xs={12}>
-            <p className="m-0 testimonyQuote">{content.replace(/<[^>]*>?/g, '')}</p>
-          </Col>
+            <div  dangerouslySetInnerHTML={{ __html: content }}/>
+            {/* <p className="m-0 testimonyQuote">{content.replace(/<[^>]*>?/g, '')}</p >  */}
+          </Col> 
         </Row>
       </Card>
     </Col>

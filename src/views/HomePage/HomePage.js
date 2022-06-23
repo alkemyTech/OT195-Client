@@ -9,6 +9,7 @@ import StaffCard from "../../components/CardList/StaffCard";
 import { Container } from "react-bootstrap";
 import TestimonyCard from "../../components/CardList/TestimonyCard";
 import NewCard from "../../components/CardList/NewCard";
+import CardListTestimony from "../../components/CardList/CardListTestimony";
 
 // const dataTestimony = [
 //   {
@@ -70,13 +71,13 @@ const HomePage = () => {
         link="/staff"
         CardComponent={StaffCard}
       ></CardList>
-      <CardList
+      <CardListTestimony
         data={testimonials.results}
         loading = {loadingTestimonials}
         title="Testimonios"
-        link="/testimonies"
+        link="testimonials"
         CardComponent={TestimonyCard}
-      ></CardList>
+      ></CardListTestimony>
       <CardList
         data={newsData.results}
         loading={loadingNews}
