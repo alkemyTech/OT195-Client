@@ -4,7 +4,7 @@ import imagePlaceholder from "../../images/backoffice/user.png";
 // TestimonyCard se utiliza en homePage.js , lo utiliza en CardListTestimny.js que cree
 const TestimonyCard = (props) => {
   const { cardData } = props;
-  console.log(cardData);
+  // console.log(cardData);
 
   const { name, content, image } = cardData;
 

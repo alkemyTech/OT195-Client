@@ -57,7 +57,7 @@ const TestimonialsTable = () => {
     // traigo todos los testimonios
     process.env.REACT_APP_TESTIMONIALS_ENDPOINT // la ruta se encuentra .env
   );
-  console.log(data);
+  // console.log(data);
 
   // Data from last row selected
   const [selectedRowData, setSelectedRowData] = useState({
@@ -114,7 +114,7 @@ const TestimonialsTable = () => {
         });
       }
 
-      // 2. Get the Id from the new created entity
+      // 2. Get the Id from the new created entity, (aca comienza para que se guarde la imagen)
       const { id: testimonyId } = data.results;
 
       // 3. Create a FormData and append the image from the form
@@ -247,6 +247,62 @@ const TestimonialsTable = () => {
     });
   };
 
+  // Method to DELETE Form the server endpoint
+  // const deleteRow = (values) => {
+  function deleteRow(values){
+    Swal.fire({
+      title: "Confirmar eliminación",
+      type: "warning",
+      text: "¿Estás seguro que deseas eliminar la selección?",
+      showCancelButton: true,
+      cancelButtonText: "Cancelar",
+      reverseButtons: true,
+    }).then(async (result) => {
+      if (result.value) {
+        console.log(result);
+        try {
+          const response = await fetch(
+            process.env.REACT_APP_TESTIMONIALS_ENDPOINT  + values.id,
+            {
+              method: "DELETE",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "X-Api-Key": window.localStorage.getItem("token"),
+              },
+            }
+          );
+
+          const data = await response.json();
+
+          if (!data.ok) {
+            return Swal.fire({
+              title: "Error!",
+              text: "Hubo un error al eliminar la entrada.",
+              type: "error",
+              confirmButtonText: "Continuar",
+            });
+          }
+
+          refetch();
+
+          return Swal.fire({
+            title: "Entrada eliminada!",
+            type: "success",
+            confirmButtonText: "Continuar",
+          });
+        } catch (err) {
+          return Swal.fire({
+            title: "Error!",
+            text: "Hubo un error al eliminar la entrada.",
+            type: "error",
+            confirmButtonText: "Continuar",
+          });
+        }
+      }
+    });
+  };
+
   useEffect(() => {
     //   // Hide every form whenever the user closes the modal window
     if (!modalOpen) {
@@ -287,7 +343,8 @@ const TestimonialsTable = () => {
         actions: {
           showAdd,
           showEdit,
-          setShowEdit,
+          setShowEdit, // accion para editar testimonio
+          deleteRow, // accion para eleminar testimonio
           goToDetails: (row) => {},
         },
       }}
@@ -297,12 +354,12 @@ const TestimonialsTable = () => {
           <Col>
             <DataTable
               columns={colDefs}
-              data={loading ? [] : data.results}
-              editAction
-              title="Listado de Testimonios"
+              data={loading ? [] : data.results} // si loading es true muestro un array vacio sino va mostrar los testimonios
+              editAction // muestro la opcion para editar el testimonio
+              deleteAction // muestro la opcion para eleminar el testimonio
+              title="Listado de Testimonios" // es el nombre que va tener la tabla
             ></DataTable>
-            <FormModal name="Testimonio">
-              {/*es el nombre que va tener */}
+            <FormModal >
               {showAdd ? (
                 <TestimonyForm fetchMethod={postForm}></TestimonyForm>
               ) : null}
