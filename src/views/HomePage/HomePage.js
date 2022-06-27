@@ -45,10 +45,10 @@ const HomePage = () => {
         CardComponent={StaffCard}
       ></CardList>
       <CardList
-        data={testimonialsData.results?.slice(0, 5)}
+        data={testimonialsData.results?.slice(-5)} // corto el array y muestro los ultimos 5
         loading={testimonialsLoading}
         title="Testimonios"
-        link="testimonials"
+        link="/testimonials"
         CardComponent={TestimonyCard}
       ></CardList>
       <CardList

@@ -18,7 +18,7 @@ export default function TestimoniesSlider({testimoniesData}){
           <img
             src={el.image ? el.image : imagePlaceholder } // si no hay nada en imagen va a mostrar una imagen por defecto
             alt={el.name}
-            style={{width:"50%" , height:"50%", marginLeft:"25%" }} // cambio el tamaño de la imagen y lo centro
+            style={{width:"40%" , height:"40%", marginLeft:"30%" }} // cambio el tamaño de la imagen y lo centro
           />
           <Carousel.Caption key={el.id}>
             <div className='content-container'>
