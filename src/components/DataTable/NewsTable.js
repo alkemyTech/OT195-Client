@@ -81,6 +81,8 @@ const NewsTable = () => {
   // Method to POST Form to the server endpoint
   const postForm = async (values) => {
     try {
+      const { image, ...formValues } = values;
+
       const response = await fetch(process.env.REACT_APP_NEWS_ENDPOINT, {
         method: "POST",
         headers: {
@@ -88,10 +90,10 @@ const NewsTable = () => {
           "Content-Type": "application/json",
           "X-Api-Key": window.localStorage.getItem("token"),
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify(formValues),
       });
 
-      const { results: data } = await response.json();
+      const data = await response.json();
 
       if (!data.ok) {
         return Swal.fire({
@@ -102,14 +104,41 @@ const NewsTable = () => {
         });
       }
 
-      refetch();
+      const { id } = data.results;
 
+      const imageRequest = new FormData();
+      imageRequest.append("image", image);
+
+      const imageResponse = await fetch(
+        process.env.REACT_APP_UPLOADS_ENDPOINT + "news/" + id,
+        {
+          method: "PUT",
+          headers: {
+            "X-Api-Key": window.localStorage.getItem("token"),
+          },
+          body: imageRequest,
+        }
+      );
+
+      if (imageResponse.status === "500" || imageResponse.status === "400") {
+        return Swal.fire({
+          title: "Error!",
+          text: "Hubo un error al subir la imagen!",
+          type: "error",
+          confirmButtonText: "Continuar",
+        });
+      }
+
+      refetch();
+      setModalOpen(false);
       return Swal.fire({
         title: "Entrada creada!",
         type: "success",
         confirmButtonText: "Continuar",
       });
     } catch (err) {
+      console.log(err);
+      setModalOpen(false);
       return Swal.fire({
         title: "Error!",
         text: "Hubo un error al crear la entrada.",
@@ -129,10 +158,12 @@ const NewsTable = () => {
       cancelButtonText: `Cancelar`,
     }).then(async (result) => {
       if (result) {
+        const { image, ...formValues } = values;
+
         try {
           const response = await fetch(
             process.env.REACT_APP_NEWS_ENDPOINT +
-              "/modify/" +
+              "modify/" +
               selectedRowData.id,
             {
               method: "PUT",
@@ -141,11 +172,11 @@ const NewsTable = () => {
                 "Content-Type": "application/json",
                 "X-Api-Key": window.localStorage.getItem("token"),
               },
-              body: JSON.stringify(values),
+              body: JSON.stringify(formValues),
             }
           );
 
-          const { results: data } = await response.json();
+          const data = await response.json();
 
           if (!data.ok) {
             return Swal.fire({
@@ -156,14 +187,44 @@ const NewsTable = () => {
             });
           }
 
-          refetch();
+          const imageRequest = new FormData();
+          imageRequest.append("image", image);
 
+          const imageResponse = await fetch(
+            process.env.REACT_APP_UPLOADS_ENDPOINT +
+              "news/" +
+              selectedRowData.id,
+            {
+              method: "PUT",
+              headers: {
+                "X-Api-Key": window.localStorage.getItem("token"),
+              },
+              body: imageRequest,
+            }
+          );
+
+          if (
+            imageResponse.status === "500" ||
+            imageResponse.status === "400"
+          ) {
+            return Swal.fire({
+              title: "Error!",
+              text: "Hubo un error al subir la imagen!",
+              type: "error",
+              confirmButtonText: "Continuar",
+            });
+          }
+
+          refetch();
+          setModalOpen(false);
           return Swal.fire({
             title: "Entrada editada!",
             type: "success",
             confirmButtonText: "Continuar",
           });
         } catch (err) {
+          console.log(err);
+          setModalOpen(false);
           return Swal.fire({
             title: "Error!",
             text: "Hubo un error al editar la entrada.",

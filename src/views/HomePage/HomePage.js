@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 import useFetch from "../../hooks/useFetch";
 
@@ -6,7 +7,6 @@ import Loader from "../../components/Loader/Loader";
 import Title from "../../components/Title/Title";
 import CardList from "../../components/CardList/CardList";
 import StaffCard from "../../components/CardList/StaffCard";
-import { Container } from "react-bootstrap";
 import TestimonyCard from "../../components/CardList/TestimonyCard";
 import NewCard from "../../components/CardList/NewCard";
 
@@ -49,11 +49,11 @@ const HomePage = () => {
         data={testimonialsData.results?.slice(0, 5)}
         loading={testimonialsLoading}
         title="Testimonios"
-        link="/testimonials"
+        link="testimonials"
         CardComponent={TestimonyCard}
       ></CardList>
       <CardList
-        data={newsData.results}
+        data={newsData.results?.slice(0, 5)}
         loading={loadingNews}
         title="Últimas novedades"
         link="/news"
