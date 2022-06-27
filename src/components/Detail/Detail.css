@@ -2,8 +2,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
     width: 100%;
     height: max-content;
+    margin-top: 20px;
 }
 
 .btn-title {
@@ -68,9 +70,9 @@
     }
 }
 
-@media only screen and (max-width:1000px) {    
+@media only screen and (max-width:1050px) {    
     .text-title h1 {
-        font-size: 3rem;
+        font-size: 2rem;
     }
     
     .text-title p {
@@ -78,9 +80,9 @@
     }
 }
 
-@media only screen and (max-width:850px) {
+@media only screen and (max-width:900px) {
     .text-title h1 {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
     
     .text-title p {
@@ -88,7 +90,7 @@
     }
 }
 
-@media only screen and (max-width:722px) {
+@media only screen and (max-width:762px) {
     .title-box {
         padding: 0 1rem;
     }
@@ -105,4 +107,16 @@
     .text-title p {
         font-size: 1rem;
     }
+}
+
+@media only screen and (max-width:562px) {
+
+    .text-title h1 {
+        font-size: 2rem;
+    }
+
+    .text-title{
+        padding: 0 2rem;
+    }
+
 }

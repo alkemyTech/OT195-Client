@@ -2,14 +2,10 @@ import React from "react";
 
 import { Row, Col, Container, Image } from "react-bootstrap";
 import Text from "./Text";
-import { AdminContext } from "../../contexts/adminContext";
-import { useContext } from "react";
-
 import "./Title.css";
 
 const Title = (props) => {
-  const { title, text } = props;
-  const { welcomeData } = useContext(AdminContext);
+  const { title, text, image } = props;
   return (
     <Container className="my-5 welcomeContainer" fluid>
       <Row>
@@ -24,7 +20,7 @@ const Title = (props) => {
         >
           <Image
             className="welcomeImage"
-            src={welcomeData.image}
+            src={image}
             alt="SomosMasWelcome"
           ></Image>
         </Col>

@@ -10,10 +10,15 @@
     width: 100%
 }
 
+.inputImg{
+    width: 200px;
+    margin: 10px
+}
+
 .mainContainer{
     margin: 30px 0;
     border: 1px solid #DB5252;
-    padding-bottom: 45px;
+    padding-bottom: 75px;
     border-radius: 20px;
 }
 
@@ -43,19 +48,17 @@
     justify-content: space-around;
     align-items: center;
     text-align: center;
-    height: 30vh;
 }
 
 .labelContainer{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
+    align-items: center;
 }
 
 .name{
-    position: relative;
-    top: 10vh;
+    padding: 80px 0;
 }
 
 .saveChanges{
@@ -65,5 +68,15 @@
     background-color: #DB5252;
     border-color: white;
     font-size: 20px;
+}
+
+@media screen and (max-width: 720px){
+    .inputContainer{
+        flex-direction: column;
+    }
+    .name{
+        padding-bottom:10px;
+        padding-top: 30px;
+    }
 }
 

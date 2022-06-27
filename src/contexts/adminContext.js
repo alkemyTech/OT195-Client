@@ -10,41 +10,17 @@ export const AdminContext = createContext();
 
 export const AdminProvider = ({children}) =>{
 
-    const activitiesRes = [
-        {
-            order: 1,
-            imageUrl: foto3,
-            text: 'Actividad de natación',
-        },
-        {   
-            order: 2,
-            imageUrl: foto6,
-            text: 'Familias colaboran en las actividades',
-        },
-        {
-            order: 3,
-            imageUrl: foto10,
-            text: 'Actividades recreativas',
-        },
-    ]
-
     const welcomeRes= {
-        title:"Hola! Bienvenidxs",
-        image: imgManos,
-        text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Adipiscing dignissim ac et eleifend lacus, rhoncus, dignissim sagittis. Tellus ac a, elementum ut. Tellus a morbi tincidunt ultricies malesuada eget turpis. Lacus enim non enim, velit hac turpis interdum arcu. Suspendisse at vel ultrices amet orci enim lectus porttitor ut."
+        title:"",
+        image: "",
+        text: ""
     }
 
-    
-
-    const [activitiesData, setActivitiesData] = useState(activitiesRes)
     const [welcomeData, setWelcomeData] = useState(welcomeRes)
     const [organizationData, setOrganizationData] = useState(null)
     const [newsData, setNewsData] = useState(null)
 
     const value = {
-        activitiesData,
-        setActivitiesData,
-
         welcomeData,
         setWelcomeData,
 

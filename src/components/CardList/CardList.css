@@ -8,8 +8,10 @@
 
 .card-row {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .card-container {
@@ -21,7 +23,7 @@
 
 .newCard_container {
   background-color: var(--new-card-background);
-  height: 250px !important;
+ /*  //height: 250px !important; */
 }
 
 @media only screen and (min-width: 768px) {
@@ -31,11 +33,6 @@
 }
 
 @media only screen and (min-width: 1400px) {
-  .card-row {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
   .card-container {
     min-width: 250px;
   }
@@ -54,6 +51,7 @@
   border-radius: 20px;
   min-height: 250px !important;
   max-height: 250px !important;
+  overflow: hidden;
 }
 
 .news-content p {
@@ -72,6 +70,7 @@
   border-radius: 20px;
   background-color: black;
   border: none;
+  min-width: 230px;
 }
 
 .staffCard_container img {

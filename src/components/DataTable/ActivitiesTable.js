@@ -173,6 +173,7 @@ const ActivitiesTable = () => {
           // 2. Create a FormData and append the image from the form
           const imageRequest = new FormData();
           imageRequest.append("image", image);
+          
 
           // 3. Request to the upload endpoint from the server to modify the image ========== Second fetch
           const imageResponse = await fetch(
