@@ -33,6 +33,7 @@ const HomePage = () => {
         <Title
           title={publicInfo.results.welcomeTitle}
           text={publicInfo.results.welcomeText}
+          image={publicInfo.results.welcomeImage}
         />
       ) : (
         <Loader></Loader>

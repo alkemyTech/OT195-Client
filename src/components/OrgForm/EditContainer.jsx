@@ -21,16 +21,17 @@ const EditContainer = () => {
 
             <div className={Styles.inputContainer}>
 
-
                 <div className={Styles.labelContainer}>
-                    <img src={logo} alt="logo"/>
+                    <img src={logo} alt="logo" className={Styles.inputImg}/>
                     <label htmlFor="orgLogo"  >
                                 <h5>Logo</h5>
-                                <input id="orgLogo" value={logo} onChange={async(event)=>{
-                                    setLogo(event.target.value)
+                                <input id="orgLogo" type="file" onChange={async(event)=>{
+                                    const urlImg = URL.createObjectURL(event.target.files[0])
+                                    setLogo(urlImg)
+
                                     if(organizationData){
                                         let partialData = organizationData;
-                                        partialData.results.image = event.target.value
+                                        partialData.results.image = event.target.files[0]
                                         setOrganizationData(partialData)
                                     }
                                 }}>

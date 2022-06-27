@@ -1,20 +1,38 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import Styles from "./HomeForm.module.css";
 import { AdminContext } from '../../contexts/adminContext';
+import useFetch from '../../hooks/useFetch';
+import Loader from '../Loader/Loader';
 
 
 const WelcomeContainer = () => {
-
+    const { data: publicInfo, loading } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
     const  {welcomeData, setWelcomeData} = useContext(AdminContext)
 
-    const [title, setTitle] = useState(welcomeData.title)
-    const [text, setText] = useState(welcomeData.text)
-    const [image, setImage] = useState(welcomeData.image)
+    const [title, setTitle] = useState("")
+    const [text, setText] = useState("")
+    const [image, setImage] = useState("")
 
+    useEffect(()=>{
+        if(publicInfo.results && loading){
+            const {welcomeTitle, welcomeText, welcomeImage} = publicInfo.results
+
+            let partialData = welcomeData
+            partialData.text = welcomeText
+            partialData.title = welcomeTitle
+            setWelcomeData(partialData)
+
+            setTitle(welcomeTitle)
+            setImage(welcomeImage)
+            setText(welcomeText)
+        }
+    },[publicInfo])
+    if(loading){
+        return(<Loader/>)
+    }else{
     return (
         <div className={Styles.mainContainer}>
             <div className={Styles.viewContainer}>
-                <h2 className={Styles.outTitle}>{"Bienvenida"}</h2>
                 <div className={Styles.welcomeContainer}>
                     <div className={Styles.infoContainer}>
                         <h3>{title}</h3>
@@ -40,10 +58,11 @@ const WelcomeContainer = () => {
 
                 <label htmlFor="slideImg" >
                             <h5>Imagen</h5>
-                            <input id="slideImg" value={image} onChange={(event)=>{
-                                setImage(event.target.value)
+                            <input id="slideImg" type="file" onChange={async(event)=>{
+                                const urlImg = URL.createObjectURL(event.target.files[0])
+                                setImage(urlImg)
                                 let partialData = welcomeData;
-                                partialData.image = event.target.value
+                                partialData.image =event.target.files[0]
                                 setWelcomeData(partialData)
                             }}>
                             </input>
@@ -51,17 +70,18 @@ const WelcomeContainer = () => {
 
                 <label htmlFor="slideText" >
                             <h5>Texto</h5>
-                            <input id="slideImg" value={text} onChange={(event)=>{
+                            <textarea id="slideImg" className={Styles.textarea} value={text} onChange={(event)=>{
                                 setText(event.target.value)
                                 let partialData = welcomeData;
                                 partialData.text = event.target.value
                                 setWelcomeData(partialData)
                             }}>
-                            </input>
+                            </textarea>
                 </label>
             </div>
         </div>
     )
+    }
 }
 
 export default WelcomeContainer;

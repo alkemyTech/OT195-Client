@@ -6,6 +6,7 @@
 .bo-container {
   min-height: 90vh;
   background-color: var(--bo-background);
+  padding-top: 20px;
 }
 
 .bo-container__options {

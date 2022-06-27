@@ -22,10 +22,10 @@ const NewCard = (props) => {
             className="news-content d-flex flex-column justify-content-between"
           >
             <div dangerouslySetInnerHTML={{ __html: cardData?.content }}></div>
+          </Col>
             <Button className="btn-card w-100" onClick={callbackClick}>
               Ver novedad
             </Button>
-          </Col>
         </Row>
       </Card>
     </Col>

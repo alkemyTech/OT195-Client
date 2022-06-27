@@ -4,7 +4,7 @@ import { Col, Container, Row } from "react-bootstrap";
 
 import Button from "../Button/";
 
-const Title = (props) => {
+const Text = (props) => {
   const { title, text } = props;
 
   return (
@@ -24,4 +24,4 @@ const Title = (props) => {
   );
 };
 
-export default Title;
+export default Text;
