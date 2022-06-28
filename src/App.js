@@ -2,7 +2,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Routes, Route, useLocation } from "react-router-dom";
-import { ScrollToTop } from 'react-router-scroll-to-top';
+import { ScrollToTop } from "react-router-scroll-to-top";
 import { AnimatePresence } from "framer-motion";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -50,50 +50,50 @@ function App() {
     <AdminProvider>
       <AlertProvider>
         <AnimatePresence>
-          <ScrollToTop>
-            <Routes location={location} key={location.pathname}>
-              <Route element={<HomePageLayout />}>
-                <Route index element={<HomePage />} />
-                <Route path="home" element={<HomePage />} />
-                <Route path="staff" element={<StaffPage/>} />
-                <Route path="news" element={<NewsPage />} />
-                <Route path="news/:id" element={<Detail />} />
-                <Route path="testimonials" element={<TestimoniesPage/>} />
-                <Route path="contact" element={<ContactForm />} />
-                <Route path="contribute" element={<h1>Contribute</h1>} />
-                <Route path="login" element={<LoginView />} />
-                <Route path="signup" element={<Register />} />
-                <Route
-                  path="profile"
-                  element={
-                    <ProtectedRoute
-                      isAllowed={!!window.localStorage.getItem("token")}
-                    >
-                      <Profile />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="actividades" element={<ActivitiesLayout />}>
-                  <Route path=":id" element={<Activity />} />
-                </Route>
+          {/* <ScrollToTop> */}
+          <Routes location={location} key={location.pathname}>
+            <Route element={<HomePageLayout />}>
+              <Route index element={<HomePage />} />
+              <Route path="home" element={<HomePage />} />
+              <Route path="staff" element={<StaffPage />} />
+              <Route path="news" element={<NewsPage />} />
+              <Route path="news/:id" element={<Detail />} />
+              <Route path="testimonials" element={<TestimoniesPage />} />
+              <Route path="contact" element={<ContactForm />} />
+              <Route path="contribute" element={<h1>Contribute</h1>} />
+              <Route path="login" element={<LoginView />} />
+              <Route path="signup" element={<Register />} />
+              <Route
+                path="profile"
+                element={
+                  <ProtectedRoute
+                    isAllowed={!!window.localStorage.getItem("token")}
+                  >
+                    <Profile />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="actividades" element={<ActivitiesLayout />}>
+                <Route path=":id" element={<Activity />} />
+              </Route>
+              <Route path="*" element={<h1>404 Not Found</h1>} />
+            </Route>
+            <Route element={<ProtectedRoute isAllowed={user.roleId === 1} />}>
+              <Route path="backoffice" element={<Backofficelayout />}>
+                <Route index element={<Backoffice />} />
+                <Route path="edit-home" element={<HomeForm />} />
+                <Route path="edit-organization" element={<OrgForm />} />
+                <Route path="news" element={<EditNews />} />
+                <Route path="users" element={<Users />} />
+                <Route path="categories" element={<Categories />} />
+                <Route path="testimonials" element={<Testimonials />} />
+                <Route path="activities" element={<Activities />} />
+                <Route path="contacts" element={<ContactsList />} />
                 <Route path="*" element={<h1>404 Not Found</h1>} />
               </Route>
-              <Route element={<ProtectedRoute isAllowed={user.roleId === 1} />}>
-                <Route path="backoffice" element={<Backofficelayout />}>
-                  <Route index element={<Backoffice />} />
-                  <Route path="edit-home" element={<HomeForm />} />
-                  <Route path="edit-organization" element={<OrgForm />} />
-                  <Route path="news" element={<EditNews />} />
-                  <Route path="users" element={<Users />} />
-                  <Route path="categories" element={<Categories />} />
-                  <Route path="testimonials" element={<Testimonials />} />
-                  <Route path="activities" element={<Activities />} />
-                  <Route path="contacts" element={<ContactsList />} />
-                  <Route path="*" element={<h1>404 Not Found</h1>} />
-                </Route>
-              </Route>
-            </Routes>
-          </ScrollToTop>
+            </Route>
+          </Routes>
+          {/* </ScrollToTop> */}
         </AnimatePresence>
       </AlertProvider>
     </AdminProvider>

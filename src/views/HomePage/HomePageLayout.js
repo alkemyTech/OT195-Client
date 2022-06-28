@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Header from "../../components/Header/";
 import useFetch from "../../hooks/useFetch";
 import { motion } from "framer-motion";
+import { ScrollToTop } from "react-router-scroll-to-top";
 
 const HomePageLayout = () => {
   const { data: publicInfo } = useFetch(process.env.REACT_APP_PUBLIC_ENDPOINT);
@@ -16,7 +17,9 @@ const HomePageLayout = () => {
         exit={{ opacity: 0, transition: { duration: 0.5 } }}
         style={{ minHeight: "90vh", display: "grid", placeItems: "center" }}
       >
-        <Outlet></Outlet>
+        <ScrollToTop>
+          <Outlet></Outlet>
+        </ScrollToTop>
       </motion.main>
 
       <Footer
