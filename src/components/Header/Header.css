@@ -1,0 +1,23 @@
+.navbar-container {
+  box-shadow: 0 4px 4px 0px rgba(0, 0, 0, 0.25);
+  min-height: 80px;
+  background-color: var(--background-color);
+}
+
+.navbar-container img {
+  object-fit: cover;
+}
+
+.navbar-items {
+  font-size: 16px;
+  font-family: var(--primary-font);
+  font-weight: 400;
+}
+
+.navbar-items > a {
+  color: var(--text-1) !important;
+}
+
+.navbar-items > .active {
+  font-weight: 700;
+}

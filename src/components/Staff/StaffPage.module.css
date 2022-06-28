@@ -1,0 +1,98 @@
+.title{
+    margin-top: 50px;
+}
+
+.cardContainer{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
+
+.cardContainer img{
+    width: 250px;
+    border-radius: 30px;
+}
+
+.infoContainer{
+    width: 40%;
+}
+.infoContainer h3{
+    font-weight: 400;
+}
+
+.cardGrid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    margin-top: 40px;
+    margin-bottom: 150px;
+    width: 70vw;
+    grid-gap: 7px;
+}
+.cardImg{
+    position: relative;
+    z-index: -1;
+    width:100%;
+    height: 100%
+}
+
+.card{
+    height: 210px;
+    border-radius: 20px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    cursor: pointer;
+    text-align: center;
+    background-size: cover;
+    color: white;
+}
+
+.card:hover{
+    background-size: 101%;
+}
+
+.imgTitle {
+    width: 100%;
+    height: 30vw;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.imgTitle > img {
+    object-fit: cover;
+    transition: .3s ease-out;
+    width: 100%;
+}
+
+.imgTitle > img:hover {
+    transform: scale(1.1);
+}
+
+
+@media screen and (max-width: 1040px) {
+    .cardGrid{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width: 600px) {
+    .cardContainer{
+        flex-direction: column-reverse;
+    }
+    .cardContainer img{
+        width: 80%;
+        border-radius: 30px;
+    }
+    .infoContainer{
+        margin-top: 20px;
+        width: 80%;
+    }
+    .cardGrid{
+        width: 80%
+    }
+}

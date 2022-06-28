@@ -1,0 +1,19 @@
+.news-link {
+  color: black;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.news-link:hover {
+  color: var(--primary-color);
+}
+
+.news-text {
+  font-family: var(--primary-font);
+}
+
+/* .btn-card {
+  margin: 1rem;
+  border-radius: 10px !important;
+} */
