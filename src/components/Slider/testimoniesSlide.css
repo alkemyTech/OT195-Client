@@ -1,0 +1,151 @@
+/* css del TestimoniesSlider.jsx */
+
+.carouselNew > .carousel-indicators{
+    display: none;
+}
+
+.carouselItemNew > img {
+    display: block;
+    object-fit: cover;
+    height: 30rem;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.imagen{
+    width:25% ;
+    height:25%;
+    margin-left: 37%;
+    border-radius: 20px;
+}
+
+.carouselNew > a{
+    height: 30rem
+}
+
+.carouselItemNew > .carousel-caption {
+    position: unset;
+    display: flex;
+    justify-content: center;
+    color: black;
+    margin: 2rem 0;
+}
+
+.carouselItemNew > .carousel-caption .content-container {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    max-width: 30rem;
+    width: 90vw;
+}
+
+.newTitle{
+    font-size: 3rem;
+}
+
+.newContent{
+    font-size: 1.2rem;
+}
+
+
+.btn-news{
+    width: max-content !important;
+    background-color: var(--primary-color) !important;
+    border-radius: 10px !important;
+    border: none !important;
+    font-size: 1.2rem !important;
+    padding: .6rem 1.2rem !important;
+    z-index: 100;
+}
+
+@media only screen and (min-width: 1000px) {
+    .carouselItemNew > img {
+        height: 35vw;
+    }
+    
+    .carouselNew > a{
+        height: 35vw;
+    }
+
+    .carouselItemNew > .carousel-caption .content-container {
+        max-width: 40rem;
+    }
+    
+    .newTitle{
+        font-size: 3.5vw;
+    }
+    
+    .newContent{
+        font-size: 1.6vw;
+    }
+    
+    
+    .btn-news{
+        font-size: 1.6vw !important;
+        padding: .8vw 1.6vw !important;
+    }
+}
+
+@media only screen and (min-width: 1500px) {
+    .carouselItemNew > .carousel-caption .content-container {
+        max-width: 50rem;
+    }
+}
+
+@media only screen and (min-width: 2000px) {
+    .carouselItemNew > .carousel-caption .content-container {
+        max-width: 70rem;
+    }
+}
+
+
+
+@media screen and (max-width: 1400px) {
+    .imagen {
+        width:25% ;
+        height:25%;
+        margin-left: 37%;
+    }
+    .carouselNew > a{
+        height: 30vw;
+    }
+}
+
+
+
+@media screen and (max-width: 700px) {
+    .imagen {
+        width:30% ;
+        height:30%;
+        margin-left: 35%;
+    }
+    .carouselNew > a{
+        height: 45vw;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .imagen{
+        width:50% ;
+        height:50%;
+        margin-left: 25%;
+    }
+    
+    .carouselNew > a{
+        height: 45vw;
+    }
+
+    .newTitle{
+        font-size: 2rem;
+    }
+    
+    .newContent{
+        font-size: .8rem;
+    }
+    
+    
+    .btn-news{
+        font-size: .8rem !important;
+        padding: .4rem .8rem !important;
+    }
+}
