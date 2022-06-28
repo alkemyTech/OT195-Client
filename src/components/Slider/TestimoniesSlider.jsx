@@ -1,5 +1,5 @@
 import React from "react";
-import "./newsSlide.css";
+import "./testimoniesSlide.css";
 import { Navigate } from "react-router-dom";
 import imagePlaceholder from "../../images/backoffice/user.png";
 
@@ -15,11 +15,15 @@ export default function TestimoniesSlider({testimoniesData}){
     slides = testimoniesData.map((el) => {
       return (
         <Carousel.Item key={el.id} interval={15000} className="carouselItemNew">
+          <div >
+
           <img
             src={el.image ? el.image : imagePlaceholder } // si no hay nada en imagen va a mostrar una imagen por defecto
             alt={el.name}
-            style={{width:"40%" , height:"40%", marginLeft:"30%" }} // cambio el tamaño de la imagen y lo centro
-          />
+            className="imagen"
+            // style={{width:"40%" , height:"40%", marginLeft:"30%" }} // cambio el tamaño de la imagen y lo centro
+            />
+            </div>
           <Carousel.Caption key={el.id}>
             <div className='content-container'>
               <h2 className="newTitle mb-2">{el.name}</h2>
@@ -44,6 +48,7 @@ export default function TestimoniesSlider({testimoniesData}){
     <Carousel
       style={{ display: "block", width: "100%" }}
       className="carouselNew"
+      variant="dark"
     >
       {slides}
     </Carousel>
