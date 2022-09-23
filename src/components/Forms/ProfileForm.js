@@ -4,9 +4,13 @@ import TextField from "../Forms/TextField";
 import Button from "../Button";
 import Select from "./Select";
 import { useSelector } from "react-redux";
+//
+import Swal from "sweetalert2";
 
-const ProfileForm = ({ setEditView, userData, formMethod }) => {
-  const user = useSelector(({ user }) => user.entity);
+const ProfileForm = ({ setEditView, userData, formMethod }) => { // trsigo lo que esta dentro ({ })  de ProfileEdit.jsx
+  // const user = useSelector(({ user }) => user.entity);
+  // console.log(formMethod)
+  // console.log(userData)
 
   return (
     <Formik
@@ -22,7 +26,7 @@ const ProfileForm = ({ setEditView, userData, formMethod }) => {
         <TextField name="firstName" label="Nombre"></TextField>
         <TextField name="lastName" label="Apellido"></TextField>
         <TextField name="email" label="Email" type="email"></TextField>
-        {user.roleId !== 1 ? null : (
+        {userData.roleId !== 1 ? null : (
           <Select name="roleId" label="Rol">
             <option value="1">Admin</option>
             <option value="2">User</option>

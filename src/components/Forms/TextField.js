@@ -17,7 +17,7 @@ const TextField = ({
   return (
     <Form.Group className="mb-3 fieldContainer" as={Row}>
       <Col sm="2" className="fieldLabel">
-        <Form.Label>{label}</Form.Label>
+        <Form.Label style={{ marginRight:"100px" }}>{label}</Form.Label>
       </Col>
       <Col sm="10" className="fieldControl">
         <Form.Control

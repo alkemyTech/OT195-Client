@@ -123,7 +123,7 @@ const TestimonialsTable = () => {
 
       // 4. Request to the upload endpoint from the server to modify the image ========== Second fetch
       const imageResponse = await fetch(
-        "http://localhost:3005/upload/testimonies/" + testimonyId,
+        "https://ong-app-node.herokuapp.com/upload/testimonies/" + testimonyId,
         {
           method: "PUT",
           headers: {
@@ -169,7 +169,7 @@ const TestimonialsTable = () => {
       confirmButtonText: "Guardar",
       cancelButtonText: `Cancelar`,
     }).then(async (result) => {
-      if (result) {
+      if (result.value) {
         try {
           const { image, ...formData } = values;
 
@@ -205,7 +205,7 @@ const TestimonialsTable = () => {
 
           // 3. Request to the upload endpoint from the server to modify the image ========== Second fetch
           const imageResponse = await fetch(
-            "http://localhost:3005/upload/testimonies/" + selectedRowData.id,
+            "https://ong-app-node.herokuapp.com/upload/testimonies/" + selectedRowData.id,
             {
               method: "PUT",
               headers: {
@@ -359,7 +359,7 @@ const TestimonialsTable = () => {
               deleteAction // muestro la opcion para eleminar el testimonio
               title="Listado de Testimonios" // es el nombre que va tener la tabla
             ></DataTable>
-            <FormModal >
+            <FormModal name="testimonio" >
               {showAdd ? (
                 <TestimonyForm fetchMethod={postForm}></TestimonyForm>
               ) : null}

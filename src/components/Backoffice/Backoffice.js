@@ -67,13 +67,13 @@ const Backoffice = () => {
       action: "",
       roleId: 1,
     },
-    {
-      title: "Contactos",
-      path: "contacts",
-      image: crowdOfUsers,
-      action: "",
-      roleId: 1,
-    },
+    // { // esto va  mostrar la opcion de "Contactos en el backOffice"
+    //   title: "Contactos",
+    //   path: "contacts",
+    //   image: crowdOfUsers,
+    //   action: "",
+    //   roleId: 1,
+    // },
     {
       title: "Editar Perfil",
       path: "profile",

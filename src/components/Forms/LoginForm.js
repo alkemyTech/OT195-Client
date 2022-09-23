@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import useLocalStorage from "../../hooks/useLocalStorage";
 import { useEffect } from "react";
+import Swal from "sweetalert2";
 
 // Async dispatch action for reducers
 import {
@@ -18,81 +19,59 @@ import {
   setLoginRejected,
 } from "../../features/actions/loginActions";
 
-const loginDispatch = (values, resetForm) => async (dispatch) => {
-  // Update the "loading" state to "pending" on the application store;
-  dispatch(setLoginPending());
 
-  try {
-    // Try to fetch the server endpoint
-    const response = await fetch(process.env.REACT_APP_LOGIN_ENDPOINT, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // Data is sent to the server as shown below
-      // =============================
-      //  {
-      //    email: "",
-      //    password: ""
-      //  }
-
-      body: JSON.stringify(values),
-    });
-
-    // If there was no error, we get the data from the response
-    // Data is expected to be returned as shown below
-
-    /*  Without errors: 
-          ========================
-          {
-            results: {
-              id: "",
-              nombre: "",
-              apellido: "",
-              image: ""
-            },
-            ok: true
-          }
-       */
-
-    /*  With errors: 
-          ========================
-          {
-            msg: "",
-            errcode?: ""
-            ok: false
-          }
-       */
-
-    const data = await response.json();
-
-    // If the ok property is false, we throw a new error message
-    // Expected the data to contain an "ok" property which may be 'true' or 'false'
-    // Expected the data to contain an "msg" property which contains the error message
-
-    // TODO: Display user friendly error messages
-
-    // if (!data.ok) throw new Error(data.msg);
-
-    // TODO: resetForm();
-
-    // If there was no error, we dispatch the results to the application store
-    // Expected the data to contain an "results" property which contains the user information
-    return dispatch(setLoginFulfilled(data.results));
-  } catch (err) {
-    // If there was an error, we dispatch the error to the application store
-    // TODO: Should we store the error code too?
-    console.log(err);
-
-    // return dispatch(setLoginRejected({ msg: err.message, code: "" }));
-  }
-};
 
 const LoginForm = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector(({ user }) => user);
 
-  const navigate = useNavigate();
+  const loginDispatch = (values, resetForm) => async (dispatch) => {
+    // Update the "loading" state to "pending" on the application store;
+    dispatch(setLoginPending());
+    try {
+      // Try to fetch the server endpoint
+      const response = await fetch(process.env.REACT_APP_LOGIN_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      const data = await response.json();
+  
+      // If the ok property is false, we throw a new error message
+      // Expected the data to contain an "ok" property which may be 'true' or 'false'
+      // Expected the data to contain an "msg" property which contains the error message
+  
+      // TODO: Display user friendly error messages
+  
+      // if (!data.ok) throw new Error(data.msg);
+  
+      // TODO: resetForm();
+  
+      // If there was no error, we dispatch the results to the application store
+      // Expected the data to contain an "results" property which contains the user information
+
+      if (!data.ok) { // si  data.ok es igual a "false" , va mostrar la siguiente alerta
+        return Swal.fire({
+          title: "Error!",
+          text: "Hubo un error al querer ingresar con tu usuario, email o contraseña incorrecto",
+          type: "error",
+          confirmButtonText: "Continuar",
+        });
+      }
+      
+      // console.log(data)
+      dispatch(setLoginFulfilled(data.results));
+      navigate("/");
+    } catch (err) {
+      // If there was an error, we dispatch the error to the application store
+      // TODO: Should we store the error code too?
+      console.log(err);
+    }
+  };
+
 
   // Custom hook to listen the token
   const [token] = useLocalStorage("token");
@@ -111,15 +90,14 @@ const LoginForm = () => {
         initialValues={{ email: "", password: "" }}
         onSubmit={(values, { resetForm }) => {
           dispatch(loginDispatch(values, resetForm));
-          navigate("/");
         }}
         validationSchema={Yup.object({
           email: Yup.string()
             .required("Por favor, complete su dirección de correo electrónico")
             .email("Ingrese un email válido."),
-          // password: Yup.string()
-          //   .required("La contraseña es obligatoria")
-          //   .min(6, "La contraseña debe tener al menos 6 caracteres"),
+          password: Yup.string()
+            .required("La contraseña es obligatoria")
+            .min(6, "La contraseña debe tener al menos 6 caracteres")
         })}
       >
         <Bootstrap.Form as={Form}>

@@ -32,7 +32,7 @@ const ContactForm = () => {
     const handleSubmit = async(values) => {
         setLoading(true);
         try {
-            const response = await fetch(process.env.REACT_APP_CONTACT_ENDPOINT, {
+            const response = await fetch(process.env.REACT_APP_CONTACTS_ENDPOINT, {
               method: "POST",
               mode: "cors",
               headers: {

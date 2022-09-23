@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { setLoginFulfilled } from "../../features/actions/loginActions";
 import { Formik } from "formik";
 import { Container, Row, Col, Image } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 import foto from "../register/imagen/Foto3.jpg";
 import "../register/css/Register.css";
@@ -62,18 +63,15 @@ export default function Register() {
                     }
                     let upper = 0;
                     let lower = 0;
-                    values.password
-                      .split("")
-                      .forEach(
-                        (el) =>
-                          (el === el.toLocaleLowerCase() && lower++) ||
-                          (el === el.toUpperCase() && upper++)
+                    values.password.split("").forEach((el) =>
+                        (el === el.toLocaleLowerCase() && lower++) ||
+                        (el === el.toUpperCase() && upper++)
                       );
                     if (upper === 0) {
                       errors.password = "minimo una mayuscula";
                     }
                     if (lower === 0) {
-                      errors.password = "minimo una mayuscula";
+                      errors.password = "minimo una minuscula";
                     }
                     return errors;
                   }}
@@ -90,7 +88,7 @@ export default function Register() {
 
                     try {
                       const registerResponse = await fetch(
-                        "http://localhost:3005/auth/register",
+                        "https://ong-app-node.herokuapp.com/auth/register",
                         requestOptions
                       );
                       const data = await registerResponse.json();
@@ -114,7 +112,13 @@ export default function Register() {
                       dispatch(setLoginFulfilled(loginData.results));
                       navigate("/");
                     } catch (error) {
-                      console.log("error", error);
+                      console.log( error);
+                      return Swal.fire({
+                        title: "Error!",
+                        text: "El nombre y el apellido tiene que ser mayor de 4 caracteres",
+                        type: "error",
+                        confirmButtonText: "Continuar",
+                      });
                     }
                   }}
                 >

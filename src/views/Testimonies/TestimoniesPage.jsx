@@ -5,7 +5,7 @@ import useFetch from "../../hooks/useFetch";
 import TestimoniesSlider from "../../components/Slider/TestimoniesSlider";
 
 
-// const NewsPage = () => {
+// Esto es para la ruta de "/testimonials"
 export default function TestimoniesPage(){
 
 
