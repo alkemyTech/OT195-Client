@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Image } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -18,13 +19,35 @@ const ActivitiesTable = () => {
   // Columns Definitions
   const [colDefs] = useState([
     {
-      title: "id",
-      field: "id",
-      hidden: true,
-    },
-    {
       title: "Nombre",
       field: "name",
+    },
+    {
+      title:"Imagen",
+      field:"image",
+      render: (rowData) =>(
+        <Image
+        width="150"
+        height="150"
+        rounded
+        style={{ objectFit: "cover" }}
+        src= {rowData.image && rowData.image}
+        alt={rowData.name}
+       />
+      ),
+    },
+    {
+      title: "Fecha de creacion",
+      field: "createdAt",
+      render: (rowData) => {
+        const date = new Date(rowData.createdAt);
+
+        let year = date.getFullYear();
+        let month = (1 + date.getMonth()).toString().padStart(2, "0");
+        let day = date.getDate().toString().padStart(2, "0");
+
+        return <p>{`${day}/${month}/${year}`}</p>;
+      },
     },
   ]);
 
@@ -93,7 +116,7 @@ const ActivitiesTable = () => {
 
       // 4. Request to the upload endpoint from the server to modify the image ========== Second fetch
       const imageResponse = await fetch(
-        process.env.REACT_APP_UPLOADS_ENDPOINT + "activities/" + id,
+        "https://ong-app-node.herokuapp.com/upload/activities/"  + id,
         {
           method: "PUT",
           headers: {
@@ -102,6 +125,7 @@ const ActivitiesTable = () => {
           body: imageRequest,
         }
       );
+      
 
       if (imageResponse.status === "500" || imageResponse.status === "400") {
         return Swal.fire({
@@ -177,9 +201,7 @@ const ActivitiesTable = () => {
 
           // 3. Request to the upload endpoint from the server to modify the image ========== Second fetch
           const imageResponse = await fetch(
-            process.env.REACT_APP_UPLOADS_ENDPOINT +
-              "activities/" +
-              selectedRowData.id,
+            "https://ong-app-node.herokuapp.com/upload/activities/" + selectedRowData.id,
             {
               method: "PUT",
               headers: {
@@ -238,7 +260,7 @@ const ActivitiesTable = () => {
         console.log(result);
         try {
           const response = await fetch(
-            process.env.REACT_APP_ACTIVITIES_ENDPOINT + "delete/" + values.id,
+            process.env.REACT_APP_ACTIVITIES_ENDPOINT  + values.id,
             {
               method: "DELETE",
               headers: {
@@ -248,7 +270,7 @@ const ActivitiesTable = () => {
               },
             }
           );
-          const { results: data } = await response.json();
+          const  data  = await response.json();
 
           if (!data.ok) {
             return Swal.fire({
@@ -334,6 +356,7 @@ const ActivitiesTable = () => {
               title="Listado de actividades"
               editAction
               detailAction
+              deleteAction // muestro la opcion para eleminar el testimonio
             ></DataTable>
             <FormModal name="Actividad">
               {showAdd ? (

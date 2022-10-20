@@ -35,7 +35,7 @@ import Activities from "./components/Backoffice/Activities";
 import Profile from "./components/profile/Profile";
 import Categories from "./components/Backoffice/Categories";
 import Testimonials from "./components/Backoffice/Testimonials";
-import ActivitiesLayout from "./views/Activities/ActivitiesLayout";
+import ActivitiesPage from "./views/Activities/ActivitiesPage";
 import Activity from "./views/Activities/Activity";
 import ContactsList from "./components/Backoffice/ContactsList";
 
@@ -58,7 +58,8 @@ function App() {
               <Route path="staff" element={<StaffPage />} />
               <Route path="news" element={<NewsPage />} />
               <Route path="news/:id" element={<Detail />} />
-              <Route path="testimonials" element={<TestimoniesPage />} />
+              <Route path="/testimonials" element={<TestimoniesPage />} />
+              <Route path="activities" element={<ActivitiesPage/>} />
               <Route path="contact" element={<ContactForm />} />
               <Route path="contribute" element={<h1>Contribute</h1>} />
               <Route path="login" element={<LoginView />} />
@@ -73,7 +74,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
-              <Route path="actividades" element={<ActivitiesLayout />}>
+              <Route path="actividades" element={<ActivitiesPage />}>
                 <Route path=":id" element={<Activity />} />
               </Route>
               <Route path="*" element={<h1>404 Not Found</h1>} />

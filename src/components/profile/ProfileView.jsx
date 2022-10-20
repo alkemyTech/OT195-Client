@@ -85,14 +85,20 @@ export default function  ProfileView({userData , setEditView }){
                         <h3>Mi perfil</h3>
                         <Container className="my-3" fluid>
                             <Row style={{fontWeight: "bold"}}>
-                                <Col><p>Nombre</p></Col>
-                                <Col><p>Apellido</p></Col>
-                                <Col><p>Email</p></Col>
+                                <Col><p>Nombre:
+                                  <br />
+                                  {userData.firstName} </p></Col>
+                                <Col><p>Apellido: 
+                                  <br />
+                                  {userData.lastName}</p></Col>
+                                <Col><p>Email:
+                                  <br />
+                                  {userData.email}</p></Col>
                             </Row>
                             <Row>
-                                <Col><p>{userData.firstName}</p></Col>
-                                <Col><p>{userData.lastName}</p></Col>
-                                <Col><p>{userData.email}</p></Col>
+                                {/* <Col><p>{userData.firstName}</p></Col> */}
+                                {/* <Col><p>{userData.lastName}</p></Col> */}
+                                {/* <Col><p>{userData.email}</p></Col> */}
                             </Row>
                         </Container>
 

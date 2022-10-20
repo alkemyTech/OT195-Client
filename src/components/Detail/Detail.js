@@ -15,6 +15,7 @@ const Detail = () => {
   const { data: newsInfo, loading } = useFetch(
     process.env.REACT_APP_NEWS_ENDPOINT + "/" + id
   );
+  // console.log(newsInfo)
 
   if (loading) {
     return <Loader />;
@@ -23,7 +24,7 @@ const Detail = () => {
   return (
     <Row className="title-box">
       <Col>
-        <Image />
+        <Image newInfo={loading ? "cargando" : newsInfo.results} /> {/* envio lo que trae newInfo a Image.js  */}
       </Col>
       <Col className="px-1 py-5 d-flex">
         <Info name={newsInfo.results.name} content={newsInfo.results.content} />

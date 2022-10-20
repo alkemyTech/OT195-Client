@@ -1,6 +1,4 @@
-.ejem{
-    font-size: 100px;
-}
+
 
 .carouselNew > .carousel-indicators{
     display: none;
@@ -11,12 +9,13 @@
     object-fit: cover;
     height: 30rem;
     width: 100%;
+    /* border-radius: 20px; */
 }
 
-.imagenNews{
-    width:25% ;
+.imagen{
+    width:70% ;
     height:25%;
-    /* margin-left: 37%; */
+    margin-left: 17%;
     border-radius: 20px;
 }
 
@@ -99,7 +98,44 @@
     }
 }
 
-@media only screen and (max-width: 450px) {
+
+
+@media screen and (max-width: 1400px) {
+    .imagen {
+        width:70% ;
+        height:25%;
+        margin-left: 17%;
+    }
+    .carouselNew > a{
+        height: 30vw;
+    }
+}
+
+
+
+@media screen and (max-width: 700px) {
+    .imagen {
+        width:70% ;
+        height:30%;
+        margin-left: 17%;
+    }
+    .carouselNew > a{
+        height: 45vw;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .imagen{
+        width:70% ;
+        /* width: 400px; */
+        height:50%;
+        margin-left: 17%;
+    }
+    
+    .carouselNew > a{
+        height: 45vw;
+    }
+
     .newTitle{
         font-size: 2rem;
     }

@@ -11,7 +11,7 @@ import "./Header.css";
 import { useState } from "react";
 
 const Header = () => {
-  const { data: publicInfo, loading } = useFetch(
+  const { data: publicInfo, loading } = useFetch( // trae el menu para el header lo que esta la ruta del back organitations
     process.env.REACT_APP_PUBLIC_ENDPOINT
   );
 
