@@ -17,14 +17,14 @@ export default function Profile() {
   if (editView === false) { // si es false muestra ProfileView.jsx
     return (
       <div>
-        <ProfileView setEditView={setEditView} userData={detailsLoading ? user : detailsData.result} />  
+        <ProfileView setEditView={setEditView} userData={detailsLoading && user || detailsData.result  } />  
       </div>
     );
   }
 
   return ( // si es true muestra ProfileEdit.jsx
     <div>
-      <ProfileEdit setEditView={setEditView} userData={detailsLoading ? user : detailsData.result} />
+      <ProfileEdit setEditView={setEditView} userData={detailsLoading && user || detailsData.result } />
     </div>
   );
 }
