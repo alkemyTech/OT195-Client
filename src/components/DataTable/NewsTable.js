@@ -110,7 +110,7 @@ const NewsTable = () => {
       imageRequest.append("image", image);
 
       const imageResponse = await fetch(
-        process.env.REACT_APP_UPLOADS_ENDPOINT + "news/" + id,
+        "https://ong-app-node.herokuapp.com/upload/news/" + id,
         {
           method: "PUT",
           headers: {
@@ -191,9 +191,7 @@ const NewsTable = () => {
           imageRequest.append("image", image);
 
           const imageResponse = await fetch(
-            process.env.REACT_APP_UPLOADS_ENDPOINT +
-              "news/" +
-              selectedRowData.id,
+            "https://ong-app-node.herokuapp.com/upload/news/" + selectedRowData.id,
             {
               method: "PUT",
               headers: {
@@ -261,7 +259,7 @@ const NewsTable = () => {
             }
           );
 
-          const { results: data } = await response.json();
+          const data = await response.json();
 
           if (!data.ok) {
             return Swal.fire({
